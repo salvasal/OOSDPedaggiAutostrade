@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -84,6 +87,13 @@ public class Login extends JFrame {
 		btnRegistrati.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnRegistrati.setBounds(268, 206, 89, 23);
 		contentPane.add(btnRegistrati);
+		btnRegistrati.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				Registrazione r=new Registrazione();
+				r.setVisible(true);
+			}
+		});
 		
 		JLabel lblHaiDimenticatoLa = new JLabel("Hai dimenticato la credenziali?");
 		lblHaiDimenticatoLa.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -94,6 +104,13 @@ public class Login extends JFrame {
 		btnRecupera.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnRecupera.setBounds(268, 247, 89, 23);
 		contentPane.add(btnRecupera);
+		btnRecupera.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				RecuperoCredenziali rc=new RecuperoCredenziali();
+				rc.setVisible(true);
+			}
+		});
 	}
 
 }
