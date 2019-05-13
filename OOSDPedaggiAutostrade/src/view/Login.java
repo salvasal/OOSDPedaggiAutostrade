@@ -11,8 +11,8 @@ import javax.swing.JButton;
 public class Login {
 
 	private JFrame frmLogin;
-	private JTextField usernamefield;
-	private JTextField passwordfield;
+	private JTextField usernameField;
+	private JTextField passwordField;
 
 	/**
 	 * Launch the application.
@@ -57,20 +57,20 @@ public class Login {
 		lblUsername.setBounds(72, 82, 77, 14);
 		frmLogin.getContentPane().add(lblUsername);
 		
-		usernamefield = new JTextField();
-		usernamefield.setBounds(170, 77, 142, 26);
-		frmLogin.getContentPane().add(usernamefield);
-		usernamefield.setColumns(10);
+		usernameField = new JTextField();
+		usernameField.setBounds(170, 77, 142, 26);
+		frmLogin.getContentPane().add(usernameField);
+		usernameField.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblPassword.setBounds(72, 125, 77, 14);
 		frmLogin.getContentPane().add(lblPassword);
 		
-		passwordfield = new JTextField();
-		passwordfield.setBounds(170, 120, 142, 26);
-		frmLogin.getContentPane().add(passwordfield);
-		passwordfield.setColumns(10);
+		passwordField = new JTextField();
+		passwordField.setBounds(170, 120, 142, 26);
+		frmLogin.getContentPane().add(passwordField);
+		passwordField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Non ti sei ancora registrato?");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
