@@ -15,7 +15,7 @@ public class RecuperoCredenziali {
 	private JTextField recuperoCredenzialiField;
 
 	/**
-	 * Launch the application
+	 * Launch the applicationciao
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
