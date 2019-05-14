@@ -57,7 +57,7 @@ public class Tariffa {
 	 * @param valore the valore to set
 	 */
 	public void setValore(float valore) {
-		valore = valore;
+		this.valore = valore;
 	}
 	
 	
