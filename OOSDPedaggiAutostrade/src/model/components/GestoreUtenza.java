@@ -33,7 +33,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	 * @see model.interfaces.GestoreUtenzaInterface#getCredentialsbyKey(java.lang.String)
 	 */
 	@Override
-	public String[] getCredentialsbyKey(String chiave) {
+	public String[] getCredentialsbyKey(String username, String chiave) {
 		// TODO Auto-generated method stub
 		return null;
 	}

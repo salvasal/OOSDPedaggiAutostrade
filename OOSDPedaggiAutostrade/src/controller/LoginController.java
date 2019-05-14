@@ -20,8 +20,8 @@ public class LoginController {
 			new GestoreUtenza().setUtente(u);
 		}
 
-		public String[] getCredentialsbyKey(String chiave) {
-			return new GestoreUtenza().getCredentialsbyKey(chiave);
+		public String[] getCredentialsbyKey(String username, String chiave) {
+			return new GestoreUtenza().getCredentialsbyKey(username, chiave);
 		}
 
 }
