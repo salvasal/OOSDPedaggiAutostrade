@@ -19,4 +19,9 @@ public class LoginController {
 		public void setUtente(Utente u) {
 			new GestoreUtenza().setUtente(u);
 		}
+
+		public String[] getCredentialsbyKey(String chiave) {
+			return new GestoreUtenza().getCredentialsbyKey(chiave);
+		}
+
 }

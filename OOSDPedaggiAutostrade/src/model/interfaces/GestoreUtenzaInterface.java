@@ -12,4 +12,5 @@ import model.components.Utente;
 public interface GestoreUtenzaInterface {
 	public String login(String username, String password);
 	public void setUtente(Utente u);
+	public String[] getCredentialsbyKey(String chiave);
 }

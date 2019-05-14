@@ -28,6 +28,15 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.GestoreUtenzaInterface#getCredentialsbyKey(java.lang.String)
+	 */
+	@Override
+	public String[] getCredentialsbyKey(String chiave) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
