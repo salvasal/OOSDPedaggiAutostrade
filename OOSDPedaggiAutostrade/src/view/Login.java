@@ -85,7 +85,7 @@ public class Login extends JFrame {
 		
 		JButton btnRegistrati = new JButton("Registrati");
 		btnRegistrati.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		btnRegistrati.setBounds(268, 206, 89, 23);
+		btnRegistrati.setBounds(268, 206, 109, 23);
 		contentPane.add(btnRegistrati);
 		btnRegistrati.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
@@ -102,7 +102,7 @@ public class Login extends JFrame {
 		
 		JButton btnRecupera = new JButton("Recupera");
 		btnRecupera.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		btnRecupera.setBounds(268, 247, 89, 23);
+		btnRecupera.setBounds(268, 247, 109, 23);
 		contentPane.add(btnRecupera);
 		btnRecupera.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
