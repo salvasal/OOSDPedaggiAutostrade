@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Color;
 
 public class DashboardAdmin extends JFrame {
 
@@ -31,12 +34,44 @@ public class DashboardAdmin extends JFrame {
 	 * Create the frame.
 	 */
 	public DashboardAdmin() {
+		setTitle("Dashboard Amministratore");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 487, 390);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnAggiungiAmministratore = new JButton("Aggiungi un nuovo Amministratore");
+		btnAggiungiAmministratore.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		btnAggiungiAmministratore.setBounds(114, 16, 255, 39);
+		contentPane.add(btnAggiungiAmministratore);
+		
+		JButton btnGestisciTariffeOneri = new JButton("Gestisci Tariffe e Oneri");
+		btnGestisciTariffeOneri.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		btnGestisciTariffeOneri.setBounds(114, 67, 255, 39);
+		contentPane.add(btnGestisciTariffeOneri);
+		
+		JButton btnCercaUtente = new JButton("Cerca un Utente");
+		btnCercaUtente.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		btnCercaUtente.setBounds(114, 125, 255, 39);
+		contentPane.add(btnCercaUtente);
+		
+		JButton btnCalcolaPedaggio = new JButton("Calcola un Pedaggio Autostradale");
+		btnCalcolaPedaggio.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		btnCalcolaPedaggio.setBounds(114, 176, 255, 39);
+		contentPane.add(btnCalcolaPedaggio);
+		
+		JButton btnGestisciAutostrada = new JButton("Gestisci Autostrada");
+		btnGestisciAutostrada.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		btnGestisciAutostrada.setBounds(114, 227, 255, 39);
+		contentPane.add(btnGestisciAutostrada);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setForeground(Color.RED);
+		btnLogout.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		btnLogout.setBackground(Color.WHITE);
+		btnLogout.setBounds(114, 319, 255, 39);
+		contentPane.add(btnLogout);
 	}
-
 }
