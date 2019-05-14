@@ -24,7 +24,6 @@ public class Autostrada {
 	 */
 	public Autostrada(String codice, String nome, String tipo, Integer kminizio, Integer kmfine,
 			String amministratore) {
-		super();
 		this.codice = codice;
 		this.nome = nome;
 		this.tipo = tipo;

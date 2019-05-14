@@ -19,6 +19,7 @@ public class Utente {
 	public Date datan;
 	public String telefono;
 	public String carta;
+	
 	/**
 	 * @param username
 	 * @param password
@@ -32,7 +33,6 @@ public class Utente {
 	 */
 	public Utente(String username, String password, String chiaverecupero, String nome, String cognome, String luogon,
 			Date datan, String telefono, String carta) {
-		super();
 		this.username = username;
 		this.password = password;
 		this.chiaverecupero = chiaverecupero;

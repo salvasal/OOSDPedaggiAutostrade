@@ -34,7 +34,6 @@ public class Veicolo {
 	 */
 	public Veicolo(String targa, String marca, String modello, Integer peso, Integer assi, Integer altezza,
 			Integer anno, String categoria, float qtaco2, Integer oneri, String utente) {
-		super();
 		this.targa = targa;
 		this.marca = marca;
 		this.modello = modello;

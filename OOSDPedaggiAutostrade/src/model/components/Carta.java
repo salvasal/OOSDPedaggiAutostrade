@@ -9,15 +9,14 @@ package model.components;
  */
 public class Carta {	
 	public String iban;
-	public Float saldo;
+	public float saldo;
 	
 	
 	/**
 	 * @param iban
 	 * @param saldo
 	 */
-	public Carta(String iban, Float saldo) {
-		super();
+	public Carta(String iban, float saldo) {
 		this.iban = iban;
 		this.saldo = saldo;
 	}
@@ -36,13 +35,13 @@ public class Carta {
 	/**
 	 * @return the saldo
 	 */
-	public Float getSaldo() {
+	public float getSaldo() {
 		return saldo;
 	}
 	/**
 	 * @param saldo the saldo to set
 	 */
-	public void setSaldo(Float saldo) {
+	public void setSaldo(float saldo) {
 		this.saldo = saldo;
 	}
 

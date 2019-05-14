@@ -11,9 +11,7 @@ public class Pedaggio {
 	public String id;
 	public String stato;
 	public float importo;
-	public String Veicolo;
-	
-	
+	public String veicolo;
 	
 	
 	/**
@@ -23,11 +21,10 @@ public class Pedaggio {
 	 * @param veicolo
 	 */
 	public Pedaggio(String id, String stato, float importo, String veicolo) {
-		super();
 		this.id = id;
 		this.stato = stato;
 		this.importo = importo;
-		Veicolo = veicolo;
+		this.veicolo = veicolo;
 	}
 	/**
 	 * @return the id
@@ -69,13 +66,13 @@ public class Pedaggio {
 	 * @return the veicolo
 	 */
 	public String getVeicolo() {
-		return Veicolo;
+		return veicolo;
 	}
 	/**
 	 * @param veicolo the veicolo to set
 	 */
 	public void setVeicolo(String veicolo) {
-		Veicolo = veicolo;
+		veicolo = veicolo;
 	}
 	
 	

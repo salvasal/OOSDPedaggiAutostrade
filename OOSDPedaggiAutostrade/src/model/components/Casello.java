@@ -12,6 +12,7 @@ public class Casello {
 	public String nome;
 	public Integer km;
 	public String autostrada;
+	
 	/**
 	 * @param coordinate
 	 * @param nome
@@ -19,7 +20,6 @@ public class Casello {
 	 * @param autostrada
 	 */
 	public Casello(String coordinate, String nome, Integer km, String autostrada) {
-		super();
 		this.coordinate = coordinate;
 		this.nome = nome;
 		this.km = km;
