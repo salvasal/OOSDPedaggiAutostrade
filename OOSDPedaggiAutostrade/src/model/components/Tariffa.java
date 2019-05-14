@@ -21,7 +21,7 @@ public class Tariffa {
 		
 		this.categoria = categoria;
 		this.tipo = tipo;
-		valore = valore;
+		this.valore = valore;
 	}
 	/**
 	 * @return the categoria
