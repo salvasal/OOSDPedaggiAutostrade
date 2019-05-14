@@ -4,7 +4,7 @@
 package controller;
 
 /**
- * @author 
+ * @author
  *
  */
 public class LoginController {
