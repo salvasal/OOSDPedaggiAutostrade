@@ -3,6 +3,12 @@
  */
 package model.components;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import model.database.Database;
 import model.interfaces.GestoreUtenzaInterface;
 
 /**
@@ -17,7 +23,33 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	@Override
 	public String login(String username, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		/*Connessione al database per prendere i dati*/
+		Connection con=new Database().Connect();
+		
+		try {
+			Statement st = con.createStatement();
+			/*controlla se l'username e la password appartengono ad un amministratore*/
+			System.out.println(username);
+			System.out.println(password);
+			ResultSet result=st.executeQuery("select * from amministratore where Username='"+username+"'and Password='"+password+"'");
+			/*Se è un amministratore*/
+			if(result.next()) {
+				return "amministratore";
+			}
+			/*controlla se l'username e la password appartengono ad un utente*/
+			result=st.executeQuery("select * from utente where Username='"+username+"'and Password='"+password+"'");
+			if(result.next()) {
+				return "utente";
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*se l'utente non è un amministratore e neanche un utente*/
+		return "";
+		
 	}
 
 	/* (non-Javadoc)

@@ -13,6 +13,7 @@ import java.awt.Color;
 public class DashboardAdmin extends JFrame {
 
 	private JPanel contentPane;
+	private static String username;
 
 	/**
 	 * Launch the application.
@@ -21,7 +22,7 @@ public class DashboardAdmin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DashboardAdmin frame = new DashboardAdmin();
+					DashboardAdmin frame = new DashboardAdmin(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +34,7 @@ public class DashboardAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DashboardAdmin() {
+	public DashboardAdmin(String username) {
 		setTitle("Dashboard Amministratore");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 487, 438);

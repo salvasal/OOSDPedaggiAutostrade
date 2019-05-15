@@ -6,7 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.LoginController;
+import view.dashboardadmin.DashboardAdmin;
+import view.dashboardutente.DashboardUtente;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +26,8 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField usernameField;
 	private JTextField passwordField;
+	private String username;
+	private String password;
 
 	/**
 	 * Launch the application.
@@ -77,6 +86,26 @@ public class Login extends JFrame {
 		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnLogin.setBounds(176, 164, 89, 23);
 		contentPane.add(btnLogin);
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				username=usernameField.getText();
+				password=passwordField.getText();
+				if (!username.equals("") && !password.equals("")) {
+					String tipo = new LoginController().login(username, password);
+					if(tipo.equals("amministratore")) {
+						dispose();
+						DashboardAdmin da=new DashboardAdmin(username);
+						da.setVisible(true);
+					} else if (tipo.equals("utente")) {
+						dispose();
+						DashboardUtente du=new DashboardUtente(username);
+						du.setVisible(true);
+						} else JOptionPane.showMessageDialog(null, "Credenziali Errate"); 
+				} else {
+					JOptionPane.showMessageDialog(null, "Uno dei due campi non è stato riempito");
+				}
+			}
+		});
 		
 		JLabel lblNonTiSei = new JLabel("Non ti sei ancora registrato?");
 		lblNonTiSei.setFont(new Font("Times New Roman", Font.PLAIN, 15));

@@ -21,16 +21,14 @@ public class Database {
 		public static Connection Connect() {
 			
 			Connection myConn;
-			
 			try {
-				myConn=DriverManager.getConnection(LOCATION,NAME,PSW);
-				//System.out.println("\n----Connessione Effettuata Corretamente al Database---- ");
+				myConn=DriverManager.getConnection(LOCATION, NAME, PSW);
 				return myConn;
-			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			
 			return null;
 		}
