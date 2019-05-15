@@ -71,6 +71,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 			st.executeUpdate(tot);
 			String tot2="insert into utente values('"+u.getUsername()+"','"+u.getPassword()+"','"+chiave+"','"+u.getNome()+"','"+u.getCognome()+"','"+u.getLuogon()+"','"+u.getDatan()+"','"+u.getTelefono()+"','"+u.getCarta()+"')";
 			st2.executeUpdate(tot2);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
