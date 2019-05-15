@@ -6,9 +6,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.LoginController;
+import model.components.Utente;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+
 import javax.swing.JButton;
 
 public class Registrazione extends JFrame {
@@ -22,6 +31,15 @@ public class Registrazione extends JFrame {
 	private JTextField datanField;
 	private JTextField telefonoField;
 	private JTextField cartaField;
+	private String username;
+	private String password;
+	private String nome;
+	private String cognome;
+	private String luogon;
+	private String datan;
+	private String telefono;
+	private String carta;
+	
 
 	/**
 	 * Launch the application.
@@ -135,6 +153,23 @@ public class Registrazione extends JFrame {
 		btnRegistrati.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnRegistrati.setBounds(145, 268, 97, 25);
 		contentPane.add(btnRegistrati);
+		btnRegistrati.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				username=usernameField.getText();
+				password=passwordField.getText();
+				nome=nomeField.getText();
+				cognome=cognomeField.getText();
+				luogon=luogonField.getText();
+				datan=datanField.getText();
+				telefono=telefonoField.getText();
+				carta=cartaField.getText();
+				if(!username.equals("") && !password.equals("")) {
+					Utente u = new Utente (username, password, null, nome, cognome, luogon, datan, telefono, carta);
+					String chiave = new LoginController().setUtente(u);
+					JOptionPane.showMessageDialog(null,"Utente aggiunto con successo! Chiave di recupero:" +chiave);
+				} else JOptionPane.showMessageDialog(null, "Uno dei campi non è stato riempito");
+			}
+		});
 	}
 
 }

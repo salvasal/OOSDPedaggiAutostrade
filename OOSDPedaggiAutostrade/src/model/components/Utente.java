@@ -16,7 +16,7 @@ public class Utente {
 	public String nome;
 	public String cognome;
 	public String luogon;
-	public Date datan;
+	public String datan;
 	public String telefono;
 	public String carta;
 	
@@ -32,7 +32,7 @@ public class Utente {
 	 * @param carta
 	 */
 	public Utente(String username, String password, String chiaverecupero, String nome, String cognome, String luogon,
-			Date datan, String telefono, String carta) {
+			String datan, String telefono, String carta) {
 		this.username = username;
 		this.password = password;
 		this.chiaverecupero = chiaverecupero;
@@ -118,13 +118,13 @@ public class Utente {
 	/**
 	 * @return the datan
 	 */
-	public Date getDatan() {
+	public String getDatan() {
 		return datan;
 	}
 	/**
 	 * @param datan the datan to set
 	 */
-	public void setDatan(Date datan) {
+	public void setDatan(String datan) {
 		this.datan = datan;
 	}
 	/**

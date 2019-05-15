@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 import model.database.Database;
 import model.interfaces.GestoreUtenzaInterface;
@@ -15,6 +16,7 @@ import model.interfaces.GestoreUtenzaInterface;
  * @author Salvatore Salernitano Matricola 242016
  *
  */
+
 public class GestoreUtenza implements GestoreUtenzaInterface {
 
 	/* (non-Javadoc)
@@ -56,9 +58,24 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	 * @see model.interfaces.GestoreUtenzaInterface#setUtente(model.components.Utente)
 	 */
 	@Override
-	public void setUtente(Utente u) {
+	public String setUtente(Utente u) {
 		// TODO Auto-generated method stub
-		
+		Connection con = new Database().Connect();
+		String chiave = randomString(6);
+		float saldo = 0;
+		Statement st;
+		try {
+			st = con.createStatement();
+			Statement st2 = con.createStatement();
+			String tot="insert into carta(IBAN, Saldo) values('"+u.getCarta()+"','"+saldo+"')";
+			st.executeUpdate(tot);
+			String tot2="insert into utente values('"+u.getUsername()+"','"+u.getPassword()+"','"+chiave+"','"+u.getNome()+"','"+u.getCognome()+"','"+u.getLuogon()+"','"+u.getDatan()+"','"+u.getTelefono()+"','"+u.getCarta()+"')";
+			st2.executeUpdate(tot2);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return chiave;
 	}
 
 	/* (non-Javadoc)
@@ -69,7 +86,26 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.GestoreUtenzaInterface#randomString(int)
+	 */
+	@Override
+	public String randomString(int length) {
+		// TODO Auto-generated method stub
+		Random rand = new Random();
+		StringBuffer tempStr = new StringBuffer();
+		tempStr.append("");
+		for (int i = 0; i < length; i++) {
+		int c = rand.nextInt(122 - 48) + 48;
+		if((c >= 58 && c <= 64) || (c >= 91 && c <= 96)){
+		i--;
+		continue;
+		}
+		tempStr.append((char)c);
+
+		}
+		return tempStr.toString();
+		}
+		
 }
