@@ -6,8 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import view.Login;
+
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class DashboardAdmin extends JFrame {
@@ -74,5 +79,12 @@ public class DashboardAdmin extends JFrame {
 		btnLogout.setBackground(Color.WHITE);
 		btnLogout.setBounds(114, 319, 255, 39);
 		contentPane.add(btnLogout);
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e ) {
+				dispose();
+				Login l = new Login();
+				l.setVisible(true);
+			}
+		});
 	}
 }
