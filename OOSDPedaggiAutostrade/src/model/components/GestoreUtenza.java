@@ -74,6 +74,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
 		return chiave;
 	}
