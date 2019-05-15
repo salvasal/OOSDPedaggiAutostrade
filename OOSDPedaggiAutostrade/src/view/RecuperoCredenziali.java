@@ -6,16 +6,25 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.LoginController;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public class RecuperoCredenziali extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField usernameField;
-	private JTextField ChiaveField;
+	private JTextField chiaveField;
+	private String username;
+	private String chiaverecupero;
 
 	/**
 	 * Launch the application.
@@ -60,14 +69,28 @@ public class RecuperoCredenziali extends JFrame {
 		lblInserisciChiaveRecupero.setBounds(115, 100, 229, 16);
 		contentPane.add(lblInserisciChiaveRecupero);
 		
-		ChiaveField = new JTextField();
-		ChiaveField.setBounds(131, 129, 182, 38);
-		contentPane.add(ChiaveField);
-		ChiaveField.setColumns(10);
+		chiaveField = new JTextField();
+		chiaveField.setBounds(131, 129, 182, 38);
+		contentPane.add(chiaveField);
+		chiaveField.setColumns(10);
 		
 		JButton btnRecuperaCredenziali = new JButton("Recupera Credenziali");
 		btnRecuperaCredenziali.setBounds(131, 213, 182, 29);
 		contentPane.add(btnRecuperaCredenziali);
+		btnRecuperaCredenziali.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				username = usernameField.getText();
+				chiaverecupero = chiaveField.getText();
+				if(!username.equals("") && !chiaverecupero.equals("")) {
+					String a[] = new LoginController().getCredentialsbyKey (username, chiaverecupero);
+					JOptionPane.showMessageDialog(null, "Le credenziali sono Username: "+a[0]+" e Password: "+a[1]+"");
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Errore! Le credenziali non corrispondono o i campi non sono riempiti.");
+				}
+				
+			}
+		});
 	}
 
 }

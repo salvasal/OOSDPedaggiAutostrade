@@ -33,7 +33,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 			System.out.println(username);
 			System.out.println(password);
 			ResultSet result=st.executeQuery("select * from amministratore where Username='"+username+"'and Password='"+password+"'");
-			/*Se è un amministratore*/
+			/*Se ï¿½ un amministratore*/
 			if(result.next()) {
 				return "amministratore";
 			}
@@ -47,7 +47,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*se l'utente non è un amministratore e neanche un utente*/
+		/*se l'utente non ï¿½ un amministratore e neanche un utente*/
 		return "";
 		
 	}
@@ -67,7 +67,42 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	@Override
 	public String[] getCredentialsbyKey(String username, String chiave) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		// connessione al database
+		Connection con=new Database().Connect();
+		String a[] = new String[2];
+		
+		try {
+			Statement st = con.createStatement();
+			// controllo credenziali amministratore
+			System.out.println(username);
+			System.out.println(chiave);
+			ResultSet result=st.executeQuery("select Username, Password from amministratore where ChiaveRecupero='"+chiave+"' ");
+			while(result.next()) {
+				a[0]=result.getString("Username");
+				a[1]=result.getString("Password");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Statement st2;
+		try {
+			st2 = con.createStatement();
+			//controllo credenziali utente
+			ResultSet result=st2.executeQuery("select Username, Password from utente where ChiaveRecupero='"+chiave+"'");
+			while(result.next()) {
+				a[0]=result.getString("Username");
+				a[1]=result.getString("Password");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		// se l'utente non e' ne' ammimistratore ne' utente
+		return a;
 	}
 	
 	
