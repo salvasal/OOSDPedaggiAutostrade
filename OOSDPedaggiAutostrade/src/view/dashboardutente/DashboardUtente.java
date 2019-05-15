@@ -54,7 +54,6 @@ public class DashboardUtente extends JFrame {
 		btnLogout.setBounds(103, 220, 255, 39);
 		contentPane.add(btnLogout);
 		btnLogout.addActionListener(new ActionListener() {
-			
 			public void actionPerformed (ActionEvent e) {
 				dispose();
 				Login l = new Login();
