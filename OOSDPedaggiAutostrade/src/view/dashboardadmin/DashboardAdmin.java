@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import view.Login;
 import view.NewAdmin;
+import view.RicercaUtente;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -75,6 +76,14 @@ public class DashboardAdmin extends JFrame {
 		btnCercaUtente.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnCercaUtente.setBounds(114, 125, 255, 39);
 		contentPane.add(btnCercaUtente);
+		btnCercaUtente.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				RicercaUtente ru = new RicercaUtente();
+				ru.setVisible(true);
+				
+			}
+			
+		});
 		
 		JButton btnCalcolaPedaggio = new JButton("Calcola un Pedaggio Autostradale");
 		btnCalcolaPedaggio.setFont(new Font("Times New Roman", Font.PLAIN, 15));
