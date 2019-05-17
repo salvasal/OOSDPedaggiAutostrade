@@ -64,6 +64,12 @@ public class DashboardAdmin extends JFrame {
 		btnGestisciTariffeOneri.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnGestisciTariffeOneri.setBounds(114, 67, 255, 39);
 		contentPane.add(btnGestisciTariffeOneri);
+		btnGestisciTariffeOneri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyTariffe mt = new MyTariffe();
+				mt.setVisible(true);
+			}
+		});
 		
 		JButton btnCercaUtente = new JButton("Cerca un Utente");
 		btnCercaUtente.setFont(new Font("Times New Roman", Font.PLAIN, 15));
