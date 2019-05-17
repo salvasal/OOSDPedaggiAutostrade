@@ -163,7 +163,7 @@ public class Registrazione extends JFrame {
 				datan=datanField.getText();
 				telefono=telefonoField.getText();
 				carta=cartaField.getText();
-				if(!username.equals("") && !password.equals("")) {
+				if(!username.equals("") && !password.equals("") && !nome.equals("") && !cognome.equals("") && !luogon.equals("") && !datan.equals("") && !telefono.equals("") && !carta.equals("")) {
 					Utente u = new Utente (username, password, null, nome, cognome, luogon, datan, telefono, carta);
 					String chiave = new LoginController().setUtente(u);
 					JOptionPane.showMessageDialog(null,"Utente aggiunto con successo! Chiave di recupero:" +chiave);

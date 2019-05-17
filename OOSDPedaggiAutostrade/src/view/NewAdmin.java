@@ -1,13 +1,20 @@
 package view;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GestoreAdminController;
+import model.components.Amministratore;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -23,7 +30,14 @@ public class NewAdmin extends JFrame {
 	private JTextField luogonField;
 	private JTextField datanField;
 	private JTextField telefonoField;
-
+	private String username;
+	private String password;
+	private String nome;
+	private String cognome;
+	private String luogon;
+	private String datan;
+	private String telefono;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -123,7 +137,19 @@ public class NewAdmin extends JFrame {
 		
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				username=usernameField.getText();
+				password=passwordField.getText();
+				nome=nomeField.getText();
+				cognome=cognomeField.getText();
+				luogon=luogonField.getText();
+				datan=datanField.getText();
+				telefono=telefonoField.getText();
+				if(!username.equals("") && !password.equals("") && !nome.equals("") && !cognome.equals("") && !luogon.equals("") && !datan.equals("") && !telefono.equals("")) {
+					Amministratore a = new Amministratore (username, password, null, nome, cognome, luogon, datan, telefono);
+					String chiave = new GestoreAdminController().setAmministratore(a);
+					JOptionPane.showMessageDialog(null,"Amministratore aggiunto con successo! Chiave di recupero:" +chiave);
+				} else JOptionPane.showMessageDialog(null,"Uno dei campi non è stato riempito");
 			}
 		});
 		btnAggiungi.setFont(new Font("Times New Roman", Font.PLAIN, 15));

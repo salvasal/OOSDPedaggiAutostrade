@@ -17,7 +17,7 @@ public class Amministratore {
 	public String nome;
 	public String cognome;
 	public String luogoN;
-	public Date dataN;
+	public String dataN;
 	public String telefono;
 	/**
 	 * @param username
@@ -30,7 +30,7 @@ public class Amministratore {
 	 * @param telefono
 	 */
 	public Amministratore(String username, String password, String chiaveRecupero, String nome, String cognome,
-			String luogoN, Date dataN, String telefono) {
+			String luogoN, String dataN, String telefono) {
 		
 		this.username = username;
 		this.password = password;
@@ -116,13 +116,13 @@ public class Amministratore {
 	/**
 	 * @return the dataN
 	 */
-	public Date getDataN() {
+	public String getDataN() {
 		return dataN;
 	}
 	/**
 	 * @param dataN the dataN to set
 	 */
-	public void setDataN(Date dataN) {
+	public void setDataN(String dataN) {
 		this.dataN = dataN;
 	}
 	/**

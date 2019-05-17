@@ -3,6 +3,7 @@
  */
 package model.interfaces;
 
+import model.components.Amministratore;
 import model.components.Utente;
 
 /**
@@ -14,4 +15,5 @@ public interface GestoreUtenzaInterface {
 	public String setUtente(Utente u);
 	public String[] getCredentialsbyKey(String username, String chiave);
 	public String randomString(int length);
+	public String setAmministratore(Amministratore a);
 }

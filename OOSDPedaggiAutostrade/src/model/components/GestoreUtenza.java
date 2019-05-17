@@ -144,5 +144,23 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		}
 		return tempStr.toString();
 		}
+
+	@Override
+	public String setAmministratore(Amministratore a) {
+		// TODO Auto-generated method stub
+		Connection con = new Database().Connect();
+		String chiave = randomString(6);
+		Statement st;
+		try {
+			st = con.createStatement();
+			String tot= "insert into amministratore values('"+a.getUsername()+"','"+a.getPassword()+"','"+chiave+"','"+a.getNome()+"','"+a.getCognome()+"','"+a.getLuogoN()+"','"+a.getDataN()+"','"+a.getTelefono()+"')";
+			st.executeUpdate(tot);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return chiave;
+	}
 		
 }
