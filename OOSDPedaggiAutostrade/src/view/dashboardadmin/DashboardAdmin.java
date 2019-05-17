@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import view.Login;
+import view.NewAdmin;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -52,6 +53,12 @@ public class DashboardAdmin extends JFrame {
 		btnAggiungiAmministratore.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnAggiungiAmministratore.setBounds(114, 16, 255, 39);
 		contentPane.add(btnAggiungiAmministratore);
+		btnAggiungiAmministratore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewAdmin na = new NewAdmin();
+				na.setVisible(true);
+			}
+		});
 		
 		JButton btnGestisciTariffeOneri = new JButton("Gestisci Tariffe e Oneri");
 		btnGestisciTariffeOneri.setFont(new Font("Times New Roman", Font.PLAIN, 15));
