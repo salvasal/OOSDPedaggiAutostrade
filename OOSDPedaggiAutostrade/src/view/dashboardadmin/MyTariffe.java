@@ -20,6 +20,9 @@ public class MyTariffe extends JFrame {
 	private JPanel contentPane;
 	private JTextField importoTariffeField;
 	private JTextField importoOneriField;
+	private String[] categoriaList = {"A", "B", "3", "4", "5"}; 
+	private String[] autostradaList = {"Collina", "Montagna"};
+	private String[] veicoloClasseList = {"1", "2", "3", "4", "5", "6"};
 
 	/**
 	 * Launch the application.
@@ -95,7 +98,7 @@ public class MyTariffe extends JFrame {
 		lblSelezionaCategoria.setBounds(23, 19, 230, 16);
 		panelTariffe.add(lblSelezionaCategoria);
 		
-		JComboBox categoriaComboBox = new JComboBox();
+		JComboBox categoriaComboBox = new JComboBox(categoriaList);
 		categoriaComboBox.setBounds(285, 15, 155, 27);
 		panelTariffe.add(categoriaComboBox);
 		
@@ -104,7 +107,7 @@ public class MyTariffe extends JFrame {
 		lblSelezionaTipoAutostrada.setBounds(23, 99, 230, 16);
 		panelTariffe.add(lblSelezionaTipoAutostrada);
 		
-		JComboBox autostradaComboBox = new JComboBox();
+		JComboBox autostradaComboBox = new JComboBox(autostradaList);
 		autostradaComboBox.setBounds(285, 95, 155, 27);
 		panelTariffe.add(autostradaComboBox);
 		
@@ -131,7 +134,7 @@ public class MyTariffe extends JFrame {
 		lblSelezionaOneri.setBounds(23, 19, 230, 16);
 		panelOneri.add(lblSelezionaOneri);
 		
-		JComboBox oneriComboBox = new JComboBox();
+		JComboBox oneriComboBox = new JComboBox(veicoloClasseList);
 		oneriComboBox.setBounds(285, 15, 155, 27);
 		panelOneri.add(oneriComboBox);
 		
