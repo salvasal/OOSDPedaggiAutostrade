@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import view.Login;
-import view.NewAdmin;
-import view.RicercaUtente;
+import view.dashboardadmin.NewAdmin;
+import view.dashboardadmin.RicercaUtente;
 
 import javax.swing.JButton;
 import java.awt.Font;
