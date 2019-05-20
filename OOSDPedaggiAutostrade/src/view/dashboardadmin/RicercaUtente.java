@@ -8,10 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.GestoreAdminController;
+import model.components.Utente;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JTextArea;
@@ -25,6 +28,7 @@ public class RicercaUtente extends JFrame {
 	private String usernameSelected;
 	private ArrayList<String> usernamevarlist;
 	private String[] usernamevar;
+	private String u;
 	
 	
 
@@ -65,7 +69,7 @@ public class RicercaUtente extends JFrame {
 		usernamevar = new String[usernamevarlist.size()];
 		JComboBox<String> usernameComboBox = new JComboBox(usernamevarlist.toArray(usernamevar));
 		usernameComboBox.setMaximumRowCount(50);
-		usernameComboBox.setBounds(167, 23, 80, 22);
+		usernameComboBox.setBounds(167, 23, 130, 22);
 		contentPane.add(usernameComboBox);
 		
 		
@@ -73,6 +77,24 @@ public class RicercaUtente extends JFrame {
 		btnCerca.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnCerca.setBounds(12, 55, 97, 25);
 		contentPane.add(btnCerca);
+		btnCerca.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				//generazione della label al onClick
+				JLabel lblNewLabel_1 = new JLabel("");
+				lblNewLabel_1.setBounds(12, 93, 500, 20);
+				contentPane.add(lblNewLabel_1);
+				
+				//restituisce la stringa da mostrare tramite la label sopra dichiarata
+				usernameSelected = usernameComboBox.getSelectedItem().toString();
+				u = new GestoreAdminController().getUtentebyUsername(usernameSelected);
+				lblNewLabel_1.setText(u);
+				
+				
+				
+				
+				
+			} 
+		});
 		
 		JList list = new JList();
 		list.setBounds(12, 168, 678, 272);
@@ -83,8 +105,9 @@ public class RicercaUtente extends JFrame {
 		lblNewLabel.setBounds(12, 139, 157, 16);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(12, 93, 56, 16);
-		contentPane.add(lblNewLabel_1);
+		
+		
+		
+		
 	}
 }

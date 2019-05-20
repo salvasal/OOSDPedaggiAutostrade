@@ -19,5 +19,6 @@ public interface GestoreUtenzaInterface {
 	public String randomString(int length);
 	public String setAmministratore(Amministratore a);
 	public ArrayList<String> getUtente();
+	public String getUtentebyUsername(String username);
 	
 }

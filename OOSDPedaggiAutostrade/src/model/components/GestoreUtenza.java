@@ -186,6 +186,31 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		return ulist;
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.GestoreUtenzaInterface#getUtentebyUsername(java.lang.String)
+	 */
+	@Override
+	public String getUtentebyUsername(String username) {
+		// TODO Auto-generated method stub
+		Utente u = null;
+		String s = null;
+		Connection con = new Database().Connect();
+
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("Select username, password, chiaverecupero, nome, cognome, luogon, datan, telefono, carta from Utente where username='"+username+"'");
+			if(rs.next()) {
+				u = new Utente(rs.getString("username"), rs.getString("password"), rs.getString("chiaverecupero"), rs.getString("nome"), rs.getString("cognome"), rs.getString("luogon"), rs.getString("datan"), rs.getString("telefono"), rs.getString("carta"));
+			}
+			s = "Nome: "+u.getNome()+"  Cognome: "+u.getCognome()+"  Carta di Credito: "+u.getCarta();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return s;
+	}
 		
 	
 }
