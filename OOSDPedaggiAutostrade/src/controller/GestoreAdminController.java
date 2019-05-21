@@ -44,5 +44,9 @@ public class GestoreAdminController {
 	public DefaultListModel getAutostradebyUsername (String username) {
 		return new Autostrada().getAutostradebyUsername(username);
 	}
+	
+	public DefaultListModel getCasellibyIDautostrada (String ID) {
+		return new Autostrada().getCasellibyIDautostrada(ID);
+	}
 }
 

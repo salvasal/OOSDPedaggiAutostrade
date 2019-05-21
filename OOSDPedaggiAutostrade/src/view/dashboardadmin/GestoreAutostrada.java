@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
@@ -24,9 +25,10 @@ public class GestoreAutostrada extends JFrame {
 
 	private JPanel contentPane;
 	private final JLabel lblNewLabel = new JLabel("Lista Autostrade d'appartenenza:");
-	private JTextField autostradField;
+	private JTextField autostradaField;
 	private static String username;
 	private DefaultListModel lista;
+	private String ID;
 
 	/**
 	 * Launch the application.
@@ -90,16 +92,21 @@ public class GestoreAutostrada extends JFrame {
 		contentPane.add(list);
 		
 		
-		autostradField = new JTextField();
-		autostradField.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		autostradField.setBounds(883, 131, 69, 49);
-		contentPane.add(autostradField);
-		autostradField.setColumns(10);
+		autostradaField = new JTextField();
+		autostradaField.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		autostradaField.setBounds(883, 131, 69, 49);
+		contentPane.add(autostradaField);
+		autostradaField.setColumns(10);
 		
 		JButton btnVisualizzaCaselli = new JButton("Visualizza Caselli");
 		btnVisualizzaCaselli.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnVisualizzaCaselli.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				ID = autostradaField.getText();
+				if (!ID.equals("")) {
+					GestoreCaselli gc = new GestoreCaselli(ID);
+					gc.setVisible(true);
+				} else { JOptionPane.showMessageDialog(null, "Inserire ID del autostrada"); }
 			}
 		});
 		btnVisualizzaCaselli.setBounds(780, 193, 172, 59);
