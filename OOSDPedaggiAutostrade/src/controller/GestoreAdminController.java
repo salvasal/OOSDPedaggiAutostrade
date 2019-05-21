@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import model.components.Amministratore;
 import model.components.GestoreUtenza;
+import model.components.Pedaggio;
 import model.components.Utente;
 
 /**
@@ -22,6 +23,9 @@ public class GestoreAdminController {
 	}
 	public String getUtentebyUsername(String usernameSelected) {
 		return new GestoreUtenza().getUtentebyUsername(usernameSelected);
+	}
+	public void setTariffa(String importoTariffe, String categoriaSelected, String autostradaSelected) {
+		new Pedaggio().setTariffa(importoTariffe, categoriaSelected, autostradaSelected);
 	}
 }
 

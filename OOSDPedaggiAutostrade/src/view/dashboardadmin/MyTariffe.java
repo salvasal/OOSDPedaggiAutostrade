@@ -6,12 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GestoreAdminController;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -23,6 +27,9 @@ public class MyTariffe extends JFrame {
 	private String[] categoriaList = {"A", "B", "3", "4", "5"}; 
 	private String[] autostradaList = {"Collina", "Montagna"};
 	private String[] veicoloClasseList = {"1", "2", "3", "4", "5", "6"};
+	private String importoTariffe;
+	private String categoriaSelected;
+	private String autostradaSelected;
 
 	/**
 	 * Launch the application.
@@ -126,6 +133,18 @@ public class MyTariffe extends JFrame {
 		btnApplicaTariffe.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnApplicaTariffe.setBounds(177, 264, 117, 35);
 		panelTariffe.add(btnApplicaTariffe);
+		btnApplicaTariffe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				importoTariffe = importoTariffeField.getText();
+				categoriaSelected = categoriaComboBox.getSelectedItem().toString();
+				autostradaSelected = autostradaComboBox.getSelectedItem().toString();
+				if(!importoTariffe.equals("") && !categoriaSelected.equals("") && !autostradaSelected.equals("")) {
+					new GestoreAdminController().setTariffa(importoTariffe, categoriaSelected, autostradaSelected);
+					JOptionPane.showMessageDialog(null, "La Tariffa e' stata impostata");
+					
+				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito oppure non e' stato selezionato");
+			}
+		});
 		
 		// componenti del pannello oneri
 		
