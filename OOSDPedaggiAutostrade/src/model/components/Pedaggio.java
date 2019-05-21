@@ -3,17 +3,31 @@
  */
 package model.components;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import model.database.Database;
+import model.interfaces.PedaggioInterface;
+
 /**
  * @author Salvatore Salernitano Matricola 242016
  *
  */
-public class Pedaggio {
+public class Pedaggio implements PedaggioInterface {
 	public String id;
 	public String stato;
 	public float importo;
 	public String veicolo;
 	
 	
+	
+	/**
+	 * 
+	 */
+	public Pedaggio() {
+		super();
+	}
 	/**
 	 * @param id
 	 * @param stato
@@ -74,6 +88,26 @@ public class Pedaggio {
 	public void setVeicolo(String veicolo) {
 		veicolo = veicolo;
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#setTariffa(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void setTariffa(String importoTariffa, String categoriaSelected, String autostradaSelected) {
+		// TODO Auto-generated method stub
+		Connection con = new Database().Connect();
+		
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate("update Tariffa set Valore = '"+importoTariffa+"' where Categoria = '"+categoriaSelected+"' and Tipo = '"+autostradaSelected+"' ");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	
 	
 }
