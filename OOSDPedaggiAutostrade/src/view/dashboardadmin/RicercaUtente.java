@@ -108,6 +108,7 @@ public class RicercaUtente extends JFrame {
 				//restituisce la lista dei veicoli
 				lista = new GestoreAdminController().getVeicoli(usernameSelected);
 				list.setModel(lista);
+				
 			} 
 		});
 		
