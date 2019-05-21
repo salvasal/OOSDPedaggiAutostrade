@@ -12,6 +12,7 @@ import controller.GestoreAdminController;
 import model.components.Utente;
 
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -97,6 +98,12 @@ public class RicercaUtente extends JFrame {
 				usernameSelected = usernameComboBox.getSelectedItem().toString();
 				u = new GestoreAdminController().getUtentebyUsername(usernameSelected);
 				lblNewLabel_1.setText(u);
+				new Timer(10000, new ActionListener() {
+				      @Override
+				      public void actionPerformed(ActionEvent e) {
+				        lblNewLabel_1.setText("");
+				      }
+				    }).start();
 				
 				//restituisce la lista dei veicoli
 				lista = new GestoreAdminController().getVeicoli(usernameSelected);
