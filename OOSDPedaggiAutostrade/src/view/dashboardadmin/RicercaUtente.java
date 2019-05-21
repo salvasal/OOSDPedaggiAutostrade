@@ -11,11 +11,14 @@ import controller.GestoreAdminController;
 import model.components.Utente;
 
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
@@ -52,6 +55,7 @@ public class RicercaUtente extends JFrame {
 	 * Create the frame.
 	 */
 	public RicercaUtente() {
+		super("RicercaUtente");
 		setTitle("Ricerca un utente");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 720, 500);
@@ -88,6 +92,8 @@ public class RicercaUtente extends JFrame {
 				usernameSelected = usernameComboBox.getSelectedItem().toString();
 				u = new GestoreAdminController().getUtentebyUsername(usernameSelected);
 				lblNewLabel_1.setText(u);
+				
+				
 				
 				
 				
