@@ -30,6 +30,8 @@ public class MyTariffe extends JFrame {
 	private String importoTariffe;
 	private String categoriaSelected;
 	private String autostradaSelected;
+	private String importoOneri;
+	private String veicoloClasseSelected;
 
 	/**
 	 * Launch the application.
@@ -172,6 +174,18 @@ public class MyTariffe extends JFrame {
 		btnApplicaOneri.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnApplicaOneri.setBounds(177, 264, 117, 35);
 		panelOneri.add(btnApplicaOneri);
+		btnApplicaOneri.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				importoOneri = importoOneriField.getText();
+				veicoloClasseSelected = oneriComboBox.getSelectedItem().toString();
+				if (!importoOneri.equals("") && !veicoloClasseSelected.equals("")) {
+					new GestoreAdminController().setOneri(importoOneri, veicoloClasseSelected);
+					JOptionPane.showMessageDialog(null, "Gli Oneri sono stati impostati");
+				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito oppure non e' stato selezionato");
+				
+				
+			}
+		});
 		
 	}
 }

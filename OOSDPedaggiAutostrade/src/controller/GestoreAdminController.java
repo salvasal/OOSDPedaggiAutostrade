@@ -35,5 +35,9 @@ public class GestoreAdminController {
 	public void setTariffa(String importoTariffe, String categoriaSelected, String autostradaSelected) {
 		new Pedaggio().setTariffa(importoTariffe, categoriaSelected, autostradaSelected);
 	}
+	
+	public void setOneri(String importoOneri, String veicoloClasseSelected) {
+		new Pedaggio().setOneri(importoOneri, veicoloClasseSelected);
+	}
 }
 

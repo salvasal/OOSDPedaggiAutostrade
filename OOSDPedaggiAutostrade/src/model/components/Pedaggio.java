@@ -28,6 +28,9 @@ public class Pedaggio implements PedaggioInterface {
 	public Pedaggio() {
 		super();
 	}
+	
+	
+
 	/**
 	 * @param id
 	 * @param stato
@@ -106,6 +109,24 @@ public class Pedaggio implements PedaggioInterface {
 		}
 		
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#setOneri(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void setOneri(String importoOneri, String veicoloClasseSelected) {
+		// TODO Auto-generated method stub
+		Connection con = new Database().Connect();
+		
+		try {
+			Statement so = con.createStatement();
+			so.executeUpdate("update Oneri set Importo = '"+importoOneri+"' where Euro = '"+veicoloClasseSelected+"' ");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	
 	
