@@ -96,7 +96,7 @@ public class DashboardAdmin extends JFrame {
 		contentPane.add(btnGestisciAutostrada);
 		btnGestisciAutostrada.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
-				GestoreAutostrada ga = new GestoreAutostrada();
+				GestoreAutostrada ga = new GestoreAutostrada(username);
 				ga.setVisible(true);	
 			}
 		});

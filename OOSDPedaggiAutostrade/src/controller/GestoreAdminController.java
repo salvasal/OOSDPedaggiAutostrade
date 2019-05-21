@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 import model.components.Amministratore;
+import model.components.Autostrada;
 import model.components.GestoreUtenza;
 import model.components.Pedaggio;
 import model.components.Utente;
@@ -38,6 +39,10 @@ public class GestoreAdminController {
 	
 	public void setOneri(String importoOneri, String veicoloClasseSelected) {
 		new Pedaggio().setOneri(importoOneri, veicoloClasseSelected);
+	}
+	
+	public DefaultListModel getAutostradebyUsername (String username) {
+		return new Autostrada().getAutostradebyUsername(username);
 	}
 }
 

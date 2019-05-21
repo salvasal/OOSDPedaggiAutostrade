@@ -3,17 +3,36 @@
  */
 package model.components;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.DefaultListModel;
+
+import model.database.Database;
+import model.interfaces.AutostradaInterface;
+
 /**
  * @author Salvatore Salernitano Matricola 242016
  *
  */
-public class Autostrada {
+public class Autostrada implements AutostradaInterface {
 	public String codice;
 	public String nome;
 	public String tipo;
 	public Integer kminizio;
 	public Integer kmfine;
 	public String amministratore;
+	
+	
+	
+	/**
+	 * 
+	 */
+	public Autostrada() {
+		super();
+	}
 	/**
 	 * @param codice
 	 * @param nome
@@ -103,6 +122,28 @@ public class Autostrada {
 	public void setAmministratore(String amministratore) {
 		this.amministratore = amministratore;
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.AutostradaInterface#getAutostradebyUsername(java.lang.String)
+	 */
+	@Override
+	public DefaultListModel getAutostradebyUsername(String username) {
+		// TODO Auto-generated method stub
+		DefaultListModel dfm = new DefaultListModel();
+		ResultSet rs;
+		Connection cn = new Database().Connect();
+		try {
+			Statement st = cn.createStatement();
+			rs = st.executeQuery("select codice, nome, tipo, kminizio, kmfine from autostrada where amministratore='"+username+"' ");
+			while (rs.next()) {
+				dfm.addElement("Codice: "+rs.getString("codice")+" Nome: "+rs.getString("nome")+" Tipologia: "+rs.getString("tipo")+" KmInzio: "+rs.getInt("kminizio")+" KmFine: "+rs.getInt("kmfine"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dfm;
+	}
+	
 	
 	
 }

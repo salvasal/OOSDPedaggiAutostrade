@@ -5,7 +5,12 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import controller.GestoreAdminController;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -20,6 +25,8 @@ public class GestoreAutostrada extends JFrame {
 	private JPanel contentPane;
 	private final JLabel lblNewLabel = new JLabel("Lista Autostrade d'appartenenza:");
 	private JTextField autostradField;
+	private static String username;
+	private DefaultListModel lista;
 
 	/**
 	 * Launch the application.
@@ -28,7 +35,7 @@ public class GestoreAutostrada extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GestoreAutostrada frame = new GestoreAutostrada();
+					GestoreAutostrada frame = new GestoreAutostrada(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +47,7 @@ public class GestoreAutostrada extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GestoreAutostrada() {
+	public GestoreAutostrada(String username) {
 		setTitle("Gestione Autostrade");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1028, 473);
@@ -76,9 +83,12 @@ public class GestoreAutostrada extends JFrame {
 		lblNewLabel.setBounds(22, 88, 252, 36);
 		contentPane.add(lblNewLabel);
 		
-		JList list = new JList();
+		lista = new GestoreAdminController().getAutostradebyUsername(username);
+		JList list = new JList(lista);
 		list.setBounds(12, 129, 756, 284);
+		JScrollPane scrollablelist = new JScrollPane(list);
 		contentPane.add(list);
+		
 		
 		autostradField = new JTextField();
 		autostradField.setFont(new Font("Times New Roman", Font.PLAIN, 15));
