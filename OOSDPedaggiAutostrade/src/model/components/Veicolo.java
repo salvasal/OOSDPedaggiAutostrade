@@ -3,11 +3,21 @@
  */
 package model.components;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.DefaultListModel;
+
+import model.database.Database;
+import model.interfaces.VeicoloInterface;
+
 /**
  * @author Salvatore Salernitano Matricola 242016
  *
  */
-public class Veicolo {
+public class Veicolo implements VeicoloInterface {
 	public String targa;
 	public String marca;
 	public String modello;
@@ -19,6 +29,15 @@ public class Veicolo {
 	public float qtaco2;
 	public Integer oneri;
 	public String utente;
+	
+	
+	
+	/**
+	 * 
+	 */
+	public Veicolo() {
+		super();
+	}
 	/**
 	 * @param targa
 	 * @param marca
@@ -178,6 +197,29 @@ public class Veicolo {
 	public void setUtente(String utente) {
 		this.utente = utente;
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.VeicoloInterface#getVeicoli(java.lang.String)
+	 */
+	@Override
+	public DefaultListModel getVeicoli(String usernameSelected) {
+		// TODO Auto-generated method stub
+		DefaultListModel dfm = new DefaultListModel();
+		ResultSet result;
+		Connection con = Database.Connect();
+		Statement st;
+		try {
+			st = con.createStatement();
+			result = st.executeQuery("select targa, marca, modello, peso, assi, altezza, anno, categoria, qtaco2, oneri from veicolo where utente='"+usernameSelected+"'");
+			while (result.next()) {
+				dfm.addElement("Targa: "+result.getString("targa")+" Marca: "+result.getString("marca")+" Modello: "+result.getString("modello")+" Assi: "+result.getInt("assi")+" Categoria: "+result.getString("categoria")+" Quantita di co2 emessa: "+result.getFloat("qtaco2")+" Oneri: "+result.getInt("oneri"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dfm;
+	}
+	
 	
 	
 }

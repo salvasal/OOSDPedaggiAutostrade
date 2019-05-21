@@ -5,9 +5,12 @@ package controller;
 
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
+
 import model.components.Amministratore;
 import model.components.GestoreUtenza;
 import model.components.Utente;
+import model.components.Veicolo;
 
 /**
  * @author Ludovico Di Federico Matricola 243542
@@ -22,6 +25,9 @@ public class GestoreAdminController {
 	}
 	public String getUtentebyUsername(String usernameSelected) {
 		return new GestoreUtenza().getUtentebyUsername(usernameSelected);
+	}
+	public DefaultListModel getVeicoli(String usernameSelected) {
+		return new Veicolo().getVeicoli(usernameSelected);
 	}
 }
 

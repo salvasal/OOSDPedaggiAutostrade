@@ -5,23 +5,22 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controller.GestoreAdminController;
 import model.components.Utente;
 
 import javax.swing.JTextField;
-import javax.swing.Timer;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 
@@ -32,6 +31,7 @@ public class RicercaUtente extends JFrame {
 	private ArrayList<String> usernamevarlist;
 	private String[] usernamevar;
 	private String u;
+	DefaultListModel lista;
 	
 	
 
@@ -76,6 +76,11 @@ public class RicercaUtente extends JFrame {
 		usernameComboBox.setBounds(167, 23, 130, 22);
 		contentPane.add(usernameComboBox);
 		
+		JList list = new JList();
+		list.setBounds(12, 168, 678, 272);
+		JScrollPane scrollableList = new JScrollPane(list);
+		contentPane.add(list);
+		
 		
 		JButton btnCerca = new JButton("Cerca");
 		btnCerca.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -93,23 +98,18 @@ public class RicercaUtente extends JFrame {
 				u = new GestoreAdminController().getUtentebyUsername(usernameSelected);
 				lblNewLabel_1.setText(u);
 				
-				
-				
-				
-				
-				
-				
+				//restituisce la lista dei veicoli
+				lista = new GestoreAdminController().getVeicoli(usernameSelected);
+				list.setModel(lista);
 			} 
 		});
 		
-		JList list = new JList();
-		list.setBounds(12, 168, 678, 272);
-		contentPane.add(list);
 		
 		JLabel lblNewLabel = new JLabel("Veicoli di sua propriet\u00E0:");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblNewLabel.setBounds(12, 139, 157, 16);
 		contentPane.add(lblNewLabel);
+
 		
 		
 		
