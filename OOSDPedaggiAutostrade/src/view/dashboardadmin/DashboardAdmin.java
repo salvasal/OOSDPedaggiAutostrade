@@ -94,6 +94,12 @@ public class DashboardAdmin extends JFrame {
 		btnGestisciAutostrada.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnGestisciAutostrada.setBounds(114, 227, 255, 39);
 		contentPane.add(btnGestisciAutostrada);
+		btnGestisciAutostrada.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				GestoreAutostrada ga = new GestoreAutostrada();
+				ga.setVisible(true);	
+			}
+		});
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setForeground(Color.RED);
