@@ -60,5 +60,4 @@ public class EliminaCasello extends JFrame {
 		contentPane.add(btnEliminaCasello);
 	}
 	
-
 }
