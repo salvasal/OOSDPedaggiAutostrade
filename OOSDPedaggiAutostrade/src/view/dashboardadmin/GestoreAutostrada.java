@@ -71,24 +71,36 @@ public class GestoreAutostrada extends JFrame {
 		
 		JButton btnEliminaAutostrada = new JButton("Elimina Autostrada");
 		btnEliminaAutostrada.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		btnEliminaAutostrada.setBounds(259, 26, 200, 49);
+		contentPane.add(btnEliminaAutostrada);
 		btnEliminaAutostrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EliminaAutostrada ea = new EliminaAutostrada();
 				ea.setVisible(true);
 			}
 		});
-		btnEliminaAutostrada.setBounds(259, 26, 200, 49);
-		contentPane.add(btnEliminaAutostrada);
 		
 		JButton btnAggiungiCasello = new JButton("Aggiungi Casello");
 		btnAggiungiCasello.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnAggiungiCasello.setBounds(508, 26, 200, 49);
 		contentPane.add(btnAggiungiCasello);
+		btnAggiungiCasello.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AggiungiCasello ac = new AggiungiCasello();
+				ac.setVisible(true);
+			}
+		});
 		
 		JButton btnEliminaCasello = new JButton("Elimina Casello");
 		btnEliminaCasello.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnEliminaCasello.setBounds(752, 26, 200, 49);
 		contentPane.add(btnEliminaCasello);
+		btnEliminaCasello.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EliminaCasello ec = new EliminaCasello();
+				ec.setVisible(true);
+			}
+		});
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		lblNewLabel.setBounds(22, 88, 252, 36);
 		contentPane.add(lblNewLabel);
