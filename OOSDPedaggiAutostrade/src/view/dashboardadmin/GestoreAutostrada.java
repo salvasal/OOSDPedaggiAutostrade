@@ -64,7 +64,7 @@ public class GestoreAutostrada extends JFrame {
 		contentPane.add(btnAggiungiAutostrada);
 		btnAggiungiAutostrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AggiungiAutostrada aa = new AggiungiAutostrada();
+				AggiungiAutostrada aa = new AggiungiAutostrada(username);
 				aa.setVisible(true);
 			}
 		});

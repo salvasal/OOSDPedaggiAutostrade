@@ -12,4 +12,5 @@ import javax.swing.DefaultListModel;
 public interface AutostradaInterface {
 	public DefaultListModel getAutostradebyUsername(String username);
 	public DefaultListModel getCasellibyIDautostrada(String ID);
+	public void setAutostrada(String codice, String nome, String tipoSelected, Integer lunghezza, String username);
 }
