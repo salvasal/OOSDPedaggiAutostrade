@@ -62,11 +62,19 @@ public class GestoreAutostrada extends JFrame {
 		btnAggiungiAutostrada.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnAggiungiAutostrada.setBounds(12, 26, 200, 49);
 		contentPane.add(btnAggiungiAutostrada);
+		btnAggiungiAutostrada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AggiungiAutostrada aa = new AggiungiAutostrada();
+				aa.setVisible(true);
+			}
+		});
 		
 		JButton btnEliminaAutostrada = new JButton("Elimina Autostrada");
 		btnEliminaAutostrada.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnEliminaAutostrada.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				EliminaAutostrada ea = new EliminaAutostrada();
+				ea.setVisible(true);
 			}
 		});
 		btnEliminaAutostrada.setBounds(259, 26, 200, 49);
