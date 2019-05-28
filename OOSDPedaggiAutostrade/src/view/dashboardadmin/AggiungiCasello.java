@@ -6,8 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GestoreAdminController;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -18,6 +27,13 @@ public class AggiungiCasello extends JFrame {
 	private JPanel contentPane;
 	private JTextField coordinateField;
 	private JTextField nomeCaselloField;
+	private static String ID;
+	private Integer kmselected;
+	private ArrayList<Integer> kmvarlist;
+	private Integer[] kmvar;
+	private String coordinate;
+	private String nomeCasello;
+	
 
 	/**
 	 * Launch the application.
@@ -26,7 +42,7 @@ public class AggiungiCasello extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AggiungiCasello frame = new AggiungiCasello();
+					AggiungiCasello frame = new AggiungiCasello(ID);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +54,7 @@ public class AggiungiCasello extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AggiungiCasello() {
+	public AggiungiCasello(String ID) {
 		setTitle("Aggiungi un Casello");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 298);
@@ -72,7 +88,10 @@ public class AggiungiCasello extends JFrame {
 		lblKm.setBounds(35, 152, 61, 16);
 		contentPane.add(lblKm);
 		
-		JComboBox kmComboBox = new JComboBox();
+		kmvarlist = new GestoreAdminController().getkmbyID(ID);
+		kmvar = new Integer[kmvarlist.size()];
+		JComboBox kmComboBox = new JComboBox(kmvarlist.toArray(kmvar));
+		kmComboBox.setMaximumRowCount(20);
 		kmComboBox.setBounds(189, 148, 189, 27);
 		contentPane.add(kmComboBox);
 		
@@ -81,5 +100,17 @@ public class AggiungiCasello extends JFrame {
 		btnAggiungiCasello.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnAggiungiCasello.setBounds(189, 208, 189, 35);
 		contentPane.add(btnAggiungiCasello);
+		btnAggiungiCasello.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				coordinate = coordinateField.getText();
+				nomeCasello = nomeCaselloField.getText();
+				kmselected = Integer.parseInt(kmComboBox.getSelectedItem().toString());
+				if(!coordinate.equals("") && !nomeCasello.equals("") && !kmselected.equals("")) {
+					new GestoreAdminController().setCasello(coordinate, nomeCasello, kmselected, ID);
+					JOptionPane.showMessageDialog(null,"Casello inserito con successo!");
+				} else { JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito correttamente!"); }
+			}
+		});
+		
 	}
 }

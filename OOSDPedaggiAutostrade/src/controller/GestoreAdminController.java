@@ -52,5 +52,17 @@ public class GestoreAdminController {
 	public void setAutostrada(String codice, String nome, String tipoSelected, Integer lunghezza, String username) {
 		new Autostrada().setAutostrada(codice, nome, tipoSelected, lunghezza, username);
 	}
+	
+	public ArrayList<Integer> getkmbyID(String ID) {
+		return new Autostrada().getkmbyID(ID);
+	}
+	
+	public void setCasello(String coordinate, String nome, Integer km, String autostrada) {
+		new Autostrada().setCasello(coordinate, nome, km, autostrada);
+	}
+	
+	public ArrayList<String> getIdautostradaByusername(String username) {
+		return new Autostrada().getIdautostradaByusername(username);
+	}
 }
 

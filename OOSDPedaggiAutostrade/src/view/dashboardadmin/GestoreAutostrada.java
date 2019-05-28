@@ -75,7 +75,7 @@ public class GestoreAutostrada extends JFrame {
 		contentPane.add(btnEliminaAutostrada);
 		btnEliminaAutostrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EliminaAutostrada ea = new EliminaAutostrada();
+				EliminaAutostrada ea = new EliminaAutostrada(username);
 				ea.setVisible(true);
 			}
 		});
@@ -86,8 +86,11 @@ public class GestoreAutostrada extends JFrame {
 		contentPane.add(btnAggiungiCasello);
 		btnAggiungiCasello.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AggiungiCasello ac = new AggiungiCasello();
-				ac.setVisible(true);
+				ID = autostradaField.getText();
+				if (!ID.equals("")) {
+					AggiungiCasello ac = new AggiungiCasello(ID);
+					ac.setVisible(true);
+				} else { JOptionPane.showMessageDialog(null, "Inserire ID del autostrada"); }
 			}
 		});
 		

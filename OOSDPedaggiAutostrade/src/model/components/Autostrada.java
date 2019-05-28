@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
@@ -193,6 +194,70 @@ public class Autostrada implements AutostradaInterface {
 			e.printStackTrace();
 		}
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.AutostradaInterface#getkmbyID(java.lang.String)
+	 */
+	@Override
+	public ArrayList<Integer> getkmbyID(String ID) {
+		// TODO Auto-generated method stub
+		Connection con = new Database().Connect();
+		ArrayList<Integer> kmlist = new ArrayList<Integer>();
+		Integer kmInizio;
+		Integer kmFine;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select kminizio, kmfine from autostrada where codice='"+ID+"'");
+			if(rs.next()) {
+				kmInizio = (rs.getInt("kminizio"));
+				kmFine = (rs.getInt("kmfine"));
+				for(int i=kmInizio; i<=kmFine; i++) {
+					kmlist.add(i);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return kmlist;
+	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.AutostradaInterface#setCasello(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String)
+	 */
+	@Override
+	public void setCasello(String coordinate, String nome, Integer km, String autostrada) {
+		// TODO Auto-generated method stub
+		Casello c = new Casello(coordinate, nome, km, autostrada);
+		Connection con = new Database().Connect();
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate("insert into casello values ('"+c.getCoordinate()+"','"+c.getNome()+"','"+c.getKm()+"','"+c.getAutostrada()+"')");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.AutostradaInterface#getIdautostradaByusername(java.lang.String)
+	 */
+	@Override
+	public ArrayList<String> getIdautostradaByusername(String username) {
+		// TODO Auto-generated method stub
+		ArrayList<String> idautostradalist = new ArrayList<String>();
+		Connection con = new Database().Connect();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select codice from autostrada where Amministratore='"+username+"'");
+			while(rs.next()) {
+				idautostradalist.add(rs.getString("codice"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return idautostradalist;
+	}
+	
+	
 	
 	
 	

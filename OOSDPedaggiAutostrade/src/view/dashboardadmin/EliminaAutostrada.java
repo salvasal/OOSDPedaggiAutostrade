@@ -6,14 +6,25 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GestoreAdminController;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class EliminaAutostrada extends JFrame {
 
 	private JPanel contentPane;
+	private String codiceSelected;
+	private ArrayList<String> codicevarlist;
+	private String[] codicevar;
+	private static String username;
 
 	/**
 	 * Launch the application.
@@ -22,7 +33,7 @@ public class EliminaAutostrada extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EliminaAutostrada frame = new EliminaAutostrada();
+					EliminaAutostrada frame = new EliminaAutostrada(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +45,7 @@ public class EliminaAutostrada extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EliminaAutostrada() {
+	public EliminaAutostrada(String username) {
 		setTitle("Elimina Autostrada");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -48,7 +59,10 @@ public class EliminaAutostrada extends JFrame {
 		lblCodiceAutostrada.setBounds(24, 31, 143, 16);
 		contentPane.add(lblCodiceAutostrada);
 		
-		JComboBox codiceComboBox = new JComboBox();
+		codicevarlist = new GestoreAdminController().getIdautostradaByusername(username);
+		codicevar = new String[codicevarlist.size()];
+		JComboBox codiceComboBox = new JComboBox(codicevarlist.toArray(codicevar));
+		codiceComboBox.setMaximumRowCount(30);
 		codiceComboBox.setBounds(209, 28, 115, 22);
 		contentPane.add(codiceComboBox);
 		
@@ -56,6 +70,11 @@ public class EliminaAutostrada extends JFrame {
 		btnElimina.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnElimina.setBounds(127, 111, 125, 25);
 		contentPane.add(btnElimina);
+		btnElimina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e ) {
+				
+			}
+		});
 	}
 
 }
