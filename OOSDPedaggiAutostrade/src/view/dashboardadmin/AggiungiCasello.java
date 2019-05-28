@@ -90,5 +90,6 @@ public class AggiungiCasello extends JFrame {
 		btnAggiungiCasello.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnAggiungiCasello.setBounds(189, 304, 189, 35);
 		contentPane.add(btnAggiungiCasello);
+		
 	}
 }

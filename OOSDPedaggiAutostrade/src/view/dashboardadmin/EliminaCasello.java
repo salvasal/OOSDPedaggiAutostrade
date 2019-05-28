@@ -59,5 +59,6 @@ public class EliminaCasello extends JFrame {
 		btnEliminaCasello.setBounds(237, 122, 162, 29);
 		contentPane.add(btnEliminaCasello);
 	}
+	
 
 }
