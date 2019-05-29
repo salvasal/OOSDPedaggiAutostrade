@@ -3,6 +3,8 @@
  */
 package model.interfaces;
 
+import java.util.ArrayList;
+
 import javax.swing.DefaultListModel;
 
 /**
@@ -11,4 +13,5 @@ import javax.swing.DefaultListModel;
  */
 public interface VeicoloInterface {
 	public DefaultListModel getVeicoli(String usernameSelected);
+	public ArrayList<String> getVeicolibyUsername(String usernameutente);
 }

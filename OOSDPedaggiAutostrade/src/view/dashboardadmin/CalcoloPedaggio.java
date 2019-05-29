@@ -6,14 +6,31 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GestoreAdminController;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class CalcoloPedaggio extends JFrame {
 
 	private JPanel contentPane;
+	private String coordinateSelectedentrata;
+	private String coordinateSelecteduscita;
+	private String targaSelected;
+	private ArrayList<String> coordinateEntratavarlist;
+	private ArrayList<String> coordinateUscitavarlist;
+	private ArrayList<String> targavarlist;
+	private String[] coordinateEntratavar;
+	private String[] coordinateUscitavar;
+	private String[] targavar;
+	private static String username;
+	private static String codice;
+	private static String usernameutente;
 
 	/**
 	 * Launch the application.
@@ -48,7 +65,9 @@ public class CalcoloPedaggio extends JFrame {
 		lblCaselloEntrata.setBounds(46, 55, 180, 16);
 		contentPane.add(lblCaselloEntrata);
 		
-		JComboBox caselloEntrataComboBox = new JComboBox();
+		coordinateEntratavarlist = new GestoreAdminController().getCoordinatecaselliBycodiceAutostrada(username, codice);
+		coordinateEntratavar = new String[coordinateEntratavarlist.size()];
+		JComboBox caselloEntrataComboBox = new JComboBox(coordinateEntratavarlist.toArray(coordinateEntratavar));
 		caselloEntrataComboBox.setBounds(254, 52, 245, 22);
 		contentPane.add(caselloEntrataComboBox);
 		
@@ -57,7 +76,9 @@ public class CalcoloPedaggio extends JFrame {
 		lblCoordinateCaselloUscita.setBounds(46, 134, 180, 16);
 		contentPane.add(lblCoordinateCaselloUscita);
 		
-		JComboBox caselloUscitaComboBox = new JComboBox();
+		coordinateUscitavarlist = new GestoreAdminController().getCoordinatecaselliBycodiceAutostrada(username, codice);
+		coordinateUscitavar = new String[coordinateUscitavarlist.size()];
+		JComboBox caselloUscitaComboBox = new JComboBox(coordinateUscitavarlist.toArray(coordinateUscitavar));
 		caselloUscitaComboBox.setBounds(254, 131, 245, 22);
 		contentPane.add(caselloUscitaComboBox);
 		
@@ -65,6 +86,8 @@ public class CalcoloPedaggio extends JFrame {
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblNewLabel.setBounds(12, 200, 222, 16);
 		contentPane.add(lblNewLabel);
+		
+		targavarlist = new GestoreAdminController().getVeicolibyUsername(usernameutente);
 		
 		JComboBox targaUtenteComboBox = new JComboBox();
 		targaUtenteComboBox.setBounds(254, 197, 245, 22);

@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
@@ -219,6 +220,28 @@ public class Veicolo implements VeicoloInterface {
 		}
 		return dfm;
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.VeicoloInterface#getVeicolibyUsername(java.lang.String)
+	 */
+	@Override
+	public ArrayList<String> getVeicolibyUsername(String usernameutente) {
+		// TODO Auto-generated method stub
+		ArrayList<String> targalist = new ArrayList<String>();
+		Connection con = new Database().Connect();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select targa from veicolo where utente ='"+usernameutente+"'");
+			while(rs.next()) {
+				targalist.add(rs.getString("targa"));
+			} 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return targalist;
+	}
+	
 	
 	
 	
