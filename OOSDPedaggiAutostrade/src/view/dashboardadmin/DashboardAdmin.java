@@ -91,7 +91,7 @@ public class DashboardAdmin extends JFrame {
 		contentPane.add(btnCalcolaPedaggio);
 		btnCalcolaPedaggio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RicercaUtenteAutostrada rua = new RicercaUtenteAutostrada();
+				RicercaUtenteAutostrada rua = new RicercaUtenteAutostrada(username);
 				rua.setVisible(true);
 			}
 		});

@@ -6,8 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GestoreAdminController;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -15,6 +20,13 @@ import java.awt.Color;
 public class RicercaUtenteAutostrada extends JFrame {
 
 	private JPanel contentPane;
+	private String codiceautostradaSelected;
+	private String usernameamministratoreSelected;
+	private ArrayList<String> codiceautostradavarlist;
+	private ArrayList<String> usernameamministratorevarlist;
+	private String[] codiceautostradavar;
+	private String[] usernameamministratorevar;
+	private static String username;
 
 	/**
 	 * Launch the application.
@@ -23,7 +35,7 @@ public class RicercaUtenteAutostrada extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RicercaUtenteAutostrada frame = new RicercaUtenteAutostrada();
+					RicercaUtenteAutostrada frame = new RicercaUtenteAutostrada(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +47,7 @@ public class RicercaUtenteAutostrada extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RicercaUtenteAutostrada() {
+	public RicercaUtenteAutostrada(String username) {
 		setTitle("Filtra per Utente ed Autostrada");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 295);
@@ -49,7 +61,9 @@ public class RicercaUtenteAutostrada extends JFrame {
 		lblInserisciAutostrada.setBounds(37, 35, 145, 16);
 		contentPane.add(lblInserisciAutostrada);
 		
-		JComboBox autostradaComboBox = new JComboBox();
+		codiceautostradavarlist = new GestoreAdminController().getIdautostradaByusername(username);
+		codiceautostradavar = new String[codiceautostradavarlist.size()];
+		JComboBox autostradaComboBox = new JComboBox(codiceautostradavarlist.toArray(codiceautostradavar));
 		autostradaComboBox.setBounds(236, 31, 177, 27);
 		contentPane.add(autostradaComboBox);
 		
@@ -58,7 +72,9 @@ public class RicercaUtenteAutostrada extends JFrame {
 		lblInserisciUtente.setBounds(37, 108, 145, 16);
 		contentPane.add(lblInserisciUtente);
 		
-		JComboBox usernameComboBox = new JComboBox();
+		usernameamministratorevarlist = new GestoreAdminController().getUtente();
+		usernameamministratorevar = new String[usernameamministratorevarlist.size()];
+		JComboBox usernameComboBox = new JComboBox(usernameamministratorevarlist.toArray(usernameamministratorevar));
 		usernameComboBox.setBounds(236, 104, 177, 27);
 		contentPane.add(usernameComboBox);
 		
