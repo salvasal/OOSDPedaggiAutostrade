@@ -274,6 +274,45 @@ public class Autostrada implements AutostradaInterface {
 		}
 		
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.AutostradaInterface#getCoordinatecaselliBycodiceAutostrada(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(String usernameAmministratore,
+			String codiceAutostrada) {
+		// TODO Auto-generated method stub
+		ArrayList<String> coordinateCaselli = new ArrayList<String>();
+		Connection con = new Database().Connect();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select coordinate from casello inner join autostrada "
+					+ "on casello.autostrada = autostrada.codice inner join amministratore on "
+					+ "autostrada.amministratore = amministratore.username where casello.autostrada = '"+codiceAutostrada+"' ");
+			while (rs.next()) {
+				coordinateCaselli.add(rs.getString("coordinate"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return coordinateCaselli;
+	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.AutostradaInterface#deletecasello(java.lang.String)
+	 */
+	@Override
+	public void deletecasello(String coordinateSelected) {
+		// TODO Auto-generated method stub
+		Connection con = new Database().Connect();
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate("delete from casello where coordinate = '"+coordinateSelected+"'");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	
 	

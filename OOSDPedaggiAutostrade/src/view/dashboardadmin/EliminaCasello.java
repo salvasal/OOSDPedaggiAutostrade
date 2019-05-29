@@ -10,7 +10,11 @@ import javax.swing.border.EmptyBorder;
 import controller.GestoreAdminController;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -63,7 +67,7 @@ public class EliminaCasello extends JFrame {
 		coordinatevarlist = new GestoreAdminController().getCoordinatecaselliBycodiceAutostrada(usernameAmministratore, codiceAutostrada); 
 		coordinatevar = new String[coordinatevarlist.size()];
 		JComboBox eliminaCaselloComboBox = new JComboBox(coordinatevarlist.toArray(coordinatevar));
-		eliminaCaselloComboBox.setBounds(237, 37, 162, 27);
+		eliminaCaselloComboBox.setBounds(237, 37, 191, 27);
 		contentPane.add(eliminaCaselloComboBox);
 		
 		JButton btnEliminaCasello = new JButton("Elimina Casello");
@@ -71,6 +75,17 @@ public class EliminaCasello extends JFrame {
 		btnEliminaCasello.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnEliminaCasello.setBounds(237, 122, 162, 29);
 		contentPane.add(btnEliminaCasello);
+		btnEliminaCasello.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				coordinateSelected = eliminaCaselloComboBox.getSelectedItem().toString();
+				if(!coordinateSelected.equals("")) {
+					new GestoreAdminController().deletecasello(coordinateSelected);
+					JOptionPane.showMessageDialog(null, "Il Casello e' stato eliminato! Chiudere e riaprire la finestra inerente all'elenco dei Caselli.");
+				} else {
+					JOptionPane.showMessageDialog(null, "Selezionare un Casello!");
+				}
+			}
+		});
 	}
 	
 }

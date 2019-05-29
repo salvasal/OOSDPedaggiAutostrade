@@ -72,5 +72,8 @@ public class GestoreAdminController {
 	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(String usernameAmministratore, String codiceAutostrada) {
 		return new Autostrada().getCoordinatecaselliBycodiceAutostrada(usernameAmministratore, codiceAutostrada);
 	}
+	public void deletecasello(String coordinateSelected) {
+		new Autostrada().deletecasello(coordinateSelected);
+	}
 }
 
