@@ -89,6 +89,12 @@ public class DashboardAdmin extends JFrame {
 		btnCalcolaPedaggio.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnCalcolaPedaggio.setBounds(114, 176, 255, 39);
 		contentPane.add(btnCalcolaPedaggio);
+		btnCalcolaPedaggio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RicercaUtenteAutostrada rua = new RicercaUtenteAutostrada();
+				rua.setVisible(true);
+			}
+		});
 		
 		JButton btnGestisciAutostrada = new JButton("Gestisci Autostrada");
 		btnGestisciAutostrada.setFont(new Font("Times New Roman", Font.PLAIN, 15));
