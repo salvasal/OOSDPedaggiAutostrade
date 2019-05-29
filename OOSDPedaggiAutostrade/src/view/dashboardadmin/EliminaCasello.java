@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -15,6 +17,10 @@ import java.awt.Color;
 public class EliminaCasello extends JFrame {
 
 	private JPanel contentPane;
+	private String coordinateSelected;
+	private ArrayList<String> coordinatevarlist;
+	private String[] coordinatevar;
+	
 
 	/**
 	 * Launch the application.
