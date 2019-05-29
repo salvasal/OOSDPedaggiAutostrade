@@ -39,7 +39,7 @@ public class CalcoloPedaggio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CalcoloPedaggio frame = new CalcoloPedaggio();
+					CalcoloPedaggio frame = new CalcoloPedaggio(codice, usernameutente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class CalcoloPedaggio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CalcoloPedaggio() {
+	public CalcoloPedaggio(String codice, String usernameutente) {
 		setTitle("Calcolo Pedaggio");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 615, 450);
@@ -88,8 +88,8 @@ public class CalcoloPedaggio extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		targavarlist = new GestoreAdminController().getVeicolibyUsername(usernameutente);
-		
-		JComboBox targaUtenteComboBox = new JComboBox();
+		targavar = new String[targavarlist.size()];
+		JComboBox targaUtenteComboBox = new JComboBox(targavarlist.toArray(targavar));
 		targaUtenteComboBox.setBounds(254, 197, 245, 22);
 		contentPane.add(targaUtenteComboBox);
 		

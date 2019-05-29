@@ -11,6 +11,8 @@ import controller.GestoreAdminController;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -21,11 +23,11 @@ public class RicercaUtenteAutostrada extends JFrame {
 
 	private JPanel contentPane;
 	private String codiceautostradaSelected;
-	private String usernameamministratoreSelected;
+	private String usernameutenteSelected;
 	private ArrayList<String> codiceautostradavarlist;
-	private ArrayList<String> usernameamministratorevarlist;
+	private ArrayList<String> usernameutentevarlist;
 	private String[] codiceautostradavar;
-	private String[] usernameamministratorevar;
+	private String[] usernameutentevar;
 	private static String username;
 
 	/**
@@ -72,9 +74,9 @@ public class RicercaUtenteAutostrada extends JFrame {
 		lblInserisciUtente.setBounds(37, 108, 145, 16);
 		contentPane.add(lblInserisciUtente);
 		
-		usernameamministratorevarlist = new GestoreAdminController().getUtente();
-		usernameamministratorevar = new String[usernameamministratorevarlist.size()];
-		JComboBox usernameComboBox = new JComboBox(usernameamministratorevarlist.toArray(usernameamministratorevar));
+		usernameutentevarlist = new GestoreAdminController().getUtente();
+		usernameutentevar = new String[usernameutentevarlist.size()];
+		JComboBox usernameComboBox = new JComboBox(usernameutentevarlist.toArray(usernameutentevar));
 		usernameComboBox.setBounds(236, 104, 177, 27);
 		contentPane.add(usernameComboBox);
 		
@@ -83,5 +85,15 @@ public class RicercaUtenteAutostrada extends JFrame {
 		btnProcedi.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnProcedi.setBounds(236, 175, 177, 29);
 		contentPane.add(btnProcedi);
+		btnProcedi.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e ) {
+				codiceautostradaSelected = autostradaComboBox.getSelectedItem().toString();
+				usernameutenteSelected = usernameComboBox.getSelectedItem().toString();
+				if(!codiceautostradaSelected.equals("") && !usernameutenteSelected.equals("")) {
+					CalcoloPedaggio cp = new CalcoloPedaggio(codiceautostradaSelected, usernameutenteSelected);
+					cp.setVisible(true);
+				}
+			}
+		});
 	}
 }
