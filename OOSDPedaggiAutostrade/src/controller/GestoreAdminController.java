@@ -64,5 +64,9 @@ public class GestoreAdminController {
 	public ArrayList<String> getIdautostradaByusername(String username) {
 		return new Autostrada().getIdautostradaByusername(username);
 	}
+	
+	public void deleteautostrada(String codiceSelected) {
+		new Autostrada().deleteautostrada(codiceSelected);
+	}
 }
 

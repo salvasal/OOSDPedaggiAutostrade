@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import controller.GestoreAdminController;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,7 +74,12 @@ public class EliminaAutostrada extends JFrame {
 		contentPane.add(btnElimina);
 		btnElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e ) {
-				
+				codiceSelected = codiceComboBox.getSelectedItem().toString();
+				if(!codiceSelected.equals("")) {
+					new GestoreAdminController().deleteautostrada(codiceSelected);
+				} else {
+					JOptionPane.showMessageDialog(null,"Selezionare un'autostrada!");
+				}
 			}
 		});
 	}
