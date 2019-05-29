@@ -18,4 +18,5 @@ public interface AutostradaInterface {
 	public ArrayList<Integer> getkmbyID(String ID);
 	public void setCasello(String coordinate, String nome, Integer km, String autostrada);
 	public ArrayList<String> getIdautostradaByusername(String username);
+	public void deleteautostrada(String codiceSelected);
 }

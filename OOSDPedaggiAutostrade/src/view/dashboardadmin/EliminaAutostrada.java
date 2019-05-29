@@ -77,6 +77,7 @@ public class EliminaAutostrada extends JFrame {
 				codiceSelected = codiceComboBox.getSelectedItem().toString();
 				if(!codiceSelected.equals("")) {
 					new GestoreAdminController().deleteautostrada(codiceSelected);
+					JOptionPane.showMessageDialog(null,"Autostrada eliminata! Chiudere e riaprire la finestra inerente all'elenco delle autostrade");
 				} else {
 					JOptionPane.showMessageDialog(null,"Selezionare un'autostrada!");
 				}
