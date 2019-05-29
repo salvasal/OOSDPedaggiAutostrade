@@ -28,7 +28,7 @@ public class GestoreAutostrada extends JFrame {
 	private JTextField autostradaField;
 	private static String username;
 	private DefaultListModel lista;
-	private String ID;
+	private static String ID;
 
 	/**
 	 * Launch the application.
@@ -100,8 +100,11 @@ public class GestoreAutostrada extends JFrame {
 		contentPane.add(btnEliminaCasello);
 		btnEliminaCasello.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EliminaCasello ec = new EliminaCasello();
-				ec.setVisible(true);
+				ID = autostradaField.getText();
+				if (!ID.equals("")) {
+					EliminaCasello ec = new EliminaCasello(username ,ID);
+					ec.setVisible(true);
+				} else { JOptionPane.showMessageDialog(null, "Inserire ID del autostrada"); }
 			}
 		});
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
