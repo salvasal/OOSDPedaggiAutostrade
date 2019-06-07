@@ -4,8 +4,11 @@
 package model.components;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.DefaultListModel;
 
 import model.database.Database;
 import model.interfaces.PedaggioInterface;
@@ -124,6 +127,32 @@ public class Pedaggio implements PedaggioInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#getPedagginonPagati(java.lang.String)
+	 */
+	@Override
+	public DefaultListModel getPedagginonPagati(String username) {
+		// TODO Auto-generated method stub
+		DefaultListModel  dfm = new DefaultListModel();
+		Connection cn = new Database().Connect();
+		String statopedaggio = "NonPagato";
+		try {
+			Statement st = cn.createStatement();
+			ResultSet result = st.executeQuery("select ID, stato, Importo, Veicolo from pedaggio inner join veicolo "
+					+ "on pedaggio.veicolo = veicolo.targa inner join utente "
+					+ "on veicolo.utente = utente.username where pedaggio.stato ='"+statopedaggio+"' and utente.username ='"+username+"'");
+			while (result.next()) {
+				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + " Importo: " + result.getFloat("Importo") + " € Veicolo: " + result.getString("Veicolo"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dfm;
 	}
 	
 	
