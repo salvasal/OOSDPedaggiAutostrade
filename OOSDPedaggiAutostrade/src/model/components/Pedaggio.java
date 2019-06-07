@@ -154,6 +154,31 @@ public class Pedaggio implements PedaggioInterface {
 		}
 		return dfm;
 	}
+
+
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#getPedaggi(java.lang.String)
+	 */
+	@Override
+	public DefaultListModel getPedaggi(String username) {
+		// TODO Auto-generated method stub
+		DefaultListModel  dfm = new DefaultListModel();
+		Connection cn = new Database().Connect();
+		try {
+			Statement st = cn.createStatement();
+			ResultSet result = st.executeQuery("select ID, stato, Importo, Veicolo from pedaggio inner join veicolo "
+					+ "on pedaggio.veicolo = veicolo.targa inner join utente "
+					+ "on veicolo.utente = utente.username where utente.username ='"+username+"'");
+			while (result.next()) {
+				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + "Stato: "+ result.getString("stato") + " Importo: " + result.getFloat("Importo") + " € Veicolo: " + result.getString("Veicolo"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dfm;
+	}
 	
 	
 	

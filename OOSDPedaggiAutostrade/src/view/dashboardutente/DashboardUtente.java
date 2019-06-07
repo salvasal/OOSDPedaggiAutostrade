@@ -78,6 +78,12 @@ public class DashboardUtente extends JFrame {
 		JButton btnStoricoPedaggi = new JButton("Storico Pedaggi");
 		btnStoricoPedaggi.setBounds(532, 72, 161, 39);
 		contentPane.add(btnStoricoPedaggi);
+		btnStoricoPedaggi.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e ) {
+				MyPedaggi mp = new MyPedaggi(username);
+				mp.setVisible(true);
+			}
+		});
 		
 		JLabel lblId = new JLabel("ID:");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 13));

@@ -12,8 +12,12 @@ import model.components.Pedaggio;
  *
  */
 public class GestoreUtenteController {
+	
 	public DefaultListModel getPedagginonPagati (String username) {
 		return new Pedaggio().getPedagginonPagati(username);
 	}
 
+	public DefaultListModel getPedaggi (String username) {
+		return new Pedaggio().getPedaggi(username);
+	}
 }
