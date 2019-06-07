@@ -5,6 +5,7 @@ package controller;
 
 import javax.swing.DefaultListModel;
 
+import model.components.GestoreUtenza;
 import model.components.Pedaggio;
 import model.components.Veicolo;
 
@@ -24,5 +25,13 @@ public class GestoreUtenteController {
 	
 	public DefaultListModel getVeicoli(String usernameSelected) {
 		return new Veicolo().getVeicoli(usernameSelected);
+	}
+	
+	public float getSaldo (String username) {
+		return new GestoreUtenza().getSaldo(username);
+	}
+	
+	public String getIBAN (String username) {
+		return new GestoreUtenza().getIBAN(username);
 	}
 }

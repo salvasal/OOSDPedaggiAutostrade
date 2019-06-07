@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.List;
 
@@ -28,6 +29,8 @@ public class DashboardUtente extends JFrame {
 	private static String username;
 	private JTextField IDField;
 	private DefaultListModel lista;
+	private float saldo;
+	private String IBAN;
 
 	/**
 	 * Launch the application.
@@ -114,6 +117,13 @@ public class DashboardUtente extends JFrame {
 		JButton btnSaldo = new JButton("Saldo");
 		btnSaldo.setBounds(198, 11, 132, 39);
 		contentPane.add(btnSaldo);
+		btnSaldo.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e ) {
+				saldo = new GestoreUtenteController().getSaldo(username);
+				IBAN = new GestoreUtenteController().getIBAN(username);
+				JOptionPane.showMessageDialog(null, "IBAN: "+ IBAN +" Saldo: "+ saldo);
+			}
+		});
 		
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {

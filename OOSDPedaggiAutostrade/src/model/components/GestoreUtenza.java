@@ -211,6 +211,51 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		
 		return s;
 	}
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.GestoreUtenzaInterface#getSaldo(java.lang.String)
+	 */
+	@Override
+	public float getSaldo(String username) {
+		// TODO Auto-generated method stub
+		Float saldo = null;
+		Connection cn = new Database().Connect();
+		try {
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery("select saldo from carta inner join utente "
+					+ "on carta.IBAN = utente.carta where utente.username='"+username+"'");
+			if (rs.next()) {
+				saldo = rs.getFloat("saldo");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return saldo;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.GestoreUtenzaInterface#getIBAN(java.lang.String)
+	 */
+	@Override
+	public String getIBAN(String username) {
+		// TODO Auto-generated method stub
+		String IBAN = null;
+		Connection cn = new Database().Connect();
+		try {
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery("select IBAN from carta inner join utente "
+					+ "on carta.IBAN = utente.carta where utente.username='"+username+"'");
+			if (rs.next()) {
+				IBAN = rs.getString("IBAN");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return IBAN;
+	}
 		
+	
 	
 }
