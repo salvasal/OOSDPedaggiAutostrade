@@ -94,9 +94,9 @@ public class DashboardUtente extends JFrame {
 		contentPane.add(btnEffettuaPagamento);
 		
 		lista = new GestoreUtenteController().getPedagginonPagati(username);
-		
 		JList list = new JList(lista);
-		list.setBounds(12, 129, 756, 284);
+		list.setBounds(12, 72, 510, 278);
+		JScrollPane scrollablelist = new JScrollPane(list);
 		contentPane.add(list);
 		
 		JButton btnSaldo = new JButton("Saldo");
