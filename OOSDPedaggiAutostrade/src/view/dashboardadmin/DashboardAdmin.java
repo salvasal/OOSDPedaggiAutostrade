@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 public class DashboardAdmin extends JFrame {
 
@@ -52,7 +53,7 @@ public class DashboardAdmin extends JFrame {
 		
 		JButton btnAggiungiAmministratore = new JButton("Aggiungi un nuovo Amministratore");
 		btnAggiungiAmministratore.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		btnAggiungiAmministratore.setBounds(114, 16, 255, 39);
+		btnAggiungiAmministratore.setBounds(114, 67, 255, 39);
 		contentPane.add(btnAggiungiAmministratore);
 		btnAggiungiAmministratore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -63,7 +64,7 @@ public class DashboardAdmin extends JFrame {
 		
 		JButton btnGestisciTariffeOneri = new JButton("Gestisci Tariffe e Oneri");
 		btnGestisciTariffeOneri.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		btnGestisciTariffeOneri.setBounds(114, 67, 255, 39);
+		btnGestisciTariffeOneri.setBounds(114, 117, 255, 39);
 		contentPane.add(btnGestisciTariffeOneri);
 		btnGestisciTariffeOneri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -74,7 +75,7 @@ public class DashboardAdmin extends JFrame {
 		
 		JButton btnCercaUtente = new JButton("Cerca un Utente");
 		btnCercaUtente.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		btnCercaUtente.setBounds(114, 125, 255, 39);
+		btnCercaUtente.setBounds(114, 169, 255, 39);
 		contentPane.add(btnCercaUtente);
 		btnCercaUtente.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
@@ -87,7 +88,7 @@ public class DashboardAdmin extends JFrame {
 		
 		JButton btnCalcolaPedaggio = new JButton("Calcola un Pedaggio Autostradale");
 		btnCalcolaPedaggio.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		btnCalcolaPedaggio.setBounds(114, 176, 255, 39);
+		btnCalcolaPedaggio.setBounds(114, 219, 255, 39);
 		contentPane.add(btnCalcolaPedaggio);
 		btnCalcolaPedaggio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,7 +99,7 @@ public class DashboardAdmin extends JFrame {
 		
 		JButton btnGestisciAutostrada = new JButton("Gestisci Autostrada");
 		btnGestisciAutostrada.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		btnGestisciAutostrada.setBounds(114, 227, 255, 39);
+		btnGestisciAutostrada.setBounds(114, 269, 255, 39);
 		contentPane.add(btnGestisciAutostrada);
 		btnGestisciAutostrada.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
@@ -113,6 +114,11 @@ public class DashboardAdmin extends JFrame {
 		btnLogout.setBackground(Color.WHITE);
 		btnLogout.setBounds(114, 319, 255, 39);
 		contentPane.add(btnLogout);
+		
+		JLabel lblNewLabel = new JLabel("Bentornato "+username);
+		lblNewLabel.setBounds(10, 21, 147, 22);
+		contentPane.add(lblNewLabel);
+		
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
 				dispose();
