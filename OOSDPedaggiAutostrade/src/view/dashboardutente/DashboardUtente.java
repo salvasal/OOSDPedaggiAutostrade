@@ -70,6 +70,12 @@ public class DashboardUtente extends JFrame {
 		JButton btnGestisciVeicoli = new JButton("Gestisci i tuoi Veicoli");
 		btnGestisciVeicoli.setBounds(340, 11, 182, 41);
 		contentPane.add(btnGestisciVeicoli);
+		btnGestisciVeicoli.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e ) {
+				MyVeicoli mv = new MyVeicoli(username);
+				mv.setVisible(true);
+			}
+		});
 		
 		JLabel lblPedaggiDaPagare = new JLabel("Pedaggi da pagare:");
 		lblPedaggiDaPagare.setBounds(10, 44, 151, 22);
@@ -108,6 +114,7 @@ public class DashboardUtente extends JFrame {
 		JButton btnSaldo = new JButton("Saldo");
 		btnSaldo.setBounds(198, 11, 132, 39);
 		contentPane.add(btnSaldo);
+		
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
 				dispose();
