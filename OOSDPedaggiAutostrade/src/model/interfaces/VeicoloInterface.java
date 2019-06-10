@@ -14,4 +14,5 @@ import javax.swing.DefaultListModel;
 public interface VeicoloInterface {
 	public DefaultListModel getVeicoli(String usernameSelected);
 	public ArrayList<String> getVeicolibyUsername(String usernameutente);
+	public void deleteVeicolo(String targa);
 }

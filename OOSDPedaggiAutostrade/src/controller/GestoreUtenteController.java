@@ -46,4 +46,8 @@ public class GestoreUtenteController {
 	public void ricarica(Integer importo, String pedaggio, String username) {
 		new Pedaggio().ricarica(importo, pedaggio, username);
 	}
+	
+	public void deleteVeicolo(String targa) {
+		new Veicolo().deleteVeicolo(targa);
+	}
 }

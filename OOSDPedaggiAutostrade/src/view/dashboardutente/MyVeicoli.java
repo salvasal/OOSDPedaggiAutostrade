@@ -12,8 +12,11 @@ import controller.GestoreUtenteController;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -25,6 +28,7 @@ public class MyVeicoli extends JFrame {
 	private static String username;
 	private JTextField targaField;
 	private DefaultListModel lista;
+	private String targa;
 
 	/**
 	 * Launch the application.
@@ -75,6 +79,15 @@ public class MyVeicoli extends JFrame {
 		JButton btnEliminaVeicolo = new JButton("Elimina Veicolo");
 		btnEliminaVeicolo.setBounds(411, 13, 133, 23);
 		contentPane.add(btnEliminaVeicolo);
+		btnEliminaVeicolo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				targa = targaField.getText();
+				if(!targa.equals("")) {
+					new GestoreUtenteController().deleteVeicolo(targa);
+					JOptionPane.showMessageDialog(null, "Veicolo eliminato! Chiudere e riaprire la finestra inerente alla gestione dei veicoli");
+				} else JOptionPane.showMessageDialog(null, "Inserire la targa del Veicolo da eliminare");
+			}
+		});
 		
 		lista = new GestoreUtenteController().getVeicoli(username);
 		JList list = new JList(lista);

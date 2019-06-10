@@ -241,6 +241,21 @@ public class Veicolo implements VeicoloInterface {
 		}
 		return targalist;
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.VeicoloInterface#deleteVeicolo(java.lang.String)
+	 */
+	@Override
+	public void deleteVeicolo(String targa) {
+		// TODO Auto-generated method stub
+		Connection con = new Database().Connect();
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate("delete from veicolo where targa = '"+targa+"'");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
