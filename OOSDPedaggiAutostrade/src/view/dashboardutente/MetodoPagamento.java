@@ -23,6 +23,8 @@ public class MetodoPagamento extends JFrame {
 
 	private JPanel contentPane;
 	private static String pedaggio;
+	private static String username;
+	private boolean check;
 
 	/**
 	 * Launch the application.
@@ -31,7 +33,7 @@ public class MetodoPagamento extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MetodoPagamento frame = new MetodoPagamento(pedaggio);
+					MetodoPagamento frame = new MetodoPagamento(pedaggio, username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +45,7 @@ public class MetodoPagamento extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MetodoPagamento(String pedaggio) {
+	public MetodoPagamento(String pedaggio, String username) {
 		setTitle("Pagamento Pedaggio");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 124);
@@ -74,5 +76,15 @@ public class MetodoPagamento extends JFrame {
 		btnCartaDiCredito.setForeground(Color.RED);
 		btnCartaDiCredito.setBounds(233, 47, 147, 25);
 		contentPane.add(btnCartaDiCredito);
+		btnCartaDiCredito.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				check = new GestoreUtenteController().pagamentoCarta(pedaggio, username);
+				if (check) {
+					JOptionPane.showMessageDialog(null, "Pagamento avvenuto con successo! Chiudere la dashboard utente per visualizzare l'avvenuto pagamento!");
+				} else {
+					//SEZIONE RICARICA
+				}
+			}
+		});
 	}
 }

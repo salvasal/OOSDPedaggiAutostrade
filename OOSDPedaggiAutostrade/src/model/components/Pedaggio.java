@@ -198,6 +198,48 @@ public class Pedaggio implements PedaggioInterface {
 			e.printStackTrace();
 		}
 	}
+
+
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#pagamentoCarta(java.lang.String)
+	 */
+	@Override
+	public boolean pagamentoCarta(String pedaggio, String username) {
+		// TODO Auto-generated method stub
+		boolean check = false;
+		float nuovosaldo;
+		String stato = "Pagato";
+		Connection con = new Database().Connect();
+		Statement st, st2, st3, st4;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("select ID, Stato, Importo, Veicolo from Pedaggio where ID = '"+pedaggio+"'");
+			if(rs.next()) {
+				Pedaggio p = new Pedaggio(rs.getString("ID"), rs.getString("Stato"), rs.getFloat("Importo"), rs.getString("Veicolo"));
+				st2 = con.createStatement();
+				ResultSet rs2 = st2.executeQuery("select IBAN, saldo from carta inner join utente "
+						+ "on carta.IBAN = utente.carta where utente.username ='"+username+"'");
+				if(rs2.next()) {
+					Carta c = new Carta (rs2.getString("IBAN"), rs2.getFloat("saldo"));
+					if (p.getImporto() >= c.getSaldo()) {
+						check = false;
+					} else  {
+						nuovosaldo = c.getSaldo()-p.getImporto();
+						st3 = con.createStatement();
+						st3.executeUpdate("update carta set saldo ='"+nuovosaldo+"' where IBAN ='"+c.getIban()+"'");
+						st4 = con.createStatement();
+						st4.executeUpdate("update Pedaggio set Stato ='"+stato+"' where ID = '"+pedaggio+"'");
+						check = true;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
 	
 	
 	

@@ -15,4 +15,5 @@ public interface PedaggioInterface {
 	public DefaultListModel getPedagginonPagati(String username);
 	public DefaultListModel getPedaggi(String username);
 	public void pagamentoContante(String pedaggio);
+	public boolean pagamentoCarta(String pedaggio, String username);
 }

@@ -112,7 +112,7 @@ public class DashboardUtente extends JFrame {
 			public void actionPerformed ( ActionEvent e ) {
 				ID = IDField.getText();
 				if(!ID.equals("")) {
-					MetodoPagamento mp = new MetodoPagamento(ID);
+					MetodoPagamento mp = new MetodoPagamento(ID, username);
 					mp.setVisible(true);
 				} else JOptionPane.showMessageDialog(null, "Inserire ID del Pedaggio che si desidera pagare");
 			}
