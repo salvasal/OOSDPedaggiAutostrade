@@ -240,6 +240,34 @@ public class Pedaggio implements PedaggioInterface {
 		}
 		return check;
 	}
+
+
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#ricarica(java.lang.Integer, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void ricarica(Integer importo, String pedaggio, String username) {
+		// TODO Auto-generated method stub
+		float nuovosaldo;
+		Connection con = new Database().Connect();
+		Statement st, st2;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("select IBAN, saldo from carta inner join utente "
+					+ "on carta.IBAN = utente.carta where utente.username ='"+username+"'");
+			if(rs.next()) {
+				Carta c = new Carta (rs.getString("IBAN"), rs.getFloat("saldo"));
+				nuovosaldo = c.getSaldo()+importo;
+				st2 = con.createStatement();
+				st2.executeUpdate("update carta set saldo = '"+nuovosaldo+"' where IBAN = '"+c.getIban()+"'");
+				boolean check = new Pedaggio().pagamentoCarta(pedaggio, username);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

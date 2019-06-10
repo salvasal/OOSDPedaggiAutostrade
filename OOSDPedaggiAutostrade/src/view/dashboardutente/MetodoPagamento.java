@@ -82,7 +82,9 @@ public class MetodoPagamento extends JFrame {
 				if (check) {
 					JOptionPane.showMessageDialog(null, "Pagamento avvenuto con successo! Chiudere la dashboard utente per visualizzare l'avvenuto pagamento!");
 				} else {
-					//SEZIONE RICARICA
+					dispose();
+					Ricarica r = new Ricarica(pedaggio, username);
+					r.setVisible(true);
 				}
 			}
 		});

@@ -42,4 +42,8 @@ public class GestoreUtenteController {
 	public boolean pagamentoCarta(String pedaggio, String username) {
 		return new Pedaggio().pagamentoCarta(pedaggio, username);
 	}
+	
+	public void ricarica(Integer importo, String pedaggio, String username) {
+		new Pedaggio().ricarica(importo, pedaggio, username);
+	}
 }
