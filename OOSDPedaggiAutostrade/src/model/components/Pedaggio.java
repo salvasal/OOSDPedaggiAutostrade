@@ -179,6 +179,25 @@ public class Pedaggio implements PedaggioInterface {
 		}
 		return dfm;
 	}
+
+
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#pagamentoContante(java.lang.String)
+	 */
+	@Override
+	public void pagamentoContante(String pedaggio) {
+		// TODO Auto-generated method stub
+		String stato="Pagato";
+		Connection con = new Database().Connect();
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate("update Pedaggio set Stato ='"+stato+"' where ID = '"+pedaggio+"'");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

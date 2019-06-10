@@ -34,4 +34,8 @@ public class GestoreUtenteController {
 	public String getIBAN (String username) {
 		return new GestoreUtenza().getIBAN(username);
 	}
+	
+	public void pagamentoContante(String pedaggio) {
+		new Pedaggio().pagamentoContante(pedaggio);
+	}
 }

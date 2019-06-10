@@ -14,4 +14,5 @@ public interface PedaggioInterface {
 	public void setOneri(String importoOneri, String veicoloClasseSelected);
 	public DefaultListModel getPedagginonPagati(String username);
 	public DefaultListModel getPedaggi(String username);
+	public void pagamentoContante(String pedaggio);
 }

@@ -31,6 +31,7 @@ public class DashboardUtente extends JFrame {
 	private DefaultListModel lista;
 	private float saldo;
 	private String IBAN;
+	private String ID;
 
 	/**
 	 * Launch the application.
@@ -107,6 +108,15 @@ public class DashboardUtente extends JFrame {
 		JButton btnEffettuaPagamento = new JButton("Effettua Pagamento");
 		btnEffettuaPagamento.setBounds(532, 177, 161, 39);
 		contentPane.add(btnEffettuaPagamento);
+		btnEffettuaPagamento.addActionListener(new ActionListener() {
+			public void actionPerformed ( ActionEvent e ) {
+				ID = IDField.getText();
+				if(!ID.equals("")) {
+					MetodoPagamento mp = new MetodoPagamento(ID);
+					mp.setVisible(true);
+				} else JOptionPane.showMessageDialog(null, "Inserire ID del Pedaggio che si desidera pagare");
+			}
+		});
 		
 		lista = new GestoreUtenteController().getPedagginonPagati(username);
 		JList list = new JList(lista);
