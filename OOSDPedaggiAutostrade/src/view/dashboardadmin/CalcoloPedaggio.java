@@ -10,7 +10,11 @@ import javax.swing.border.EmptyBorder;
 import controller.GestoreAdminController;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -96,5 +100,17 @@ public class CalcoloPedaggio extends JFrame {
 		JButton btnCalcolaPedaggio = new JButton("Calcola Pedaggio");
 		btnCalcolaPedaggio.setBounds(218, 312, 169, 25);
 		contentPane.add(btnCalcolaPedaggio);
+		btnCalcolaPedaggio.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				targaSelected = targaUtenteComboBox.getSelectedItem().toString();
+				coordinateSelectedentrata = caselloEntrataComboBox.getSelectedItem().toString();
+				coordinateSelecteduscita = caselloUscitaComboBox.getSelectedItem().toString();
+				if(!targaSelected.equals("") && !coordinateSelectedentrata.equals("") && !coordinateSelecteduscita.equals("")) {
+					//Per l'anno 2021, basta richiamare il metodo setPedaggiowithOneri presente nella classe GestoreAdminController al posto di setPedaggio
+					new GestoreAdminController().setPedaggio(targaSelected, coordinateSelectedentrata, coordinateSelecteduscita);
+					JOptionPane.showMessageDialog(null, "Pedaggio inserito ed inviato alla dashboard dell'utente!");
+				} else JOptionPane.showMessageDialog(null, "Selezionare gli elementi!");
+			}
+		});
 	}
 }

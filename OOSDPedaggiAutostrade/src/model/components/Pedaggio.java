@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 import javax.swing.DefaultListModel;
 
@@ -267,6 +268,88 @@ public class Pedaggio implements PedaggioInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#setPedaggio(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void setPedaggio(String targa, String caselloentrata, String casellouscita) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery("select km from casello where coordinate = '"+caselloentrata+"'");
+			if(rs.next()) {
+				Integer kmentrata = rs.getInt("km");
+				Statement st2 = cn.createStatement();
+				ResultSet rs2 = st2.executeQuery("select km from casello where coordinate = '"+casellouscita+"'");
+				if(rs2.next()) {
+					Integer kmuscita = rs2.getInt("km");
+					Integer km = Math.abs(kmentrata - kmuscita);
+					Statement st3 = cn.createStatement();
+					ResultSet rs3 = st3.executeQuery("select tipo from autostrada inner join casello "
+							+ "on autostrada.codice = casello.autostrada where casello.coordinate = '"+caselloentrata+"'");
+					if(rs3.next()) {
+						String tipo = rs3.getString("tipo");
+						Statement st4 = cn.createStatement();
+						ResultSet rs4 = st4.executeQuery("select categoria from veicolo where targa = '"+targa+"'");
+						if(rs4.next()) {
+							String categoria = rs4.getString("categoria");
+							Statement st5 = cn.createStatement();
+							ResultSet rs5 = st5.executeQuery("select valore from tariffa where categoria = '"+categoria+"' and tipo = '"+tipo+"'");
+							if(rs5.next()) {
+								float tariffa = rs5.getFloat("valore");
+								Double pedaggio = (double)((km * tariffa) + (km * tariffa * (22/100)));
+								Double importo = arrotonda(pedaggio, 2);
+								System.out.println(importo);
+								String ID = randomString(4);
+								String stato ="NonPagato";
+								Statement st6 = cn.createStatement();
+								st6.executeUpdate("insert into pedaggio values('"+ID+"','"+stato+"','"+importo+"','"+targa+"')");
+							}
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static double arrotonda(double value, int numCifreDecimali) {
+	      double temp = Math.pow(10, numCifreDecimali);
+	      return Math.round(value * temp) / temp; 
+	   }
+
+	public String randomString(int length) {
+		// TODO Auto-generated method stub
+		Random rand = new Random();
+		StringBuffer tempStr = new StringBuffer();
+		tempStr.append("");
+		for (int i = 0; i < length; i++) {
+		int c = rand.nextInt(122 - 48) + 48;
+		if((c >= 58 && c <= 64) || (c >= 91 && c <= 96)){
+		i--;
+		continue;
+		}
+		tempStr.append((char)c);
+
+		}
+		return tempStr.toString();
+		}
+	
+	/* (non-Javadoc)
+	 * @see model.interfaces.PedaggioInterface#setPedaggiowithOneri(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void setPedaggiowithOneri(String targa, String caselloentrata, String casellouscita) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

@@ -79,5 +79,13 @@ public class GestoreAdminController {
 	public ArrayList<String> getVeicolibyUsername(String usernameutente) {
 		return new Veicolo().getVeicolibyUsername(usernameutente);
 	}
+	
+	public void setPedaggio (String targa, String caselloentrata, String casellouscita) {
+		new Pedaggio().setPedaggio(targa, caselloentrata, casellouscita);
+	}
+	
+	public void setPedaggiowithOneri (String targa, String caselloentrata, String casellouscita) {
+		new Pedaggio().setPedaggiowithOneri(targa, caselloentrata, casellouscita);
+	}
 }
 
