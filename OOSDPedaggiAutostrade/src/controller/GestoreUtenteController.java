@@ -50,4 +50,8 @@ public class GestoreUtenteController {
 	public void deleteVeicolo(String targa) {
 		new Veicolo().deleteVeicolo(targa);
 	}
+	
+	public void setVeicolo(Veicolo v) {
+		new Veicolo().setVeicolo(v);
+	}
 }

@@ -27,7 +27,7 @@ public class Veicolo implements VeicoloInterface {
 	public Integer altezza;
 	public Integer anno;
 	public String categoria;
-	public float qtaco2;
+	public Integer qtaco2;
 	public Integer oneri;
 	public String utente;
 	
@@ -53,7 +53,7 @@ public class Veicolo implements VeicoloInterface {
 	 * @param utente
 	 */
 	public Veicolo(String targa, String marca, String modello, Integer peso, Integer assi, Integer altezza,
-			Integer anno, String categoria, float qtaco2, Integer oneri, String utente) {
+			Integer anno, String categoria, Integer qtaco2, Integer oneri, String utente) {
 		this.targa = targa;
 		this.marca = marca;
 		this.modello = modello;
@@ -165,13 +165,13 @@ public class Veicolo implements VeicoloInterface {
 	/**
 	 * @return the qtaco2
 	 */
-	public float getQtaco2() {
+	public Integer getQtaco2() {
 		return qtaco2;
 	}
 	/**
 	 * @param qtaco2 the qtaco2 to set
 	 */
-	public void setQtaco2(float qtaco2) {
+	public void setQtaco2(Integer qtaco2) {
 		this.qtaco2 = qtaco2;
 	}
 	/**
@@ -256,6 +256,65 @@ public class Veicolo implements VeicoloInterface {
 			e.printStackTrace();
 		}
 	}
+	/* (non-Javadoc)
+	 * @see model.interfaces.VeicoloInterface#setVeicolo(model.components.Veicolo)
+	 */
+	@Override
+	public void setVeicolo(Veicolo v) {
+		// TODO Auto-generated method stub
+		Connection con = new Database().Connect();
+		
+		
+		switch(v.getAssi()) {
+			
+		case 2: 
+			
+			if (v.getAltezza() <= 130) {
+				v.setCategoria("A");
+			} else {v.setCategoria("B");}
+			break;
+			
+		case 3:
+			
+			v.setCategoria("3");
+			break;
+			
+		case 4:
+			
+			v.setCategoria("4");
+			break;
+			
+		case 5:
+			
+			v.setCategoria("5");
+			break;
+			
+		default: v.setCategoria("5");
+		}
+		
+		
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select euro, importo, valoreMin, valoreMax from oneri");
+			
+			while(rs.next()) {
+				Oneri o = new Oneri(rs.getInt("Euro"), rs.getFloat("Importo"), rs.getFloat("ValoreMin"), rs.getFloat("ValoreMax"));
+				if(o.getValoreMin() <= v.getQtaco2() && v.getQtaco2() <= o.getValoreMax()) {
+					v.setOneri(o.getEuro());
+					Statement st2 = con.createStatement();
+					st2.executeUpdate("insert into veicolo values ('"+v.getTarga()+"','"+v.getMarca()+"','"+v.getModello()+"','"+v.getPeso()+"','"+v.getAssi()+"','"+v.getAltezza()+"','"+v.getAnno()+"','"+v.getCategoria()+"','"+v.getQtaco2()+"','"+v.getOneri()+"','"+v.getUtente()+"')");
+			
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
 	
 	
 	

@@ -66,6 +66,12 @@ public class MyVeicoli extends JFrame {
 		JButton btnAggiungiVeicolo = new JButton("Aggiungi Veicolo");
 		btnAggiungiVeicolo.setBounds(122, 13, 131, 23);
 		contentPane.add(btnAggiungiVeicolo);
+		btnAggiungiVeicolo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewVeicolo nv = new NewVeicolo(username);
+				nv.setVisible(true);
+			}
+		});
 		
 		JLabel lblTarga = new JLabel("Targa: ");
 		lblTarga.setBounds(268, 17, 46, 14);
