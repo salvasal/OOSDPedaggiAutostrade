@@ -147,7 +147,7 @@ public class Pedaggio implements PedaggioInterface {
 					+ "on pedaggio.veicolo = veicolo.targa inner join utente "
 					+ "on veicolo.utente = utente.username where pedaggio.stato ='"+statopedaggio+"' and utente.username ='"+username+"'");
 			while (result.next()) {
-				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + " Importo: " + result.getFloat("Importo") + " € Veicolo: " + result.getString("Veicolo"));
+				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + " Importo: " + result.getFloat("Importo") + " ï¿½ Veicolo: " + result.getString("Veicolo"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -172,7 +172,7 @@ public class Pedaggio implements PedaggioInterface {
 					+ "on pedaggio.veicolo = veicolo.targa inner join utente "
 					+ "on veicolo.utente = utente.username where utente.username ='"+username+"'");
 			while (result.next()) {
-				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + "Stato: "+ result.getString("stato") + " Importo: " + result.getFloat("Importo") + " € Veicolo: " + result.getString("Veicolo"));
+				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + "Stato: "+ result.getString("stato") + " Importo: " + result.getFloat("Importo") + " ï¿½ Veicolo: " + result.getString("Veicolo"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -302,8 +302,11 @@ public class Pedaggio implements PedaggioInterface {
 							ResultSet rs5 = st5.executeQuery("select valore from tariffa where categoria = '"+categoria+"' and tipo = '"+tipo+"'");
 							if(rs5.next()) {
 								float tariffa = rs5.getFloat("valore");
-								Double pedaggio = (double)((km * tariffa) + (km * tariffa * (22/100)));
-								Double importo = arrotonda(pedaggio, 2);
+								double pedaggiosenzaimposta = km * tariffa;
+								double imposta = pedaggiosenzaimposta * 0.22;
+								double pedaggio = pedaggiosenzaimposta + imposta;
+								System.out.println(pedaggio);
+								Double importo = arrotonda(pedaggio, 1);
 								System.out.println(importo);
 								String ID = randomString(4);
 								String stato ="NonPagato";
