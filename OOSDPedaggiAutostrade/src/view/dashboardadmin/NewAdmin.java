@@ -149,7 +149,7 @@ public class NewAdmin extends JFrame {
 					Amministratore a = new Amministratore (username, password, null, nome, cognome, luogon, datan, telefono);
 					String chiave = new GestoreAdminController().setAmministratore(a);
 					JOptionPane.showMessageDialog(null,"Amministratore aggiunto con successo! Chiave di recupero:" +chiave);
-				} else JOptionPane.showMessageDialog(null,"Uno dei campi non è stato riempito");
+				} else JOptionPane.showMessageDialog(null,"Uno dei campi non e stato riempito");
 			}
 		});
 		btnAggiungi.setFont(new Font("Times New Roman", Font.PLAIN, 15));

@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  */
 public class Database {
-	/*In questa classe avverrà il collegamento al database*/
+	/*In questa classe avverra il collegamento al database*/
 	private static String LOCATION="jdbc:mysql://localhost:3306/pedaggiautostrade?serverTimezone=UTC";
 	private static String NAME="root";
 	private static String PSW="root";

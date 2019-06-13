@@ -113,7 +113,7 @@ public class AggiungiAutostrada extends JFrame {
 				if (!codice.equals("") && !nome.equals("") && !tipoSelected.equals("") && (lunghezza!=0 || lunghezza!=null)) {
 					new GestoreAdminController().setAutostrada(codice, nome, tipoSelected, lunghezza, username);
 					JOptionPane.showMessageDialog(null, "Autostrada inserita. Chiudere e riaprire la finestra inerente alla lista autostrade");
-				} else JOptionPane.showMessageDialog(null, "Uno dei campi non è stato riempito");
+				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e stato riempito");
 			}
 		});
 	}

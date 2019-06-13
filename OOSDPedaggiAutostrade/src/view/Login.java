@@ -102,7 +102,7 @@ public class Login extends JFrame {
 						du.setVisible(true);
 						} else JOptionPane.showMessageDialog(null, "Credenziali Errate"); 
 				} else {
-					JOptionPane.showMessageDialog(null, "Uno dei due campi non è stato riempito");
+					JOptionPane.showMessageDialog(null, "Uno dei due campi non e stato riempito");
 				}
 			}
 		});

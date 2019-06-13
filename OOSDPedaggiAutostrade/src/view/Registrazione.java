@@ -167,7 +167,7 @@ public class Registrazione extends JFrame {
 					Utente u = new Utente (username, password, null, nome, cognome, luogon, datan, telefono, carta);
 					String chiave = new LoginController().setUtente(u);
 					JOptionPane.showMessageDialog(null,"Utente aggiunto con successo! Chiave di recupero:" +chiave);
-				} else JOptionPane.showMessageDialog(null, "Uno dei campi non è stato riempito");
+				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e stato riempito");
 			}
 		});
 	}
