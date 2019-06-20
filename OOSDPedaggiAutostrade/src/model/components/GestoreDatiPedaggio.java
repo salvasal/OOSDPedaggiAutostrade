@@ -38,18 +38,20 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#setOneri(java.lang.String, java.lang.String)
+	 * @see model.interfaces.PedaggioInterface#setOneri(model.components.Oneri)
 	 */
 	@Override
-	public void setOneri(String importoOneri, String veicoloClasseSelected) {
+	public void setOneri(Oneri o) {
 		// TODO Auto-generated method stub
 		Connection con = new Database().Connect();
 		
 		try {
 			Statement so = con.createStatement();
-			so.executeUpdate("update Oneri set Importo = '"+importoOneri+"' where Euro = '"+veicoloClasseSelected+"' ");
+			so.executeUpdate("update Oneri set Importo = '"+o.getImporto()+"' where Euro = '"+o.getEuro()+"' ");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

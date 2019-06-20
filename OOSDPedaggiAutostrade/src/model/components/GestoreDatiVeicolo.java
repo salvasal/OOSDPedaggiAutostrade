@@ -123,7 +123,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 			ResultSet rs = st.executeQuery("select euro, importo, valoreMin, valoreMax from oneri");
 			
 			while(rs.next()) {
-				Oneri o = new Oneri(rs.getInt("Euro"), rs.getFloat("Importo"), rs.getFloat("ValoreMin"), rs.getFloat("ValoreMax"));
+				Oneri o = new Oneri(rs.getInt("Euro"), rs.getString("Importo"), rs.getFloat("ValoreMin"), rs.getFloat("ValoreMax"));
 				if(o.getValoreMin() <= v.getQtaco2() && v.getQtaco2() <= o.getValoreMax()) {
 					v.setOneri(o.getEuro());
 					Statement st2 = con.createStatement();

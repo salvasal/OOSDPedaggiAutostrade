@@ -5,6 +5,7 @@ package model.interfaces;
 
 import javax.swing.DefaultListModel;
 
+import model.components.Oneri;
 import model.components.Tariffa;
 
 /**
@@ -13,7 +14,7 @@ import model.components.Tariffa;
  */
 public interface PedaggioInterface {
 	public void setTariffa(Tariffa t);
-	public void setOneri(String importoOneri, String veicoloClasseSelected);
+	public void setOneri(Oneri o);
 	public DefaultListModel getPedagginonPagati(String username);
 	public DefaultListModel getPedaggi(String username);
 	public void pagamentoContante(String pedaggio);

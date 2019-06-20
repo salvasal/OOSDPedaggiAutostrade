@@ -10,7 +10,7 @@ package model.components;
 public class Oneri {
 	
 	public int euro;
-	public float importo;
+	public String importo;
 	public float valoreMin;
 	public float valoreMax;
 	/**
@@ -19,7 +19,7 @@ public class Oneri {
 	 * @param valoreMin
 	 * @param valoreMax
 	 */
-	public Oneri(int euro, float importo, float valoreMin, float valoreMax) {
+	public Oneri(int euro, String importo, float valoreMin, float valoreMax) {
 		
 		this.euro = euro;
 		this.importo = importo;
@@ -41,13 +41,13 @@ public class Oneri {
 	/**
 	 * @return the importo
 	 */
-	public float getImporto() {
+	public String getImporto() {
 		return importo;
 	}
 	/**
 	 * @param importo the importo to set
 	 */
-	public void setImporto(float importo) {
+	public void setImporto(String importo) {
 		this.importo = importo;
 	}
 	/**

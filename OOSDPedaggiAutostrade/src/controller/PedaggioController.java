@@ -6,6 +6,7 @@ package controller;
 import javax.swing.DefaultListModel;
 
 import model.components.GestoreDatiPedaggio;
+import model.components.Oneri;
 import model.components.Tariffa;
 
 /**
@@ -18,8 +19,8 @@ public class PedaggioController {
 		new GestoreDatiPedaggio().setTariffa(t);
 	}
 	
-	public void setOneri(String importoOneri, String veicoloClasseSelected) {
-		new GestoreDatiPedaggio().setOneri(importoOneri, veicoloClasseSelected);
+	public void setOneri(Oneri o) {
+		new GestoreDatiPedaggio().setOneri(o);
 	}
 	
 	public void setPedaggio (String targa, String caselloentrata, String casellouscita) {
