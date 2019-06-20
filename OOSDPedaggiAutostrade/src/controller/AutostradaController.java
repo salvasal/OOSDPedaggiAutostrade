@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-import model.components.Autostrada;
+import model.components.GestoreDatiAutostrada;
 
 /**
  * @author Salernitano Salvatore Matricola 242016
@@ -16,38 +16,38 @@ import model.components.Autostrada;
 public class AutostradaController {
 	
 	public DefaultListModel getAutostradebyUsername (String username) {
-		return new Autostrada().getAutostradebyUsername(username);
+		return new GestoreDatiAutostrada().getAutostradebyUsername(username);
 	}
 	
 	public DefaultListModel getCasellibyIDautostrada (String ID) {
-		return new Autostrada().getCasellibyIDautostrada(ID);
+		return new GestoreDatiAutostrada().getCasellibyIDautostrada(ID);
 	}
 	
 	public void setAutostrada(String codice, String nome, String tipoSelected, Integer lunghezza, String username) {
-		new Autostrada().setAutostrada(codice, nome, tipoSelected, lunghezza, username);
+		new GestoreDatiAutostrada().setAutostrada(codice, nome, tipoSelected, lunghezza, username);
 	}
 	
 	public ArrayList<Integer> getkmbyID(String ID) {
-		return new Autostrada().getkmbyID(ID);
+		return new GestoreDatiAutostrada().getkmbyID(ID);
 	}
 	
 	public void setCasello(String coordinate, String nome, Integer km, String autostrada) {
-		new Autostrada().setCasello(coordinate, nome, km, autostrada);
+		new GestoreDatiAutostrada().setCasello(coordinate, nome, km, autostrada);
 	}
 	
 	public ArrayList<String> getIdautostradaByusername(String username) {
-		return new Autostrada().getIdautostradaByusername(username);
+		return new GestoreDatiAutostrada().getIdautostradaByusername(username);
 	}
 	
 	public void deleteautostrada(String codiceSelected) {
-		new Autostrada().deleteautostrada(codiceSelected);
+		new GestoreDatiAutostrada().deleteautostrada(codiceSelected);
 	}
 	
 	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(String usernameAmministratore, String codiceAutostrada) {
-		return new Autostrada().getCoordinatecaselliBycodiceAutostrada(usernameAmministratore, codiceAutostrada);
+		return new GestoreDatiAutostrada().getCoordinatecaselliBycodiceAutostrada(usernameAmministratore, codiceAutostrada);
 	}
 	
 	public void deletecasello(String coordinateSelected) {
-		new Autostrada().deletecasello(coordinateSelected);
+		new GestoreDatiAutostrada().deletecasello(coordinateSelected);
 	}
 }

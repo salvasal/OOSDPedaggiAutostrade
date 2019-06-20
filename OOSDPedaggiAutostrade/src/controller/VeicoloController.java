@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import model.components.GestoreDatiVeicolo;
 import model.components.Veicolo;
 
 /**
@@ -16,19 +17,19 @@ import model.components.Veicolo;
 public class VeicoloController {
 	
 	public DefaultListModel getVeicoli(String usernameSelected) {
-		return new Veicolo().getVeicoli(usernameSelected);
+		return new GestoreDatiVeicolo().getVeicoli(usernameSelected);
 	}
 	
 	public ArrayList<String> getVeicolibyUsername(String usernameutente) {
-		return new Veicolo().getVeicolibyUsername(usernameutente);
+		return new GestoreDatiVeicolo().getVeicolibyUsername(usernameutente);
 	}
 	
 	public void deleteVeicolo(String targa) {
-		new Veicolo().deleteVeicolo(targa);
+		new GestoreDatiVeicolo().deleteVeicolo(targa);
 	}
 	
 	public void setVeicolo(Veicolo v) {
-		new Veicolo().setVeicolo(v);
+		new GestoreDatiVeicolo().setVeicolo(v);
 	}
 	
 }
