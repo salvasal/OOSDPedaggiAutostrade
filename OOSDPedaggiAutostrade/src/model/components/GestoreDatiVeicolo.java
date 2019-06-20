@@ -87,7 +87,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 	@Override
 	public void setVeicolo(Veicolo v) {
 		// TODO Auto-generated method stub
-Connection con = new Database().Connect();
+		Connection con = new Database().Connect();
 		
 		
 		switch(v.getAssi()) {
