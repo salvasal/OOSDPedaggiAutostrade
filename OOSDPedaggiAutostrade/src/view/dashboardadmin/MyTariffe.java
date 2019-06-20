@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.PedaggioController;
+import model.components.Tariffa;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -32,6 +33,7 @@ public class MyTariffe extends JFrame {
 	private String autostradaSelected;
 	private String importoOneri;
 	private String veicoloClasseSelected;
+	private Tariffa t;
 
 	/**
 	 * Launch the application.
@@ -137,14 +139,9 @@ public class MyTariffe extends JFrame {
 		panelTariffe.add(btnApplicaTariffe);
 		btnApplicaTariffe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				importoTariffe = importoTariffeField.getText();
-				categoriaSelected = categoriaComboBox.getSelectedItem().toString();
-				autostradaSelected = autostradaComboBox.getSelectedItem().toString();
-				if(!importoTariffe.equals("") && !categoriaSelected.equals("") && !autostradaSelected.equals("")) {
-					new PedaggioController().setTariffa(importoTariffe, categoriaSelected, autostradaSelected);
-					JOptionPane.showMessageDialog(null, "La Tariffa e' stata impostata");
-					
-				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito oppure non e' stato selezionato");
+				t = new Tariffa(categoriaComboBox.getSelectedItem().toString(), autostradaComboBox.getSelectedItem().toString(), importoTariffeField.getText());
+				new PedaggioController().setTariffa(t);
+				JOptionPane.showMessageDialog(null, "La Tariffa e' stata impostata");
 			}
 		});
 		

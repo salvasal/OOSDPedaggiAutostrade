@@ -6,6 +6,7 @@ package controller;
 import javax.swing.DefaultListModel;
 
 import model.components.GestoreDatiPedaggio;
+import model.components.Tariffa;
 
 /**
  * @author Salernitano Salvatore Matricola 242016
@@ -13,8 +14,8 @@ import model.components.GestoreDatiPedaggio;
  */
 public class PedaggioController {
 	
-	public void setTariffa(String importoTariffe, String categoriaSelected, String autostradaSelected) {
-		new GestoreDatiPedaggio().setTariffa(importoTariffe, categoriaSelected, autostradaSelected);
+	public void setTariffa(Tariffa t) {
+		new GestoreDatiPedaggio().setTariffa(t);
 	}
 	
 	public void setOneri(String importoOneri, String veicoloClasseSelected) {

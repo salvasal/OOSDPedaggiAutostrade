@@ -11,13 +11,13 @@ public class Tariffa {
 	
 	public String categoria;
 	public String tipo;
-	public float valore;
+	public String valore;
 	/**
 	 * @param categoria
 	 * @param tipo
 	 * @param valore
 	 */
-	public Tariffa(String categoria, String tipo, float valore) {
+	public Tariffa(String categoria, String tipo, String valore) {
 		
 		this.categoria = categoria;
 		this.tipo = tipo;
@@ -50,13 +50,13 @@ public class Tariffa {
 	/**
 	 * @return the valore
 	 */
-	public float getValore() {
+	public String getValore() {
 		return valore;
 	}
 	/**
 	 * @param valore the valore to set
 	 */
-	public void setValore(float valore) {
+	public void setValore(String valore) {
 		this.valore = valore;
 	}
 	

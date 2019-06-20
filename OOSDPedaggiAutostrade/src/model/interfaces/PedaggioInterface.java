@@ -5,12 +5,14 @@ package model.interfaces;
 
 import javax.swing.DefaultListModel;
 
+import model.components.Tariffa;
+
 /**
  * @author Salvi Lorenzo Matricola 242387
  *
  */
 public interface PedaggioInterface {
-	public void setTariffa(String importoTariffa, String categoriaSelected, String autostradaSelected);
+	public void setTariffa(Tariffa t);
 	public void setOneri(String importoOneri, String veicoloClasseSelected);
 	public DefaultListModel getPedagginonPagati(String username);
 	public DefaultListModel getPedaggi(String username);

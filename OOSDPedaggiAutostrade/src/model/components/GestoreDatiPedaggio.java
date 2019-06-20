@@ -20,17 +20,18 @@ import model.interfaces.PedaggioInterface;
  */
 public class GestoreDatiPedaggio implements PedaggioInterface {
 
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#setTariffa(java.lang.String, java.lang.String, java.lang.String)
+	 * @see model.interfaces.PedaggioInterface#setTariffa(model.components.Tariffa)
 	 */
 	@Override
-	public void setTariffa(String importoTariffa, String categoriaSelected, String autostradaSelected) {
+	public void setTariffa(Tariffa t) {
 		// TODO Auto-generated method stub
 		Connection con = new Database().Connect();
 		
 		try {
 			Statement st = con.createStatement();
-			st.executeUpdate("update Tariffa set Valore = '"+importoTariffa+"' where Categoria = '"+categoriaSelected+"' and Tipo = '"+autostradaSelected+"' ");
+			st.executeUpdate("update Tariffa set Valore = '"+t.getValore()+"' where Categoria = '"+t.getCategoria()+"' and Tipo = '"+t.getTipo()+"' ");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
