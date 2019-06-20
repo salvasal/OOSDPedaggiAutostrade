@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.components.Amministratore;
 import view.Login;
 import view.dashboardadmin.NewAdmin;
 import view.dashboardadmin.RicercaUtente;
@@ -21,7 +22,7 @@ import javax.swing.JLabel;
 public class DashboardAdmin extends JFrame {
 
 	private JPanel contentPane;
-	private static String username;
+	private static Amministratore amministratore;
 
 	/**
 	 * Launch the application.
@@ -30,7 +31,7 @@ public class DashboardAdmin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DashboardAdmin frame = new DashboardAdmin(username);
+					DashboardAdmin frame = new DashboardAdmin(amministratore);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +43,7 @@ public class DashboardAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DashboardAdmin(String username) {
+	public DashboardAdmin(Amministratore amministratore) {
 		setTitle("Dashboard Amministratore");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 487, 438);
@@ -81,9 +82,7 @@ public class DashboardAdmin extends JFrame {
 			public void actionPerformed (ActionEvent e) {
 				RicercaUtente ru = new RicercaUtente();
 				ru.setVisible(true);
-				
 			}
-			
 		});
 		
 		JButton btnCalcolaPedaggio = new JButton("Calcola un Pedaggio Autostradale");
@@ -92,7 +91,7 @@ public class DashboardAdmin extends JFrame {
 		contentPane.add(btnCalcolaPedaggio);
 		btnCalcolaPedaggio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RicercaUtenteAutostrada rua = new RicercaUtenteAutostrada(username);
+				RicercaUtenteAutostrada rua = new RicercaUtenteAutostrada(amministratore);
 				rua.setVisible(true);
 			}
 		});
@@ -103,7 +102,7 @@ public class DashboardAdmin extends JFrame {
 		contentPane.add(btnGestisciAutostrada);
 		btnGestisciAutostrada.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
-				GestoreAutostrada ga = new GestoreAutostrada(username);
+				GestoreAutostrada ga = new GestoreAutostrada(amministratore);
 				ga.setVisible(true);	
 			}
 		});
@@ -115,7 +114,7 @@ public class DashboardAdmin extends JFrame {
 		btnLogout.setBounds(114, 319, 255, 39);
 		contentPane.add(btnLogout);
 		
-		JLabel lblNewLabel = new JLabel("Bentornato "+username);
+		JLabel lblNewLabel = new JLabel("Bentornato "+amministratore.getUsername());
 		lblNewLabel.setBounds(10, 21, 147, 22);
 		contentPane.add(lblNewLabel);
 		

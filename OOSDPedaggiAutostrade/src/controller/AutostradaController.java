@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import model.components.Amministratore;
 import model.components.Casello;
 import model.components.GestoreDatiAutostrada;
 
@@ -16,8 +17,8 @@ import model.components.GestoreDatiAutostrada;
  */
 public class AutostradaController {
 	
-	public DefaultListModel getAutostradebyUsername (String username) {
-		return new GestoreDatiAutostrada().getAutostradebyUsername(username);
+	public DefaultListModel getAutostradebyUsername (Amministratore a) {
+		return new GestoreDatiAutostrada().getAutostradebyUsername(a);
 	}
 	
 	public DefaultListModel getCasellibyIDautostrada (String ID) {
@@ -36,16 +37,16 @@ public class AutostradaController {
 		new GestoreDatiAutostrada().setCasello(c);
 	}
 	
-	public ArrayList<String> getIdautostradaByusername(String username) {
-		return new GestoreDatiAutostrada().getIdautostradaByusername(username);
+	public ArrayList<String> getIdautostradaByusername(Amministratore a) {
+		return new GestoreDatiAutostrada().getIdautostradaByusername(a);
 	}
 	
 	public void deleteautostrada(String codiceSelected) {
 		new GestoreDatiAutostrada().deleteautostrada(codiceSelected);
 	}
 	
-	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(String usernameAmministratore, String codiceAutostrada) {
-		return new GestoreDatiAutostrada().getCoordinatecaselliBycodiceAutostrada(usernameAmministratore, codiceAutostrada);
+	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(Amministratore a, String codiceAutostrada) {
+		return new GestoreDatiAutostrada().getCoordinatecaselliBycodiceAutostrada(a, codiceAutostrada);
 	}
 	
 	public void deletecasello(String coordinateSelected) {

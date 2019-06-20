@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.AutostradaController;
+import model.components.Amministratore;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ public class AggiungiAutostrada extends JFrame {
 	private JTextField lunghezzaField;
 	private String[] tipoList = {"Collina", "Montagna"};
 	private String tipoSelected;
-	private static String username;
+	private static Amministratore amministratore;
 	private String codice;
 	private String nome;
 	private Integer lunghezza;
@@ -40,7 +41,7 @@ public class AggiungiAutostrada extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AggiungiAutostrada frame = new AggiungiAutostrada(username);
+					AggiungiAutostrada frame = new AggiungiAutostrada(amministratore);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +53,7 @@ public class AggiungiAutostrada extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AggiungiAutostrada(String username) {
+	public AggiungiAutostrada(Amministratore amministratore) {
 		setTitle("Aggiungi Autostrada");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 417);
@@ -111,7 +112,7 @@ public class AggiungiAutostrada extends JFrame {
 				tipoSelected = tipoComboBox.getSelectedItem().toString();
 				lunghezza = Integer.parseInt(lunghezzaField.getText());
 				if (!codice.equals("") && !nome.equals("") && !tipoSelected.equals("") && (lunghezza!=0 || lunghezza!=null)) {
-					new AutostradaController().setAutostrada(codice, nome, tipoSelected, lunghezza, username);
+					new AutostradaController().setAutostrada(codice, nome, tipoSelected, lunghezza, amministratore.getUsername());
 					JOptionPane.showMessageDialog(null, "Autostrada inserita. Chiudere e riaprire la finestra inerente alla lista autostrade");
 				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e stato riempito");
 			}

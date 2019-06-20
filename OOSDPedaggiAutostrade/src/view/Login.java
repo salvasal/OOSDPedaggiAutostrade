@@ -96,13 +96,13 @@ public class Login extends JFrame {
 					Amministratore a = new GestoreUtenzaController().loginAmministratore(username, password);
 					if(!(a.getUsername().equals(""))) {
 						dispose();
-						DashboardAdmin da=new DashboardAdmin(a.getUsername());
+						DashboardAdmin da=new DashboardAdmin(a);
 						da.setVisible(true);
 					} else {
 						Utente u = new GestoreUtenzaController().loginUtente(username, password);
 						if (!(u.getUsername().equals(""))) {
 							dispose();
-							DashboardUtente du=new DashboardUtente(u.getUsername());
+							DashboardUtente du=new DashboardUtente(u);
 							du.setVisible(true);
 						} else {
 							JOptionPane.showMessageDialog(null, "Credenziali Errate");

@@ -20,18 +20,19 @@ import model.interfaces.AutostradaInterface;
  */
 public class GestoreDatiAutostrada implements AutostradaInterface {
 
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#getAutostradebyUsername(java.lang.String)
+	 * @see model.interfaces.AutostradaInterface#getAutostradebyUsername(model.components.Amministratore)
 	 */
 	@Override
-	public DefaultListModel getAutostradebyUsername(String username) {
+	public DefaultListModel getAutostradebyUsername(Amministratore a) {
 		// TODO Auto-generated method stub
 		DefaultListModel dfm = new DefaultListModel();
 		ResultSet rs;
 		Connection cn = new Database().Connect();
 		try {
 			Statement st = cn.createStatement();
-			rs = st.executeQuery("select codice, nome, tipo, kminizio, kmfine from autostrada where amministratore='"+username+"' ");
+			rs = st.executeQuery("select codice, nome, tipo, kminizio, kmfine from autostrada where amministratore='"+a.getUsername()+"' ");
 			while (rs.next()) {
 				dfm.addElement("Codice: "+rs.getString("codice")+" Nome: "+rs.getString("nome")+" Tipologia: "+rs.getString("tipo")+" KmInzio: "+rs.getInt("kminizio")+" KmFine: "+rs.getInt("kmfine"));
 			}
@@ -137,17 +138,18 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 		}
 	}
 
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#getIdautostradaByusername(java.lang.String)
+	 * @see model.interfaces.AutostradaInterface#getIdautostradaByusername(model.components.Amministratore)
 	 */
 	@Override
-	public ArrayList<String> getIdautostradaByusername(String username) {
+	public ArrayList<String> getIdautostradaByusername(Amministratore a) {
 		// TODO Auto-generated method stub
 		ArrayList<String> idautostradalist = new ArrayList<String>();
 		Connection con = new Database().Connect();
 		try {
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select codice from autostrada where Amministratore='"+username+"'");
+			ResultSet rs = st.executeQuery("select codice from autostrada where Amministratore='"+a.getUsername()+"'");
 			while(rs.next()) {
 				idautostradalist.add(rs.getString("codice"));
 			}
@@ -176,12 +178,12 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 		}
 	}
 
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#getCoordinatecaselliBycodiceAutostrada(java.lang.String, java.lang.String)
+	 * @see model.interfaces.AutostradaInterface#getCoordinatecaselliBycodiceAutostrada(model.components.Amministratore, java.lang.String)
 	 */
 	@Override
-	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(String usernameAmministratore,
-			String codiceAutostrada) {
+	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(Amministratore a, String codiceAutostrada) {
 		// TODO Auto-generated method stub
 		ArrayList<String> coordinateCaselli = new ArrayList<String>();
 		Connection con = new Database().Connect();

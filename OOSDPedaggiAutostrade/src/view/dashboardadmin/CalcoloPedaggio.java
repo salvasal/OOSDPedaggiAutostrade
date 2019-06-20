@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import controller.AutostradaController;
 import controller.PedaggioController;
 import controller.VeicoloController;
+import model.components.Amministratore;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,7 +35,7 @@ public class CalcoloPedaggio extends JFrame {
 	private String[] coordinateEntratavar;
 	private String[] coordinateUscitavar;
 	private String[] targavar;
-	private static String username;
+	private static Amministratore amministratore;
 	private static String codice;
 	private static String usernameutente;
 
@@ -71,7 +72,7 @@ public class CalcoloPedaggio extends JFrame {
 		lblCaselloEntrata.setBounds(46, 55, 180, 16);
 		contentPane.add(lblCaselloEntrata);
 		
-		coordinateEntratavarlist = new AutostradaController().getCoordinatecaselliBycodiceAutostrada(username, codice);
+		coordinateEntratavarlist = new AutostradaController().getCoordinatecaselliBycodiceAutostrada(amministratore, codice);
 		coordinateEntratavar = new String[coordinateEntratavarlist.size()];
 		JComboBox caselloEntrataComboBox = new JComboBox(coordinateEntratavarlist.toArray(coordinateEntratavar));
 		caselloEntrataComboBox.setBounds(254, 52, 245, 22);
@@ -82,7 +83,7 @@ public class CalcoloPedaggio extends JFrame {
 		lblCoordinateCaselloUscita.setBounds(46, 134, 180, 16);
 		contentPane.add(lblCoordinateCaselloUscita);
 		
-		coordinateUscitavarlist = new AutostradaController().getCoordinatecaselliBycodiceAutostrada(username, codice);
+		coordinateUscitavarlist = new AutostradaController().getCoordinatecaselliBycodiceAutostrada(amministratore, codice);
 		coordinateUscitavar = new String[coordinateUscitavarlist.size()];
 		JComboBox caselloUscitaComboBox = new JComboBox(coordinateUscitavarlist.toArray(coordinateUscitavar));
 		caselloUscitaComboBox.setBounds(254, 131, 245, 22);

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.AutostradaController;
+import model.components.Amministratore;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +28,7 @@ public class EliminaAutostrada extends JFrame {
 	private ArrayList<String> codicevarlist;
 	private String[] codicevar;
 	private static String username;
+	private static Amministratore amministratore;
 
 	/**
 	 * Launch the application.
@@ -35,7 +37,7 @@ public class EliminaAutostrada extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EliminaAutostrada frame = new EliminaAutostrada(username);
+					EliminaAutostrada frame = new EliminaAutostrada(amministratore);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +49,7 @@ public class EliminaAutostrada extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EliminaAutostrada(String username) {
+	public EliminaAutostrada(Amministratore amministratore) {
 		setTitle("Elimina Autostrada");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -61,7 +63,7 @@ public class EliminaAutostrada extends JFrame {
 		lblCodiceAutostrada.setBounds(24, 31, 143, 16);
 		contentPane.add(lblCodiceAutostrada);
 		
-		codicevarlist = new AutostradaController().getIdautostradaByusername(username);
+		codicevarlist = new AutostradaController().getIdautostradaByusername(amministratore);
 		codicevar = new String[codicevarlist.size()];
 		JComboBox codiceComboBox = new JComboBox(codicevarlist.toArray(codicevar));
 		codiceComboBox.setMaximumRowCount(30);

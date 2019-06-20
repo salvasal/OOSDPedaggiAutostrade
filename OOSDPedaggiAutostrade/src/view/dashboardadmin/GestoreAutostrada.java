@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controller.AutostradaController;
+import model.components.Amministratore;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -26,7 +27,7 @@ public class GestoreAutostrada extends JFrame {
 	private JPanel contentPane;
 	private final JLabel lblNewLabel = new JLabel("Lista Autostrade d'appartenenza:");
 	private JTextField autostradaField;
-	private static String username;
+	private static Amministratore amministratore;
 	private DefaultListModel lista;
 	private static String ID;
 
@@ -37,7 +38,7 @@ public class GestoreAutostrada extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GestoreAutostrada frame = new GestoreAutostrada(username);
+					GestoreAutostrada frame = new GestoreAutostrada(amministratore);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +50,7 @@ public class GestoreAutostrada extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GestoreAutostrada(String username) {
+	public GestoreAutostrada(Amministratore amministratore) {
 		setTitle("Gestione Autostrade");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1028, 473);
@@ -64,7 +65,7 @@ public class GestoreAutostrada extends JFrame {
 		contentPane.add(btnAggiungiAutostrada);
 		btnAggiungiAutostrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AggiungiAutostrada aa = new AggiungiAutostrada(username);
+				AggiungiAutostrada aa = new AggiungiAutostrada(amministratore);
 				aa.setVisible(true);
 			}
 		});
@@ -75,7 +76,7 @@ public class GestoreAutostrada extends JFrame {
 		contentPane.add(btnEliminaAutostrada);
 		btnEliminaAutostrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EliminaAutostrada ea = new EliminaAutostrada(username);
+				EliminaAutostrada ea = new EliminaAutostrada(amministratore);
 				ea.setVisible(true);
 			}
 		});
@@ -102,7 +103,7 @@ public class GestoreAutostrada extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ID = autostradaField.getText();
 				if (!ID.equals("")) {
-					EliminaCasello ec = new EliminaCasello(username ,ID);
+					EliminaCasello ec = new EliminaCasello(amministratore ,ID);
 					ec.setVisible(true);
 				} else { JOptionPane.showMessageDialog(null, "Inserire ID del autostrada"); }
 			}
@@ -111,7 +112,7 @@ public class GestoreAutostrada extends JFrame {
 		lblNewLabel.setBounds(22, 88, 252, 36);
 		contentPane.add(lblNewLabel);
 		
-		lista = new AutostradaController().getAutostradebyUsername(username);
+		lista = new AutostradaController().getAutostradebyUsername(amministratore);
 		JList list = new JList(lista);
 		list.setBounds(12, 129, 756, 284);
 		JScrollPane scrollablelist = new JScrollPane(list);

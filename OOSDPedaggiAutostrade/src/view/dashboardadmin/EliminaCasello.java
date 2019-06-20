@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.AutostradaController;
+import model.components.Amministratore;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,7 +28,7 @@ public class EliminaCasello extends JFrame {
 	private String coordinateSelected;
 	private ArrayList<String> coordinatevarlist;
 	private String[] coordinatevar;
-	private static String usernameAmministratore;
+	private static Amministratore amministratore;
 	private static String codiceAutostrada;
 	
 
@@ -38,7 +39,7 @@ public class EliminaCasello extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EliminaCasello frame = new EliminaCasello(usernameAmministratore, codiceAutostrada);
+					EliminaCasello frame = new EliminaCasello(amministratore, codiceAutostrada);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +51,7 @@ public class EliminaCasello extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EliminaCasello(String usernameAmministratore, String codiceAutostrada) {
+	public EliminaCasello(Amministratore amministratore, String codiceAutostrada) {
 		setTitle("Elimina un Casello");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 216);
@@ -64,7 +65,7 @@ public class EliminaCasello extends JFrame {
 		lblListaCaselli.setBounds(28, 41, 89, 16);
 		contentPane.add(lblListaCaselli);
 		
-		coordinatevarlist = new AutostradaController().getCoordinatecaselliBycodiceAutostrada(usernameAmministratore, codiceAutostrada); 
+		coordinatevarlist = new AutostradaController().getCoordinatecaselliBycodiceAutostrada(amministratore, codiceAutostrada); 
 		coordinatevar = new String[coordinatevarlist.size()];
 		JComboBox eliminaCaselloComboBox = new JComboBox(coordinatevarlist.toArray(coordinatevar));
 		eliminaCaselloComboBox.setBounds(237, 37, 191, 27);

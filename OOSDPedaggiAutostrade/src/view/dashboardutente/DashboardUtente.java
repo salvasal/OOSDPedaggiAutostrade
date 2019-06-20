@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import controller.GestoreUtenzaController;
 import controller.PedaggioController;
 import model.components.Carta;
+import model.components.Utente;
 import view.Login;
 
 import javax.swing.DefaultListModel;
@@ -28,7 +29,7 @@ import java.awt.List;
 public class DashboardUtente extends JFrame {
 
 	private JPanel contentPane;
-	private static String username;
+	private static Utente utente;
 	private JTextField IDField;
 	private DefaultListModel lista;
 	private Carta c;
@@ -41,7 +42,7 @@ public class DashboardUtente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DashboardUtente frame = new DashboardUtente(username);
+					DashboardUtente frame = new DashboardUtente(utente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +54,7 @@ public class DashboardUtente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DashboardUtente(String username) {
+	public DashboardUtente(Utente utente) {
 		setTitle("Dashboard Utente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 719, 400);
@@ -68,7 +69,7 @@ public class DashboardUtente extends JFrame {
 		btnLogout.setBounds(532, 11, 161, 39);
 		contentPane.add(btnLogout);
 		
-		JLabel lblBentornato = new JLabel("Bentornato "+username);
+		JLabel lblBentornato = new JLabel("Bentornato "+utente.getUsername());
 		lblBentornato.setBounds(10, 11, 132, 22);
 		contentPane.add(lblBentornato);
 		
