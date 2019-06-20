@@ -32,8 +32,12 @@ public class GestoreUtenzaController {
 		return new GestoreUtenza().getCarta(username);
 	}
 	
-	public String login(String username,String password) {
-		return new GestoreUtenza().login(username, password);
+	public Amministratore loginAmministratore(String username, String password) {
+		return new GestoreUtenza().loginAmministratore(username, password);
+	}
+	
+	public Utente loginUtente(String username, String password) {
+		return new GestoreUtenza().loginUtente(username, password);
 	}
 	
 	public String setUtente(Utente u) {

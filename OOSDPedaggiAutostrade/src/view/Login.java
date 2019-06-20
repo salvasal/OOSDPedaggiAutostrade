@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.GestoreUtenzaController;
+import model.components.Amministratore;
+import model.components.Utente;
 import view.dashboardadmin.DashboardAdmin;
 import view.dashboardutente.DashboardUtente;
 
@@ -91,17 +93,23 @@ public class Login extends JFrame {
 				username=usernameField.getText();
 				password=passwordField.getText();
 				if (!username.equals("") && !password.equals("")) {
-					String tipo = new GestoreUtenzaController().login(username, password);
-					if(tipo.equals("amministratore")) {
+					Amministratore a = new GestoreUtenzaController().loginAmministratore(username, password);
+					if(!(a.getUsername().equals(""))) {
 						dispose();
-						DashboardAdmin da=new DashboardAdmin(username);
+						DashboardAdmin da=new DashboardAdmin(a.getUsername());
 						da.setVisible(true);
-					} else if (tipo.equals("utente")) {
-						dispose();
-						DashboardUtente du=new DashboardUtente(username);
-						du.setVisible(true);
-						} else JOptionPane.showMessageDialog(null, "Credenziali Errate"); 
-				} else {
+					} else {
+						Utente u = new GestoreUtenzaController().loginUtente(username, password);
+						if (!(u.getUsername().equals(""))) {
+							dispose();
+							DashboardUtente du=new DashboardUtente(u.getUsername());
+							du.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(null, "Credenziali Errate");
+						}
+					}		
+				}
+				 else {
 					JOptionPane.showMessageDialog(null, "Uno dei due campi non e stato riempito");
 				}
 			}

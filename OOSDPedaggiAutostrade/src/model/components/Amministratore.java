@@ -19,6 +19,14 @@ public class Amministratore {
 	public String luogoN;
 	public String dataN;
 	public String telefono;
+	
+	
+	/**
+	 * 
+	 */
+	public Amministratore() {
+		super();
+	}
 	/**
 	 * @param username
 	 * @param password

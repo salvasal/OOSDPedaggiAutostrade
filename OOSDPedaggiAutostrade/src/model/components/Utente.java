@@ -20,6 +20,14 @@ public class Utente {
 	public String telefono;
 	public String carta;
 	
+	
+	
+	/**
+	 * 
+	 */
+	public Utente() {
+		super();
+	}
 	/**
 	 * @param username
 	 * @param password

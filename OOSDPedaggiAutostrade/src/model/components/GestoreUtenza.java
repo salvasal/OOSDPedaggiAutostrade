@@ -20,15 +20,15 @@ import model.interfaces.GestoreUtenzaInterface;
 
 public class GestoreUtenza implements GestoreUtenzaInterface {
 
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#login(java.lang.String, java.lang.String)
+	 * @see model.interfaces.GestoreUtenzaInterface#loginAmministratore(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public String login(String username, String password) {
+	public Amministratore loginAmministratore(String username, String password) {
 		// TODO Auto-generated method stub
-		
-		/*Connessione al database per prendere i dati*/
 		Connection con=new Database().Connect();
+		Amministratore a = new Amministratore("","","","","","","","");
 		
 		try {
 			Statement st = con.createStatement();
@@ -36,24 +36,44 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 			System.out.println(username);
 			System.out.println(password);
 			ResultSet result=st.executeQuery("select * from amministratore where Username='"+username+"'and Password='"+password+"'");
-			/*Se � un amministratore*/
 			if(result.next()) {
-				return "amministratore";
+				a = new Amministratore(result.getString("username"),result.getString("password"),result.getString("chiaveRecupero"),result.getString("nome"),result.getString("cognome"),result.getString("luogoN"),result.getString("dataN"),result.getString("telefono"));
+				return a;
 			}
-			/*controlla se l'username e la password appartengono ad un utente*/
-			result=st.executeQuery("select * from utente where Username='"+username+"'and Password='"+password+"'");
-			if(result.next()) {
-				return "utente";
-			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*se l'utente non � un amministratore e neanche un utente*/
-		return "";
-		
+		return a;
 	}
+
+	/* (non-Javadoc)
+	 * @see model.interfaces.GestoreUtenzaInterface#loginUtente(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Utente loginUtente(String username, String password) {
+		// TODO Auto-generated method stub
+		Connection con=new Database().Connect();
+		Utente u = new Utente("","","","","","","","","");
+		
+		try {
+			Statement st = con.createStatement();
+			/*controlla se l'username e la password appartengono ad un utente*/
+			System.out.println(username);
+			System.out.println(password);
+			ResultSet result=st.executeQuery("select * from utente where Username='"+username+"'and Password='"+password+"'");
+			if(result.next()) {
+				u = new Utente(result.getString("username"),result.getString("password"),result.getString("chiaveRecupero"),result.getString("nome"),result.getString("cognome"),result.getString("luogoN"),result.getString("dataN"),result.getString("telefono"),result.getString("carta"));
+				return u;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return u;
+	}
+
+	
 
 	/* (non-Javadoc)
 	 * @see model.interfaces.GestoreUtenzaInterface#setUtente(model.components.Utente)
