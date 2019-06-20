@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.AutostradaController;
+import model.components.Casello;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,11 +29,9 @@ public class AggiungiCasello extends JFrame {
 	private JTextField coordinateField;
 	private JTextField nomeCaselloField;
 	private static String ID;
-	private Integer kmselected;
 	private ArrayList<Integer> kmvarlist;
 	private Integer[] kmvar;
-	private String coordinate;
-	private String nomeCasello;
+	private Casello c;
 	
 
 	/**
@@ -102,13 +101,9 @@ public class AggiungiCasello extends JFrame {
 		contentPane.add(btnAggiungiCasello);
 		btnAggiungiCasello.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				coordinate = coordinateField.getText();
-				nomeCasello = nomeCaselloField.getText();
-				kmselected = Integer.parseInt(kmComboBox.getSelectedItem().toString());
-				if(!coordinate.equals("") && !nomeCasello.equals("") && !kmselected.equals("")) {
-					new AutostradaController().setCasello(coordinate, nomeCasello, kmselected, ID);
-					JOptionPane.showMessageDialog(null,"Casello inserito con successo!");
-				} else { JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito correttamente!"); }
+				c = new Casello(coordinateField.getText(), nomeCaselloField.getText(), Integer.parseInt(kmComboBox.getSelectedItem().toString()), ID);
+				new AutostradaController().setCasello(c);
+				JOptionPane.showMessageDialog(null,"Casello inserito con successo!");
 			}
 		});
 		

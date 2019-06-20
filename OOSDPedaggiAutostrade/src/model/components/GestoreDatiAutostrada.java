@@ -120,14 +120,13 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 		}
 		return kmlist;
 	}
-
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#setCasello(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String)
+	 * @see model.interfaces.AutostradaInterface#setCasello(model.components.Casello)
 	 */
 	@Override
-	public void setCasello(String coordinate, String nome, Integer km, String autostrada) {
+	public void setCasello(Casello c) {
 		// TODO Auto-generated method stub
-		Casello c = new Casello(coordinate, nome, km, autostrada);
 		Connection con = new Database().Connect();
 		try {
 			Statement st = con.createStatement();

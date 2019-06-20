@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import model.components.Casello;
 import model.components.GestoreDatiAutostrada;
 
 /**
@@ -31,8 +32,8 @@ public class AutostradaController {
 		return new GestoreDatiAutostrada().getkmbyID(ID);
 	}
 	
-	public void setCasello(String coordinate, String nome, Integer km, String autostrada) {
-		new GestoreDatiAutostrada().setCasello(coordinate, nome, km, autostrada);
+	public void setCasello(Casello c) {
+		new GestoreDatiAutostrada().setCasello(c);
 	}
 	
 	public ArrayList<String> getIdautostradaByusername(String username) {
