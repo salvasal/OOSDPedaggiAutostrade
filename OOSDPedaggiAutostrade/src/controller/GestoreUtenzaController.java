@@ -6,6 +6,7 @@ package controller;
 import java.util.ArrayList;
 
 import model.components.Amministratore;
+import model.components.Carta;
 import model.components.GestoreUtenza;
 import model.components.Utente;
 
@@ -27,12 +28,8 @@ public class GestoreUtenzaController {
 		return new GestoreUtenza().getUtentebyUsername(usernameSelected);
 	}
 	
-	public float getSaldo (String username) {
-		return new GestoreUtenza().getSaldo(username);
-	}
-	
-	public String getIBAN (String username) {
-		return new GestoreUtenza().getIBAN(username);
+	public Carta getCarta (String username) {
+		return new GestoreUtenza().getCarta(username);
 	}
 	
 	public String login(String username,String password) {

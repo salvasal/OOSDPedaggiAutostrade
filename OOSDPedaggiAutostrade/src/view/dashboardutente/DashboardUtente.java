@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.GestoreUtenzaController;
 import controller.PedaggioController;
+import model.components.Carta;
 import view.Login;
 
 import javax.swing.DefaultListModel;
@@ -30,8 +31,7 @@ public class DashboardUtente extends JFrame {
 	private static String username;
 	private JTextField IDField;
 	private DefaultListModel lista;
-	private float saldo;
-	private String IBAN;
+	private Carta c;
 	private String ID;
 
 	/**
@@ -130,9 +130,8 @@ public class DashboardUtente extends JFrame {
 		contentPane.add(btnSaldo);
 		btnSaldo.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
-				saldo = new GestoreUtenzaController().getSaldo(username);
-				IBAN = new GestoreUtenzaController().getIBAN(username);
-				JOptionPane.showMessageDialog(null, "IBAN: "+ IBAN +" Saldo: "+ saldo);
+				c = new GestoreUtenzaController().getCarta(username);
+				JOptionPane.showMessageDialog(null, "IBAN: "+ c.getIban() +" Saldo: "+ c.getSaldo());
 			}
 		});
 		

@@ -20,6 +20,9 @@ public class Carta {
 		this.iban = iban;
 		this.saldo = saldo;
 	}
+	public Carta() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * @return the iban
 	 */

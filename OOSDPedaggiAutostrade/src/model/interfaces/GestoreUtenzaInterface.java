@@ -6,6 +6,7 @@ package model.interfaces;
 import java.util.ArrayList;
 
 import model.components.Amministratore;
+import model.components.Carta;
 import model.components.Utente;
 
 /**
@@ -20,7 +21,5 @@ public interface GestoreUtenzaInterface {
 	public String setAmministratore(Amministratore a);
 	public ArrayList<String> getUtente();
 	public String getUtentebyUsername(String username);
-	public float getSaldo(String username);
-	public String getIBAN(String username);
-	
+	public Carta getCarta(String username);
 }
