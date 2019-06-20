@@ -17,7 +17,8 @@ public interface GestoreUtenzaInterface {
 	public Amministratore loginAmministratore(String username, String password);
 	public Utente loginUtente(String username, String password);
 	public String setUtente(Utente u);
-	public String[] getCredentialsbyKey(String username, String chiave);
+	public Amministratore getCredentialsbyKeyAmministratore(String username, String chiave);
+	public Utente getCredentialsbyKeyUtente(String username, String chiave);
 	public String randomString(int length);
 	public String setAmministratore(Amministratore a);
 	public ArrayList<String> getUtente();

@@ -44,7 +44,11 @@ public class GestoreUtenzaController {
 		return new GestoreUtenza().setUtente(u);
 	}
 
-	public String[] getCredentialsbyKey(String username, String chiave) {
-		return new GestoreUtenza().getCredentialsbyKey(username, chiave);
+	public Amministratore getCredentialsbyKeyAmministratore(String username, String chiave) {
+		return new GestoreUtenza().getCredentialsbyKeyAmministratore(username, chiave);
+	}
+	
+	public Utente getCredentialsbyKeyUtente(String username, String chiave) {
+		return new GestoreUtenza().getCredentialsbyKeyUtente(username, chiave);
 	}
 }

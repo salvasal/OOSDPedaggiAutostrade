@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.GestoreUtenzaController;
+import model.components.Amministratore;
+import model.components.Utente;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -82,13 +84,18 @@ public class RecuperoCredenziali extends JFrame {
 				username = usernameField.getText();
 				chiaverecupero = chiaveField.getText();
 				if(!username.equals("") && !chiaverecupero.equals("")) {
-					String a[] = new GestoreUtenzaController().getCredentialsbyKey (username, chiaverecupero);
-					JOptionPane.showMessageDialog(null, "Le credenziali sono Username: "+a[0]+" e Password: "+a[1]+"");
-					
-				} else {
-					JOptionPane.showMessageDialog(null, "Errore! Le credenziali non corrispondono o i campi non sono riempiti.");
-				}
-				
+					Amministratore a = new GestoreUtenzaController().getCredentialsbyKeyAmministratore(username, chiaverecupero);
+					if(!(a.getUsername().equals(""))) {
+						JOptionPane.showMessageDialog(null, "Le credenziali sono Username: "+a.getUsername()+" e Password: "+a.getPassword()+"");
+					} else {
+						Utente u = new GestoreUtenzaController().getCredentialsbyKeyUtente(username, chiaverecupero);
+						if (!(u.getUsername().equals(""))) {
+							JOptionPane.showMessageDialog(null, "Le credenziali sono Username: "+u.getUsername()+" e Password: "+u.getPassword()+"");
+						} else {
+							JOptionPane.showMessageDialog(null, "Errore! Le credenziali non corrispondono");
+						}
+					}
+				} else JOptionPane.showMessageDialog(null, "Uno dei due campi non e stato riempito");
 			}
 		});
 	}

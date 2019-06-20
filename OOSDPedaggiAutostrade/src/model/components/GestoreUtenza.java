@@ -101,50 +101,57 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		return chiave;
 	}
 
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#getCredentialsbyKey(java.lang.String)
+	 * @see model.interfaces.GestoreUtenzaInterface#getCredentialsbyKeyAmministratore(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public String[] getCredentialsbyKey(String username, String chiave) {
+	public Amministratore getCredentialsbyKeyAmministratore(String username, String chiave) {
 		// TODO Auto-generated method stub
-		
-		// connessione al database
 		Connection con=new Database().Connect();
-		String a[] = new String[2];
+		Amministratore a = new Amministratore("","","","","","","","");
 		
 		try {
 			Statement st = con.createStatement();
 			// controllo credenziali amministratore
-			System.out.println(username);
-			System.out.println(chiave);
-			ResultSet result=st.executeQuery("select Username, Password from amministratore where ChiaveRecupero='"+chiave+"' ");
-			while(result.next()) {
-				a[0]=result.getString("Username");
-				a[1]=result.getString("Password");
+			ResultSet result=st.executeQuery("select * from amministratore where ChiaveRecupero='"+chiave+"' ");
+			if(result.next()) {
+				a = new Amministratore(result.getString("username"),result.getString("password"),result.getString("chiaveRecupero"),result.getString("nome"),result.getString("cognome"),result.getString("luogoN"),result.getString("dataN"),result.getString("telefono"));
+				return a;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		Statement st2;
-		try {
-			st2 = con.createStatement();
-			//controllo credenziali utente
-			ResultSet result=st2.executeQuery("select Username, Password from utente where ChiaveRecupero='"+chiave+"'");
-			while(result.next()) {
-				a[0]=result.getString("Username");
-				a[1]=result.getString("Password");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			
-		// se l'utente non e' ne' ammimistratore ne' utente
 		return a;
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see model.interfaces.GestoreUtenzaInterface#getCredentialsbyKeyUtente(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Utente getCredentialsbyKeyUtente(String username, String chiave) {
+		// TODO Auto-generated method stub
+		Connection con=new Database().Connect();
+		Utente u = new Utente("","","","","","","","","");
+		
+		try {
+			Statement st = con.createStatement();
+			// controllo credenziali utente
+			ResultSet result=st.executeQuery("select * from utente where ChiaveRecupero='"+chiave+"' ");
+			if(result.next()) {
+				u = new Utente(result.getString("username"),result.getString("password"),result.getString("chiaveRecupero"),result.getString("nome"),result.getString("cognome"),result.getString("luogoN"),result.getString("dataN"),result.getString("telefono"),result.getString("carta"));
+				return u;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return u;
+	}
+
+	
 	/* (non-Javadoc)
 	 * @see model.interfaces.GestoreUtenzaInterface#randomString(int)
 	 */
