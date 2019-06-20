@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.AutostradaController;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -111,7 +111,7 @@ public class GestoreAutostrada extends JFrame {
 		lblNewLabel.setBounds(22, 88, 252, 36);
 		contentPane.add(lblNewLabel);
 		
-		lista = new GestoreAdminController().getAutostradebyUsername(username);
+		lista = new AutostradaController().getAutostradebyUsername(username);
 		JList list = new JList(lista);
 		list.setBounds(12, 129, 756, 284);
 		JScrollPane scrollablelist = new JScrollPane(list);

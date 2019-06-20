@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.AutostradaController;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -54,7 +54,7 @@ public class GestoreCaselli extends JFrame {
 		lblNewLabel.setBounds(12, 0, 367, 34);
 		contentPane.add(lblNewLabel);
 		
-		lista = new GestoreAdminController().getCasellibyIDautostrada(ID);
+		lista = new AutostradaController().getCasellibyIDautostrada(ID);
 		JList list = new JList(lista);
 		list.setBounds(12, 31, 609, 395);
 		JScrollPane scrollablelist = new JScrollPane(list);

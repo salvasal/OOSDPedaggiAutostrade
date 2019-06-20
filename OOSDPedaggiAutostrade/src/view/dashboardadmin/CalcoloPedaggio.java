@@ -7,7 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.AutostradaController;
+import controller.PedaggioController;
+import controller.VeicoloController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -69,7 +71,7 @@ public class CalcoloPedaggio extends JFrame {
 		lblCaselloEntrata.setBounds(46, 55, 180, 16);
 		contentPane.add(lblCaselloEntrata);
 		
-		coordinateEntratavarlist = new GestoreAdminController().getCoordinatecaselliBycodiceAutostrada(username, codice);
+		coordinateEntratavarlist = new AutostradaController().getCoordinatecaselliBycodiceAutostrada(username, codice);
 		coordinateEntratavar = new String[coordinateEntratavarlist.size()];
 		JComboBox caselloEntrataComboBox = new JComboBox(coordinateEntratavarlist.toArray(coordinateEntratavar));
 		caselloEntrataComboBox.setBounds(254, 52, 245, 22);
@@ -80,7 +82,7 @@ public class CalcoloPedaggio extends JFrame {
 		lblCoordinateCaselloUscita.setBounds(46, 134, 180, 16);
 		contentPane.add(lblCoordinateCaselloUscita);
 		
-		coordinateUscitavarlist = new GestoreAdminController().getCoordinatecaselliBycodiceAutostrada(username, codice);
+		coordinateUscitavarlist = new AutostradaController().getCoordinatecaselliBycodiceAutostrada(username, codice);
 		coordinateUscitavar = new String[coordinateUscitavarlist.size()];
 		JComboBox caselloUscitaComboBox = new JComboBox(coordinateUscitavarlist.toArray(coordinateUscitavar));
 		caselloUscitaComboBox.setBounds(254, 131, 245, 22);
@@ -91,7 +93,7 @@ public class CalcoloPedaggio extends JFrame {
 		lblNewLabel.setBounds(12, 200, 222, 16);
 		contentPane.add(lblNewLabel);
 		
-		targavarlist = new GestoreAdminController().getVeicolibyUsername(usernameutente);
+		targavarlist = new VeicoloController().getVeicolibyUsername(usernameutente);
 		targavar = new String[targavarlist.size()];
 		JComboBox targaUtenteComboBox = new JComboBox(targavarlist.toArray(targavar));
 		targaUtenteComboBox.setBounds(254, 197, 245, 22);
@@ -107,7 +109,7 @@ public class CalcoloPedaggio extends JFrame {
 				coordinateSelecteduscita = caselloUscitaComboBox.getSelectedItem().toString();
 				if(!targaSelected.equals("") && !coordinateSelectedentrata.equals("") && !coordinateSelecteduscita.equals("")) {
 					//Per l'anno 2021, basta richiamare il metodo setPedaggiowithOneri presente nella classe GestoreAdminController al posto di setPedaggio
-					new GestoreAdminController().setPedaggio(targaSelected, coordinateSelectedentrata, coordinateSelecteduscita);
+					new PedaggioController().setPedaggio(targaSelected, coordinateSelectedentrata, coordinateSelecteduscita);
 					JOptionPane.showMessageDialog(null, "Pedaggio inserito ed inviato alla dashboard dell'utente!");
 				} else JOptionPane.showMessageDialog(null, "Selezionare gli elementi!");
 			}

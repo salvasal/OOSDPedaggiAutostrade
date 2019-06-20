@@ -8,7 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.GestoreUtenzaController;
+import controller.VeicoloController;
 import model.components.Utente;
 
 import javax.swing.JTextField;
@@ -70,7 +71,7 @@ public class RicercaUtente extends JFrame {
 		lblSelezionaUnUtente.setBounds(12, 26, 119, 16);
 		contentPane.add(lblSelezionaUnUtente);
 		
-		usernamevarlist = new GestoreAdminController().getUtente();
+		usernamevarlist = new GestoreUtenzaController().getUtente();
 		usernamevar = new String[usernamevarlist.size()];
 		JComboBox<String> usernameComboBox = new JComboBox(usernamevarlist.toArray(usernamevar));
 		usernameComboBox.setMaximumRowCount(50);
@@ -96,7 +97,7 @@ public class RicercaUtente extends JFrame {
 				
 				//restituisce la stringa da mostrare tramite la label sopra dichiarata
 				usernameSelected = usernameComboBox.getSelectedItem().toString();
-				u = new GestoreAdminController().getUtentebyUsername(usernameSelected);
+				u = new GestoreUtenzaController().getUtentebyUsername(usernameSelected);
 				lblNewLabel_1.setText(u);
 				new Timer(10000, new ActionListener() {
 				      @Override
@@ -106,7 +107,7 @@ public class RicercaUtente extends JFrame {
 				    }).start();
 				
 				//restituisce la lista dei veicoli
-				lista = new GestoreAdminController().getVeicoli(usernameSelected);
+				lista = new VeicoloController().getVeicoli(usernameSelected);
 				list.setModel(lista);
 				
 			} 

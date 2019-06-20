@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.AutostradaController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -61,7 +61,7 @@ public class EliminaAutostrada extends JFrame {
 		lblCodiceAutostrada.setBounds(24, 31, 143, 16);
 		contentPane.add(lblCodiceAutostrada);
 		
-		codicevarlist = new GestoreAdminController().getIdautostradaByusername(username);
+		codicevarlist = new AutostradaController().getIdautostradaByusername(username);
 		codicevar = new String[codicevarlist.size()];
 		JComboBox codiceComboBox = new JComboBox(codicevarlist.toArray(codicevar));
 		codiceComboBox.setMaximumRowCount(30);
@@ -76,7 +76,7 @@ public class EliminaAutostrada extends JFrame {
 			public void actionPerformed(ActionEvent e ) {
 				codiceSelected = codiceComboBox.getSelectedItem().toString();
 				if(!codiceSelected.equals("")) {
-					new GestoreAdminController().deleteautostrada(codiceSelected);
+					new AutostradaController().deleteautostrada(codiceSelected);
 					JOptionPane.showMessageDialog(null,"Autostrada eliminata! Chiudere e riaprire la finestra inerente all'elenco delle autostrade");
 				} else {
 					JOptionPane.showMessageDialog(null,"Selezionare un'autostrada!");

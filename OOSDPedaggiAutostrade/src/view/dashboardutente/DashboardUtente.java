@@ -8,7 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreUtenteController;
+import controller.GestoreUtenzaController;
+import controller.PedaggioController;
 import view.Login;
 
 import javax.swing.DefaultListModel;
@@ -118,7 +119,7 @@ public class DashboardUtente extends JFrame {
 			}
 		});
 		
-		lista = new GestoreUtenteController().getPedagginonPagati(username);
+		lista = new PedaggioController().getPedagginonPagati(username);
 		JList list = new JList(lista);
 		list.setBounds(12, 72, 510, 278);
 		JScrollPane scrollablelist = new JScrollPane(list);
@@ -129,8 +130,8 @@ public class DashboardUtente extends JFrame {
 		contentPane.add(btnSaldo);
 		btnSaldo.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
-				saldo = new GestoreUtenteController().getSaldo(username);
-				IBAN = new GestoreUtenteController().getIBAN(username);
+				saldo = new GestoreUtenzaController().getSaldo(username);
+				IBAN = new GestoreUtenzaController().getIBAN(username);
 				JOptionPane.showMessageDialog(null, "IBAN: "+ IBAN +" Saldo: "+ saldo);
 			}
 		});

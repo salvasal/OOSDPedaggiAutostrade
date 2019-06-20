@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreUtenteController;
+import controller.VeicoloController;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -89,13 +89,13 @@ public class MyVeicoli extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				targa = targaField.getText();
 				if(!targa.equals("")) {
-					new GestoreUtenteController().deleteVeicolo(targa);
+					new VeicoloController().deleteVeicolo(targa);
 					JOptionPane.showMessageDialog(null, "Veicolo eliminato! Chiudere e riaprire la finestra inerente alla gestione dei veicoli");
 				} else JOptionPane.showMessageDialog(null, "Inserire la targa del Veicolo da eliminare");
 			}
 		});
 		
-		lista = new GestoreUtenteController().getVeicoli(username);
+		lista = new VeicoloController().getVeicoli(username);
 		JList list = new JList(lista);
 		list.setBounds(12, 54, 737, 196);
 		JScrollPane scrollablelist = new JScrollPane(list);

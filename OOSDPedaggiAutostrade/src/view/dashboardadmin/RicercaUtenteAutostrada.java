@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.AutostradaController;
+import controller.GestoreUtenzaController;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -63,7 +64,7 @@ public class RicercaUtenteAutostrada extends JFrame {
 		lblInserisciAutostrada.setBounds(37, 35, 145, 16);
 		contentPane.add(lblInserisciAutostrada);
 		
-		codiceautostradavarlist = new GestoreAdminController().getIdautostradaByusername(username);
+		codiceautostradavarlist = new AutostradaController().getIdautostradaByusername(username);
 		codiceautostradavar = new String[codiceautostradavarlist.size()];
 		JComboBox autostradaComboBox = new JComboBox(codiceautostradavarlist.toArray(codiceautostradavar));
 		autostradaComboBox.setBounds(236, 31, 177, 27);
@@ -74,7 +75,7 @@ public class RicercaUtenteAutostrada extends JFrame {
 		lblInserisciUtente.setBounds(37, 108, 145, 16);
 		contentPane.add(lblInserisciUtente);
 		
-		usernameutentevarlist = new GestoreAdminController().getUtente();
+		usernameutentevarlist = new GestoreUtenzaController().getUtente();
 		usernameutentevar = new String[usernameutentevarlist.size()];
 		JComboBox usernameComboBox = new JComboBox(usernameutentevarlist.toArray(usernameutentevar));
 		usernameComboBox.setBounds(236, 104, 177, 27);

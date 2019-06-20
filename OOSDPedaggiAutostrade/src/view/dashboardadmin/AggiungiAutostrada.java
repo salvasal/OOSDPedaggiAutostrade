@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.AutostradaController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -111,7 +111,7 @@ public class AggiungiAutostrada extends JFrame {
 				tipoSelected = tipoComboBox.getSelectedItem().toString();
 				lunghezza = Integer.parseInt(lunghezzaField.getText());
 				if (!codice.equals("") && !nome.equals("") && !tipoSelected.equals("") && (lunghezza!=0 || lunghezza!=null)) {
-					new GestoreAdminController().setAutostrada(codice, nome, tipoSelected, lunghezza, username);
+					new AutostradaController().setAutostrada(codice, nome, tipoSelected, lunghezza, username);
 					JOptionPane.showMessageDialog(null, "Autostrada inserita. Chiudere e riaprire la finestra inerente alla lista autostrade");
 				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e stato riempito");
 			}

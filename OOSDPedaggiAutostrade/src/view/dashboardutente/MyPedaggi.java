@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreUtenteController;
+import controller.PedaggioController;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -55,7 +55,7 @@ public class MyPedaggi extends JFrame {
 		lblITuoiPedaggi.setBounds(10, 11, 161, 24);
 		contentPane.add(lblITuoiPedaggi);
 		
-		lista = new GestoreUtenteController().getPedaggi(username);
+		lista = new PedaggioController().getPedaggi(username);
 		JList list = new JList(lista);
 		list.setBounds(12, 46, 462, 304);
 		JScrollPane scrollablelist = new JScrollPane(list);

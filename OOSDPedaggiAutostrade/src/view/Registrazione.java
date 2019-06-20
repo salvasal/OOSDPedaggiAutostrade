@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.LoginController;
+import controller.GestoreUtenzaController;
 import model.components.Utente;
 
 import javax.swing.JLabel;
@@ -165,7 +165,7 @@ public class Registrazione extends JFrame {
 				carta=cartaField.getText();
 				if(!username.equals("") && !password.equals("") && !nome.equals("") && !cognome.equals("") && !luogon.equals("") && !datan.equals("") && !telefono.equals("") && !carta.equals("")) {
 					Utente u = new Utente (username, password, null, nome, cognome, luogon, datan, telefono, carta);
-					String chiave = new LoginController().setUtente(u);
+					String chiave = new GestoreUtenzaController().setUtente(u);
 					JOptionPane.showMessageDialog(null,"Utente aggiunto con successo! Chiave di recupero:" +chiave);
 				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e stato riempito");
 			}

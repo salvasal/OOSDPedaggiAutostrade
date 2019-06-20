@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreUtenteController;
+import controller.PedaggioController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -82,7 +82,7 @@ public class Ricarica extends JFrame {
 		btnRicaricaEProcedi.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
 				importoSelected = Integer.parseInt(importoComboBox.getSelectedItem().toString());
-				new GestoreUtenteController().ricarica(importoSelected, pedaggio, username);
+				new PedaggioController().ricarica(importoSelected, pedaggio, username);
 				JOptionPane.showMessageDialog(null, "Ricarica e Pagamento del pedaggio effettuati con successo! Chiudere e riaprire la Dashboard per verificare l'avvenuto pagamento del pedaggio");
 				dispose();
 			}

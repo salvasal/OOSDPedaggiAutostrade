@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.LoginController;
+import controller.GestoreUtenzaController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -82,7 +82,7 @@ public class RecuperoCredenziali extends JFrame {
 				username = usernameField.getText();
 				chiaverecupero = chiaveField.getText();
 				if(!username.equals("") && !chiaverecupero.equals("")) {
-					String a[] = new LoginController().getCredentialsbyKey (username, chiaverecupero);
+					String a[] = new GestoreUtenzaController().getCredentialsbyKey (username, chiaverecupero);
 					JOptionPane.showMessageDialog(null, "Le credenziali sono Username: "+a[0]+" e Password: "+a[1]+"");
 					
 				} else {

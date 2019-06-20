@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreUtenteController;
+import controller.VeicoloController;
 import model.components.Veicolo;
 
 import javax.swing.JLabel;
@@ -169,7 +169,7 @@ public class NewVeicolo extends JFrame {
 					(assiSelected != 0 || assiSelected != null) && (altezza != 0 || altezza != null) && (anno != 0 || anno != null) && 
 					!qtaco2.equals("")) {
 						Veicolo v = new Veicolo(targa,marca,modello,peso,assiSelected,altezza,anno,null,qtaco2,null,username);
-						new GestoreUtenteController().setVeicolo(v);
+						new VeicoloController().setVeicolo(v);
 						JOptionPane.showMessageDialog(null, "Il veicolo e' stato aggiunto correttamente. Chiudi e riapri ;a finestra inerente ai veicoli.");
 				} else { 
 					JOptionPane.showMessageDialog(null,"Uno dei campi non risulta compilato. Riempire tutti i campi.");

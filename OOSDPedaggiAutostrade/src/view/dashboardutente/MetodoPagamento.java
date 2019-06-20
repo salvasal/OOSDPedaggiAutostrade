@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreUtenteController;
+import controller.PedaggioController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -66,7 +66,7 @@ public class MetodoPagamento extends JFrame {
 		contentPane.add(btnContante);
 		btnContante.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
-				new GestoreUtenteController().pagamentoContante(pedaggio);
+				new PedaggioController().pagamentoContante(pedaggio);
 				JOptionPane.showMessageDialog(null, "Pagamento avvenuto con successo! Chiudere la dashboard utente per visualizzare l'avvenuto pagamento!");
 			}
 		});
@@ -78,7 +78,7 @@ public class MetodoPagamento extends JFrame {
 		contentPane.add(btnCartaDiCredito);
 		btnCartaDiCredito.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
-				check = new GestoreUtenteController().pagamentoCarta(pedaggio, username);
+				check = new PedaggioController().pagamentoCarta(pedaggio, username);
 				if (check) {
 					JOptionPane.showMessageDialog(null, "Pagamento avvenuto con successo! Chiudere la dashboard utente per visualizzare l'avvenuto pagamento!");
 				} else {

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.AutostradaController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -88,7 +88,7 @@ public class AggiungiCasello extends JFrame {
 		lblKm.setBounds(35, 152, 61, 16);
 		contentPane.add(lblKm);
 		
-		kmvarlist = new GestoreAdminController().getkmbyID(ID);
+		kmvarlist = new AutostradaController().getkmbyID(ID);
 		kmvar = new Integer[kmvarlist.size()];
 		JComboBox kmComboBox = new JComboBox(kmvarlist.toArray(kmvar));
 		kmComboBox.setMaximumRowCount(20);
@@ -106,7 +106,7 @@ public class AggiungiCasello extends JFrame {
 				nomeCasello = nomeCaselloField.getText();
 				kmselected = Integer.parseInt(kmComboBox.getSelectedItem().toString());
 				if(!coordinate.equals("") && !nomeCasello.equals("") && !kmselected.equals("")) {
-					new GestoreAdminController().setCasello(coordinate, nomeCasello, kmselected, ID);
+					new AutostradaController().setCasello(coordinate, nomeCasello, kmselected, ID);
 					JOptionPane.showMessageDialog(null,"Casello inserito con successo!");
 				} else { JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito correttamente!"); }
 			}

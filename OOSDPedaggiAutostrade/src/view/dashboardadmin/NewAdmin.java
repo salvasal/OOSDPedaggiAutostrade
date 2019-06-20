@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.GestoreUtenzaController;
 import model.components.Amministratore;
 
 import javax.swing.JTextField;
@@ -147,7 +147,7 @@ public class NewAdmin extends JFrame {
 				telefono=telefonoField.getText();
 				if(!username.equals("") && !password.equals("") && !nome.equals("") && !cognome.equals("") && !luogon.equals("") && !datan.equals("") && !telefono.equals("")) {
 					Amministratore a = new Amministratore (username, password, null, nome, cognome, luogon, datan, telefono);
-					String chiave = new GestoreAdminController().setAmministratore(a);
+					String chiave = new GestoreUtenzaController().setAmministratore(a);
 					JOptionPane.showMessageDialog(null,"Amministratore aggiunto con successo! Chiave di recupero:" +chiave);
 				} else JOptionPane.showMessageDialog(null,"Uno dei campi non e stato riempito");
 			}

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.LoginController;
+import controller.GestoreUtenzaController;
 import view.dashboardadmin.DashboardAdmin;
 import view.dashboardutente.DashboardUtente;
 
@@ -91,7 +91,7 @@ public class Login extends JFrame {
 				username=usernameField.getText();
 				password=passwordField.getText();
 				if (!username.equals("") && !password.equals("")) {
-					String tipo = new LoginController().login(username, password);
+					String tipo = new GestoreUtenzaController().login(username, password);
 					if(tipo.equals("amministratore")) {
 						dispose();
 						DashboardAdmin da=new DashboardAdmin(username);

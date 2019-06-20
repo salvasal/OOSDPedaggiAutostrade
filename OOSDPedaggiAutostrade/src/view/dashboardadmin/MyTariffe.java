@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.GestoreAdminController;
+import controller.PedaggioController;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -141,7 +141,7 @@ public class MyTariffe extends JFrame {
 				categoriaSelected = categoriaComboBox.getSelectedItem().toString();
 				autostradaSelected = autostradaComboBox.getSelectedItem().toString();
 				if(!importoTariffe.equals("") && !categoriaSelected.equals("") && !autostradaSelected.equals("")) {
-					new GestoreAdminController().setTariffa(importoTariffe, categoriaSelected, autostradaSelected);
+					new PedaggioController().setTariffa(importoTariffe, categoriaSelected, autostradaSelected);
 					JOptionPane.showMessageDialog(null, "La Tariffa e' stata impostata");
 					
 				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito oppure non e' stato selezionato");
@@ -179,7 +179,7 @@ public class MyTariffe extends JFrame {
 				importoOneri = importoOneriField.getText();
 				veicoloClasseSelected = oneriComboBox.getSelectedItem().toString();
 				if (!importoOneri.equals("") && !veicoloClasseSelected.equals("")) {
-					new GestoreAdminController().setOneri(importoOneri, veicoloClasseSelected);
+					new PedaggioController().setOneri(importoOneri, veicoloClasseSelected);
 					JOptionPane.showMessageDialog(null, "Gli Oneri sono stati impostati");
 				} else JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito oppure non e' stato selezionato");
 				
