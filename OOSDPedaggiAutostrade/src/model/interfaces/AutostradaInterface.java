@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 import model.components.Amministratore;
+import model.components.Autostrada;
 import model.components.Casello;
 
 /**
@@ -17,7 +18,7 @@ import model.components.Casello;
 public interface AutostradaInterface {
 	public DefaultListModel getAutostradebyUsername(Amministratore a);
 	public DefaultListModel getCasellibyIDautostrada(String ID);
-	public void setAutostrada(String codice, String nome, String tipoSelected, Integer lunghezza, String username);
+	public void setAutostrada(Autostrada a, Integer lunghezza);
 	public ArrayList<Integer> getkmbyID(String ID);
 	public void setCasello(Casello c);
 	public ArrayList<String> getIdautostradaByusername(Amministratore a);

@@ -65,18 +65,20 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 		return dfm;
 	}
 
+	
+	
+
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#setAutostrada(java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String)
+	 * @see model.interfaces.AutostradaInterface#setAutostrada(model.components.Autostrada, java.lang.Integer)
 	 */
 	@Override
-	public void setAutostrada(String codice, String nome, String tipoSelected, Integer lunghezza, String username) {
+	public void setAutostrada(Autostrada a, Integer lunghezza) {
 		// TODO Auto-generated method stub
 		Connection cn = new Database().Connect();
 		Integer kmInizio;
 		Integer kmFine;
 		Statement st;
 		Statement st2;
-		Autostrada a;
 		
 		try {
 			st = cn.createStatement();
@@ -84,7 +86,8 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 			if(rs.next()) {
 				kmInizio = (rs.getInt("kmfine"))+1;
 				kmFine = (rs.getInt("kmfine"))+lunghezza;
-				a = new Autostrada(codice, nome, tipoSelected, kmInizio, kmFine, username);
+				a.setKminizio(kmInizio);
+				a.setKmfine(kmFine);
 				st2 = cn.createStatement();
 				String tot = "insert into autostrada values('"+a.getCodice()+"','"+a.getNome()+"','"+a.getTipo()+"','"+a.getKminizio()+"','"+a.getKmfine()+"','"+a.getAmministratore()+"')";
 				st2.executeUpdate(tot);

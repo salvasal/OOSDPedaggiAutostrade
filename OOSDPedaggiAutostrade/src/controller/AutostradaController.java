@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 import model.components.Amministratore;
+import model.components.Autostrada;
 import model.components.Casello;
 import model.components.GestoreDatiAutostrada;
 
@@ -25,8 +26,8 @@ public class AutostradaController {
 		return new GestoreDatiAutostrada().getCasellibyIDautostrada(ID);
 	}
 	
-	public void setAutostrada(String codice, String nome, String tipoSelected, Integer lunghezza, String username) {
-		new GestoreDatiAutostrada().setAutostrada(codice, nome, tipoSelected, lunghezza, username);
+	public void setAutostrada(Autostrada a, Integer lunghezza) {
+		new GestoreDatiAutostrada().setAutostrada(a, lunghezza);
 	}
 	
 	public ArrayList<Integer> getkmbyID(String ID) {
