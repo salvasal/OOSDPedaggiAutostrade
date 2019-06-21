@@ -78,7 +78,7 @@ public class DashboardUtente extends JFrame {
 		contentPane.add(btnGestisciVeicoli);
 		btnGestisciVeicoli.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
-				MyVeicoli mv = new MyVeicoli(username);
+				MyVeicoli mv = new MyVeicoli(utente);
 				mv.setVisible(true);
 			}
 		});
@@ -92,7 +92,7 @@ public class DashboardUtente extends JFrame {
 		contentPane.add(btnStoricoPedaggi);
 		btnStoricoPedaggi.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
-				MyPedaggi mp = new MyPedaggi(username);
+				MyPedaggi mp = new MyPedaggi(utente);
 				mp.setVisible(true);
 			}
 		});
@@ -114,13 +114,13 @@ public class DashboardUtente extends JFrame {
 			public void actionPerformed ( ActionEvent e ) {
 				ID = IDField.getText();
 				if(!ID.equals("")) {
-					MetodoPagamento mp = new MetodoPagamento(ID, username);
+					MetodoPagamento mp = new MetodoPagamento(ID, utente);
 					mp.setVisible(true);
 				} else JOptionPane.showMessageDialog(null, "Inserire ID del Pedaggio che si desidera pagare");
 			}
 		});
 		
-		lista = new PedaggioController().getPedagginonPagati(username);
+		lista = new PedaggioController().getPedagginonPagati(utente);
 		JList list = new JList(lista);
 		list.setBounds(12, 72, 510, 278);
 		JScrollPane scrollablelist = new JScrollPane(list);
@@ -131,7 +131,7 @@ public class DashboardUtente extends JFrame {
 		contentPane.add(btnSaldo);
 		btnSaldo.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
-				c = new GestoreUtenzaController().getCarta(username);
+				c = new GestoreUtenzaController().getCarta(utente);
 				JOptionPane.showMessageDialog(null, "IBAN: "+ c.getIban() +" Saldo: "+ c.getSaldo());
 			}
 		});

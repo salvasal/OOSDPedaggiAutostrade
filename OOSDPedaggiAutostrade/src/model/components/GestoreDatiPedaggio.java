@@ -58,11 +58,12 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 		}
 	}
 
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#getPedagginonPagati(java.lang.String)
+	 * @see model.interfaces.PedaggioInterface#getPedagginonPagati(model.components.Utente)
 	 */
 	@Override
-	public DefaultListModel getPedagginonPagati(String username) {
+	public DefaultListModel getPedagginonPagati(Utente u) {
 		// TODO Auto-generated method stub
 		DefaultListModel  dfm = new DefaultListModel();
 		Connection cn = new Database().Connect();
@@ -71,7 +72,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery("select ID, stato, Importo, Veicolo from pedaggio inner join veicolo "
 					+ "on pedaggio.veicolo = veicolo.targa inner join utente "
-					+ "on veicolo.utente = utente.username where pedaggio.stato ='"+statopedaggio+"' and utente.username ='"+username+"'");
+					+ "on veicolo.utente = utente.username where pedaggio.stato ='"+statopedaggio+"' and utente.username ='"+u.getUsername()+"'");
 			while (result.next()) {
 				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + " Importo: " + result.getFloat("Importo") + " � Veicolo: " + result.getString("Veicolo"));
 			}
@@ -82,11 +83,12 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 		return dfm;
 	}
 
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#getPedaggi(java.lang.String)
+	 * @see model.interfaces.PedaggioInterface#getPedaggi(model.components.Utente)
 	 */
 	@Override
-	public DefaultListModel getPedaggi(String username) {
+	public DefaultListModel getPedaggi(Utente u) {
 		// TODO Auto-generated method stub
 		DefaultListModel  dfm = new DefaultListModel();
 		Connection cn = new Database().Connect();
@@ -94,7 +96,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 			Statement st = cn.createStatement();
 			ResultSet result = st.executeQuery("select ID, stato, Importo, Veicolo from pedaggio inner join veicolo "
 					+ "on pedaggio.veicolo = veicolo.targa inner join utente "
-					+ "on veicolo.utente = utente.username where utente.username ='"+username+"'");
+					+ "on veicolo.utente = utente.username where utente.username ='"+u.getUsername()+"'");
 			while (result.next()) {
 				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + "Stato: "+ result.getString("stato") + " Importo: " + result.getFloat("Importo") + " � Veicolo: " + result.getString("Veicolo"));
 			}
@@ -122,11 +124,13 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 		}
 	}
 
+	
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#pagamentoCarta(java.lang.String, java.lang.String)
+	 * @see model.interfaces.PedaggioInterface#pagamentoCarta(java.lang.String, model.components.Utente)
 	 */
 	@Override
-	public boolean pagamentoCarta(String pedaggio, String username) {
+	public boolean pagamentoCarta(String pedaggio, Utente u) {
 		// TODO Auto-generated method stub
 		boolean check = false;
 		float nuovosaldo;
@@ -140,7 +144,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 				Pedaggio p = new Pedaggio(rs.getString("ID"), rs.getString("Stato"), rs.getFloat("Importo"), rs.getString("Veicolo"));
 				st2 = con.createStatement();
 				ResultSet rs2 = st2.executeQuery("select IBAN, saldo from carta inner join utente "
-						+ "on carta.IBAN = utente.carta where utente.username ='"+username+"'");
+						+ "on carta.IBAN = utente.carta where utente.username ='"+u.getUsername()+"'");
 				if(rs2.next()) {
 					Carta c = new Carta (rs2.getString("IBAN"), rs2.getFloat("saldo"));
 					if (p.getImporto() >= c.getSaldo()) {
@@ -162,11 +166,13 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 		return check;
 	}
 
+	
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#ricarica(java.lang.Integer, java.lang.String, java.lang.String)
+	 * @see model.interfaces.PedaggioInterface#ricarica(java.lang.Integer, java.lang.String, model.components.Utente)
 	 */
 	@Override
-	public void ricarica(Integer importo, String pedaggio, String username) {
+	public void ricarica(Integer importo, String pedaggio, Utente u) {
 		// TODO Auto-generated method stub
 		float nuovosaldo;
 		Connection con = new Database().Connect();
@@ -174,19 +180,20 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery("select IBAN, saldo from carta inner join utente "
-					+ "on carta.IBAN = utente.carta where utente.username ='"+username+"'");
+					+ "on carta.IBAN = utente.carta where utente.username ='"+u.getUsername()+"'");
 			if(rs.next()) {
 				Carta c = new Carta (rs.getString("IBAN"), rs.getFloat("saldo"));
 				nuovosaldo = c.getSaldo()+importo;
 				st2 = con.createStatement();
 				st2.executeUpdate("update carta set saldo = '"+nuovosaldo+"' where IBAN = '"+c.getIban()+"'");
-				boolean check = new GestoreDatiPedaggio().pagamentoCarta(pedaggio, username);
+				boolean check = new GestoreDatiPedaggio().pagamentoCarta(pedaggio, u);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 
 	/* (non-Javadoc)
 	 * @see model.interfaces.PedaggioInterface#setPedaggio(java.lang.String, java.lang.String, java.lang.String)

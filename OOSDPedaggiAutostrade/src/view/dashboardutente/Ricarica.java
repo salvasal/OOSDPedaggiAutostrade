@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.PedaggioController;
+import model.components.Utente;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ import java.awt.Color;
 public class Ricarica extends JFrame {
 
 	private JPanel contentPane;
+	private static Utente utente;
 	private static String pedaggio;
 	private static String username;
 	private Integer[] importo = {20, 50, 100};
@@ -35,7 +37,7 @@ public class Ricarica extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ricarica frame = new Ricarica(pedaggio, username);
+					Ricarica frame = new Ricarica(pedaggio, utente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +49,7 @@ public class Ricarica extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ricarica(String pedaggio, String username) {
+	public Ricarica(String pedaggio, Utente utente) {
 		setTitle("Ricarica Carta di Credito");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 225);
@@ -82,7 +84,7 @@ public class Ricarica extends JFrame {
 		btnRicaricaEProcedi.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e ) {
 				importoSelected = Integer.parseInt(importoComboBox.getSelectedItem().toString());
-				new PedaggioController().ricarica(importoSelected, pedaggio, username);
+				new PedaggioController().ricarica(importoSelected, pedaggio, utente);
 				JOptionPane.showMessageDialog(null, "Ricarica e Pagamento del pedaggio effettuati con successo! Chiudere e riaprire la Dashboard per verificare l'avvenuto pagamento del pedaggio");
 				dispose();
 			}

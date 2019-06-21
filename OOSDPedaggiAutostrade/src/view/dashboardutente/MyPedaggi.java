@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controller.PedaggioController;
+import model.components.Utente;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -19,6 +20,7 @@ import java.awt.Font;
 public class MyPedaggi extends JFrame {
 
 	private JPanel contentPane;
+	private static Utente utente;
 	private static String username;
 	private DefaultListModel lista;
 
@@ -29,7 +31,7 @@ public class MyPedaggi extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MyPedaggi frame = new MyPedaggi(username);
+					MyPedaggi frame = new MyPedaggi(utente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +43,7 @@ public class MyPedaggi extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MyPedaggi(String username) {
+	public MyPedaggi(Utente utente) {
 		setTitle("Storico Pedaggi");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
@@ -55,7 +57,7 @@ public class MyPedaggi extends JFrame {
 		lblITuoiPedaggi.setBounds(10, 11, 161, 24);
 		contentPane.add(lblITuoiPedaggi);
 		
-		lista = new PedaggioController().getPedaggi(username);
+		lista = new PedaggioController().getPedaggi(utente);
 		JList list = new JList(lista);
 		list.setBounds(12, 46, 462, 304);
 		JScrollPane scrollablelist = new JScrollPane(list);

@@ -28,8 +28,8 @@ public class GestoreUtenzaController {
 		return new GestoreUtenza().getUtentebyUsername(usernameSelected);
 	}
 	
-	public Carta getCarta (String username) {
-		return new GestoreUtenza().getCarta(username);
+	public Carta getCarta (Utente u) {
+		return new GestoreUtenza().getCarta(u);
 	}
 	
 	public Amministratore loginAmministratore(String username, String password) {

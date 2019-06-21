@@ -20,11 +20,13 @@ import model.interfaces.VeicoloInterface;
  */
 public class GestoreDatiVeicolo implements VeicoloInterface {
 
+	
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.VeicoloInterface#getVeicoli(java.lang.String)
+	 * @see model.interfaces.VeicoloInterface#getVeicoli(model.components.Utente)
 	 */
 	@Override
-	public DefaultListModel getVeicoli(String usernameSelected) {
+	public DefaultListModel getVeicoli(Utente u) {
 		// TODO Auto-generated method stub
 		DefaultListModel dfm = new DefaultListModel();
 		ResultSet result;
@@ -32,7 +34,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 		Statement st;
 		try {
 			st = con.createStatement();
-			result = st.executeQuery("select targa, marca, modello, peso, assi, altezza, anno, categoria, qtaco2, oneri from veicolo where utente='"+usernameSelected+"'");
+			result = st.executeQuery("select targa, marca, modello, peso, assi, altezza, anno, categoria, qtaco2, oneri from veicolo where utente='"+u.getUsername()+"'");
 			while (result.next()) {
 				dfm.addElement("Targa: "+result.getString("targa")+" Marca: "+result.getString("marca")+" Modello: "+result.getString("modello")+" Assi: "+result.getInt("assi")+" Categoria: "+result.getString("categoria")+" Quantita di co2 emessa: "+result.getFloat("qtaco2")+" Oneri: "+result.getInt("oneri"));
 			}
@@ -42,7 +44,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 		}
 		return dfm;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see model.interfaces.VeicoloInterface#getVeicolibyUsername(java.lang.String)
 	 */

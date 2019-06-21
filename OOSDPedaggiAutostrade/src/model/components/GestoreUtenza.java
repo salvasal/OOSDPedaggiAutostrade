@@ -239,18 +239,20 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		return s;
 	}
 
+	
+	
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#getCarta(java.lang.String)
+	 * @see model.interfaces.GestoreUtenzaInterface#getCarta(model.components.Utente)
 	 */
 	@Override
-	public Carta getCarta(String username) {
+	public Carta getCarta(Utente u) {
 		// TODO Auto-generated method stub
 		Connection cn = new Database().Connect();
 		Carta c = new Carta();
 		try {
 			Statement st = cn.createStatement();
 			ResultSet rs = st.executeQuery("select IBAN, saldo from carta inner join utente "
-					+ "on carta.IBAN = utente.carta where utente.username='"+username+"'");
+					+ "on carta.IBAN = utente.carta where utente.username='"+u.getUsername()+"'");
 			if (rs.next()) {
 				c.setIban(rs.getString("IBAN"));
 				c.setSaldo(rs.getFloat("saldo"));
@@ -261,5 +263,5 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 		}
 		return c;
 	}
-	
+
 }

@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controller.VeicoloController;
+import model.components.Utente;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -25,6 +26,7 @@ import javax.swing.JTextField;
 public class MyVeicoli extends JFrame {
 
 	private JPanel contentPane;
+	private static Utente utente;
 	private static String username;
 	private JTextField targaField;
 	private DefaultListModel lista;
@@ -37,7 +39,7 @@ public class MyVeicoli extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MyVeicoli frame = new MyVeicoli(username);
+					MyVeicoli frame = new MyVeicoli(utente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +51,7 @@ public class MyVeicoli extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MyVeicoli(String username) {
+	public MyVeicoli(Utente utente) {
 		setTitle("I miei veicoli");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 775, 300);
@@ -68,7 +70,7 @@ public class MyVeicoli extends JFrame {
 		contentPane.add(btnAggiungiVeicolo);
 		btnAggiungiVeicolo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewVeicolo nv = new NewVeicolo(username);
+				NewVeicolo nv = new NewVeicolo(utente);
 				nv.setVisible(true);
 			}
 		});
@@ -95,7 +97,7 @@ public class MyVeicoli extends JFrame {
 			}
 		});
 		
-		lista = new VeicoloController().getVeicoli(username);
+		lista = new VeicoloController().getVeicoli(utente);
 		JList list = new JList(lista);
 		list.setBounds(12, 54, 737, 196);
 		JScrollPane scrollablelist = new JScrollPane(list);

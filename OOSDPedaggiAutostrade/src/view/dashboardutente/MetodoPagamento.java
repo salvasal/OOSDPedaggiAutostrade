@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.PedaggioController;
+import model.components.Utente;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,6 +23,7 @@ import java.awt.Color;
 public class MetodoPagamento extends JFrame {
 
 	private JPanel contentPane;
+	private static Utente utente;
 	private static String pedaggio;
 	private static String username;
 	private boolean check;
@@ -33,7 +35,7 @@ public class MetodoPagamento extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MetodoPagamento frame = new MetodoPagamento(pedaggio, username);
+					MetodoPagamento frame = new MetodoPagamento(pedaggio, utente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +47,7 @@ public class MetodoPagamento extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MetodoPagamento(String pedaggio, String username) {
+	public MetodoPagamento(String pedaggio, Utente utente) {
 		setTitle("Pagamento Pedaggio");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 124);
@@ -78,12 +80,12 @@ public class MetodoPagamento extends JFrame {
 		contentPane.add(btnCartaDiCredito);
 		btnCartaDiCredito.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
-				check = new PedaggioController().pagamentoCarta(pedaggio, username);
+				check = new PedaggioController().pagamentoCarta(pedaggio, utente);
 				if (check) {
 					JOptionPane.showMessageDialog(null, "Pagamento avvenuto con successo! Chiudere la dashboard utente per visualizzare l'avvenuto pagamento!");
 				} else {
 					dispose();
-					Ricarica r = new Ricarica(pedaggio, username);
+					Ricarica r = new Ricarica(pedaggio, utente);
 					r.setVisible(true);
 				}
 			}

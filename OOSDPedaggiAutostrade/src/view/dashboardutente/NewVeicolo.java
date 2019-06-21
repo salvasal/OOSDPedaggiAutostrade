@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.VeicoloController;
+import model.components.Utente;
 import model.components.Veicolo;
 
 import javax.swing.JLabel;
@@ -31,6 +32,7 @@ public class NewVeicolo extends JFrame {
 	private JTextField altezzaField;
 	private JTextField immatricolazioneField;
 	private JTextField co2Field;
+	private static Utente utente;
 	private static String username;
 	private Integer[] assi = {2,3,4,5};
 	private String targa;
@@ -50,7 +52,7 @@ public class NewVeicolo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewVeicolo frame = new NewVeicolo(username);
+					NewVeicolo frame = new NewVeicolo(utente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +64,7 @@ public class NewVeicolo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NewVeicolo(String username) {
+	public NewVeicolo(Utente utente) {
 		setTitle("Aggiungi un Veicolo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 439, 554);
@@ -168,7 +170,7 @@ public class NewVeicolo extends JFrame {
 				if(!targa.equals("") && !marca.equals("") && !modello.equals("") && (peso != 0 || peso != null) && 
 					(assiSelected != 0 || assiSelected != null) && (altezza != 0 || altezza != null) && (anno != 0 || anno != null) && 
 					!qtaco2.equals("")) {
-						Veicolo v = new Veicolo(targa,marca,modello,peso,assiSelected,altezza,anno,null,qtaco2,null,username);
+						Veicolo v = new Veicolo(targa,marca,modello,peso,assiSelected,altezza,anno,null,qtaco2,null,utente.getUsername());
 						new VeicoloController().setVeicolo(v);
 						JOptionPane.showMessageDialog(null, "Il veicolo e' stato aggiunto correttamente. Chiudi e riapri ;a finestra inerente ai veicoli.");
 				} else { 

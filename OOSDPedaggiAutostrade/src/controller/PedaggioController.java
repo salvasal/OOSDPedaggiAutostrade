@@ -8,6 +8,7 @@ import javax.swing.DefaultListModel;
 import model.components.GestoreDatiPedaggio;
 import model.components.Oneri;
 import model.components.Tariffa;
+import model.components.Utente;
 
 /**
  * @author Salernitano Salvatore Matricola 242016
@@ -31,23 +32,23 @@ public class PedaggioController {
 		new GestoreDatiPedaggio().setPedaggiowithOneri(targa, caselloentrata, casellouscita);
 	}
 	
-	public DefaultListModel getPedagginonPagati (String username) {
-		return new GestoreDatiPedaggio().getPedagginonPagati(username);
+	public DefaultListModel getPedagginonPagati (Utente u) {
+		return new GestoreDatiPedaggio().getPedagginonPagati(u);
 	}
 
-	public DefaultListModel getPedaggi (String username) {
-		return new GestoreDatiPedaggio().getPedaggi(username);
+	public DefaultListModel getPedaggi (Utente u) {
+		return new GestoreDatiPedaggio().getPedaggi(u);
 	}
 	
 	public void pagamentoContante(String pedaggio) {
 		new GestoreDatiPedaggio().pagamentoContante(pedaggio);
 	}
 	
-	public boolean pagamentoCarta(String pedaggio, String username) {
-		return new GestoreDatiPedaggio().pagamentoCarta(pedaggio, username);
+	public boolean pagamentoCarta(String pedaggio, Utente u) {
+		return new GestoreDatiPedaggio().pagamentoCarta(pedaggio, u);
 	}
 	
-	public void ricarica(Integer importo, String pedaggio, String username) {
-		new GestoreDatiPedaggio().ricarica(importo, pedaggio, username);
+	public void ricarica(Integer importo, String pedaggio, Utente u) {
+		new GestoreDatiPedaggio().ricarica(importo, pedaggio, u);
 	}
 }
