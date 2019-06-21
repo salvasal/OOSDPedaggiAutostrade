@@ -27,7 +27,6 @@ public class MyVeicoli extends JFrame {
 
 	private JPanel contentPane;
 	private static Utente utente;
-	private static String username;
 	private JTextField targaField;
 	private DefaultListModel lista;
 	private String targa;

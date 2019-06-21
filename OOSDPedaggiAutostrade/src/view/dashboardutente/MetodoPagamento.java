@@ -25,7 +25,6 @@ public class MetodoPagamento extends JFrame {
 	private JPanel contentPane;
 	private static Utente utente;
 	private static String pedaggio;
-	private static String username;
 	private boolean check;
 
 	/**

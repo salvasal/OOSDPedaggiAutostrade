@@ -21,7 +21,6 @@ public class MyPedaggi extends JFrame {
 
 	private JPanel contentPane;
 	private static Utente utente;
-	private static String username;
 	private DefaultListModel lista;
 
 	/**

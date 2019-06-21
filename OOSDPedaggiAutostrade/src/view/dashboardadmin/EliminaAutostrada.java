@@ -27,7 +27,6 @@ public class EliminaAutostrada extends JFrame {
 	private String codiceSelected;
 	private ArrayList<String> codicevarlist;
 	private String[] codicevar;
-	private static String username;
 	private static Amministratore amministratore;
 
 	/**

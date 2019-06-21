@@ -29,8 +29,6 @@ public class MyTariffe extends JFrame {
 	private String[] categoriaList = {"A", "B", "3", "4", "5"}; 
 	private String[] autostradaList = {"Collina", "Montagna"};
 	private String[] veicoloClasseList = {"1", "2", "3", "4", "5", "6"};
-	private String importoOneri;
-	private String veicoloClasseSelected;
 	private Tariffa t;
 	private Oneri o;
 
@@ -173,14 +171,8 @@ public class MyTariffe extends JFrame {
 		btnApplicaOneri.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				o = new Oneri(Integer.parseInt(oneriComboBox.getSelectedItem().toString()), importoOneriField.getText(), 0, 0);
-				//importoOneri = importoOneriField.getText();
-				//veicoloClasseSelected = oneriComboBox.getSelectedItem().toString();
-				//if (!importoOneri.equals("") && !veicoloClasseSelected.equals("")) {
 				new PedaggioController().setOneri(o);
 				JOptionPane.showMessageDialog(null, "Gli Oneri sono stati impostati");
-				//} else JOptionPane.showMessageDialog(null, "Uno dei campi non e' stato riempito oppure non e' stato selezionato");
-				
-				
 			}
 		});
 		

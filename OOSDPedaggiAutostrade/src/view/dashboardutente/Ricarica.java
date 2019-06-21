@@ -26,7 +26,6 @@ public class Ricarica extends JFrame {
 	private JPanel contentPane;
 	private static Utente utente;
 	private static String pedaggio;
-	private static String username;
 	private Integer[] importo = {20, 50, 100};
 	private Integer importoSelected;
 

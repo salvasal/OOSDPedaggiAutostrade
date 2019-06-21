@@ -33,7 +33,6 @@ public class NewVeicolo extends JFrame {
 	private JTextField immatricolazioneField;
 	private JTextField co2Field;
 	private static Utente utente;
-	private static String username;
 	private Integer[] assi = {2,3,4,5};
 	private String targa;
 	private String marca;
@@ -169,7 +168,7 @@ public class NewVeicolo extends JFrame {
 				
 				if(!targa.equals("") && !marca.equals("") && !modello.equals("") && (peso != 0 || peso != null) && 
 					(assiSelected != 0 || assiSelected != null) && (altezza != 0 || altezza != null) && (anno != 0 || anno != null) && 
-					!qtaco2.equals("")) {
+					(qtaco2 != 0 || qtaco2 != null)) {
 						Veicolo v = new Veicolo(targa,marca,modello,peso,assiSelected,altezza,anno,null,qtaco2,null,utente.getUsername());
 						new VeicoloController().setVeicolo(v);
 						JOptionPane.showMessageDialog(null, "Il veicolo e' stato aggiunto correttamente. Chiudi e riapri ;a finestra inerente ai veicoli.");
