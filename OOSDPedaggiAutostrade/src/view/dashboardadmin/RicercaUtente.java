@@ -107,7 +107,8 @@ public class RicercaUtente extends JFrame {
 				    }).start();
 				
 				//restituisce la lista dei veicoli
-				lista = new VeicoloController().getVeicoli(usernameSelected);
+				Utente u = new Utente(usernameSelected,"","","","","","","","");
+				lista = new VeicoloController().getVeicoli(u);
 				list.setModel(lista);
 				
 			} 
