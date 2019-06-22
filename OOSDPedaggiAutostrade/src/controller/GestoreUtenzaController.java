@@ -5,9 +5,9 @@ package controller;
 
 import java.util.ArrayList;
 
+import controller.gestori.GestoreUtenza;
 import model.components.Amministratore;
 import model.components.Carta;
-import model.components.GestoreUtenza;
 import model.components.Utente;
 
 /**

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.components;
+package controller.gestori;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,8 +11,11 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import model.components.Oneri;
+import model.components.Utente;
+import model.components.Veicolo;
 import model.database.Database;
-import model.interfaces.VeicoloInterface;
+import controller.interfaces.VeicoloInterface;
 
 /**
  * @author Salernitano Salvatore Matricola 242016
@@ -23,7 +26,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 	
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.VeicoloInterface#getVeicoli(model.components.Utente)
+	 * @see controller.interfaces.VeicoloInterface#getVeicoli(model.components.Utente)
 	 */
 	@Override
 	public DefaultListModel getVeicoli(Utente u) {
@@ -46,7 +49,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 	}
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.VeicoloInterface#getVeicolibyUsername(java.lang.String)
+	 * @see controller.interfaces.VeicoloInterface#getVeicolibyUsername(java.lang.String)
 	 */
 	@Override
 	public ArrayList<String> getVeicolibyUsername(String usernameutente) {
@@ -68,7 +71,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.VeicoloInterface#deleteVeicolo(java.lang.String)
+	 * @see controller.interfaces.VeicoloInterface#deleteVeicolo(java.lang.String)
 	 */
 	@Override
 	public void deleteVeicolo(String targa) {
@@ -84,7 +87,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.VeicoloInterface#setVeicolo(model.components.Veicolo)
+	 * @see controller.interfaces.VeicoloInterface#setVeicolo(model.components.Veicolo)
 	 */
 	@Override
 	public void setVeicolo(Veicolo v) {

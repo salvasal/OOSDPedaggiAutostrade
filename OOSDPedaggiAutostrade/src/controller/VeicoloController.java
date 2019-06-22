@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-import model.components.GestoreDatiVeicolo;
+import controller.gestori.GestoreDatiVeicolo;
 import model.components.Utente;
 import model.components.Veicolo;
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.components;
+package controller.gestori;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,8 +11,13 @@ import java.util.Random;
 
 import javax.swing.DefaultListModel;
 
+import model.components.Carta;
+import model.components.Oneri;
+import model.components.Pedaggio;
+import model.components.Tariffa;
+import model.components.Utente;
 import model.database.Database;
-import model.interfaces.PedaggioInterface;
+import controller.interfaces.PedaggioInterface;
 
 /**
  * @author Salernitano Salvatore Matricola 242016
@@ -22,7 +27,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#setTariffa(model.components.Tariffa)
+	 * @see controller.interfaces.PedaggioInterface#setTariffa(model.components.Tariffa)
 	 */
 	@Override
 	public void setTariffa(Tariffa t) {
@@ -42,7 +47,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#setOneri(model.components.Oneri)
+	 * @see controller.interfaces.PedaggioInterface#setOneri(model.components.Oneri)
 	 */
 	@Override
 	public void setOneri(Oneri o) {
@@ -60,7 +65,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#getPedagginonPagati(model.components.Utente)
+	 * @see controller.interfaces.PedaggioInterface#getPedagginonPagati(model.components.Utente)
 	 */
 	@Override
 	public DefaultListModel getPedagginonPagati(Utente u) {
@@ -85,7 +90,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#getPedaggi(model.components.Utente)
+	 * @see controller.interfaces.PedaggioInterface#getPedaggi(model.components.Utente)
 	 */
 	@Override
 	public DefaultListModel getPedaggi(Utente u) {
@@ -108,7 +113,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#pagamentoContante(java.lang.String)
+	 * @see controller.interfaces.PedaggioInterface#pagamentoContante(java.lang.String)
 	 */
 	@Override
 	public void pagamentoContante(String pedaggio) {
@@ -127,7 +132,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#pagamentoCarta(java.lang.String, model.components.Utente)
+	 * @see controller.interfaces.PedaggioInterface#pagamentoCarta(java.lang.String, model.components.Utente)
 	 */
 	@Override
 	public boolean pagamentoCarta(String pedaggio, Utente u) {
@@ -169,7 +174,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#ricarica(java.lang.Integer, java.lang.String, model.components.Utente)
+	 * @see controller.interfaces.PedaggioInterface#ricarica(java.lang.Integer, java.lang.String, model.components.Utente)
 	 */
 	@Override
 	public void ricarica(Integer importo, String pedaggio, Utente u) {
@@ -196,7 +201,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#setPedaggio(java.lang.String, java.lang.String, java.lang.String)
+	 * @see controller.interfaces.PedaggioInterface#setPedaggio(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public void setPedaggio(String targa, String caselloentrata, String casellouscita) {
@@ -268,7 +273,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 		return tempStr.toString();
 	}
 	/* (non-Javadoc)
-	 * @see model.interfaces.PedaggioInterface#setPedaggiowithOneri(java.lang.String, java.lang.String, java.lang.String)
+	 * @see controller.interfaces.PedaggioInterface#setPedaggiowithOneri(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public void setPedaggiowithOneri(String targa, String caselloentrata, String casellouscita) {

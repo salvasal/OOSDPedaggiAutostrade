@@ -3,17 +3,6 @@
  */
 package model.components;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
-import javax.swing.DefaultListModel;
-
-import model.database.Database;
-import model.interfaces.VeicoloInterface;
-
 /**
  * @author Salvatore Salernitano Matricola 242016
  *

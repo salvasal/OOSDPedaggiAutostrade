@@ -5,7 +5,7 @@ package controller;
 
 import javax.swing.DefaultListModel;
 
-import model.components.GestoreDatiPedaggio;
+import controller.gestori.GestoreDatiPedaggio;
 import model.components.Oneri;
 import model.components.Tariffa;
 import model.components.Utente;

@@ -82,7 +82,7 @@ public class Pedaggio {
 	 * @param veicolo the veicolo to set
 	 */
 	public void setVeicolo(String veicolo) {
-		veicolo = veicolo;
+		this.veicolo = veicolo;
 	}
 	
 }

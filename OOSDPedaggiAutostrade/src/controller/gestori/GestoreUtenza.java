@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.components;
+package controller.gestori;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,8 +10,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
 
+import model.components.Amministratore;
+import model.components.Carta;
+import model.components.Utente;
 import model.database.Database;
-import model.interfaces.GestoreUtenzaInterface;
+import controller.interfaces.GestoreUtenzaInterface;
 
 /**
  * @author Salvatore Salernitano Matricola 242016
@@ -22,9 +25,8 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#loginAmministratore(java.lang.String, java.lang.String)
+	 * @see controller.interfaces.GestoreUtenzaInterface#loginAmministratore(java.lang.String, java.lang.String)
 	 */
-	@Override
 	public Amministratore loginAmministratore(String username, String password) {
 		// TODO Auto-generated method stub
 		Connection con=new Database().Connect();
@@ -48,7 +50,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#loginUtente(java.lang.String, java.lang.String)
+	 * @see controller.interfaces.GestoreUtenzaInterface#loginUtente(java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Utente loginUtente(String username, String password) {
@@ -76,7 +78,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#setUtente(model.components.Utente)
+	 * @see controller.interfaces.GestoreUtenzaInterface#setUtente(model.components.Utente)
 	 */
 	@Override
 	public String setUtente(Utente u) {
@@ -103,7 +105,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#getCredentialsbyKeyAmministratore(java.lang.String, java.lang.String)
+	 * @see controller.interfaces.GestoreUtenzaInterface#getCredentialsbyKeyAmministratore(java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Amministratore getCredentialsbyKeyAmministratore(String username, String chiave) {
@@ -128,7 +130,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#getCredentialsbyKeyUtente(java.lang.String, java.lang.String)
+	 * @see controller.interfaces.GestoreUtenzaInterface#getCredentialsbyKeyUtente(java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Utente getCredentialsbyKeyUtente(String username, String chiave) {
@@ -153,7 +155,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#randomString(int)
+	 * @see controller.interfaces.GestoreUtenzaInterface#randomString(int)
 	 */
 	@Override
 	public String randomString(int length) {
@@ -192,7 +194,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#getUtente()
+	 * @see controller.interfaces.GestoreUtenzaInterface#getUtente()
 	 */
 	@Override
 	public ArrayList<String> getUtente() {
@@ -215,7 +217,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#getUtentebyUsername(java.lang.String)
+	 * @see controller.interfaces.GestoreUtenzaInterface#getUtentebyUsername(java.lang.String)
 	 */
 	@Override
 	public String getUtentebyUsername(String username) {
@@ -242,7 +244,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.GestoreUtenzaInterface#getCarta(model.components.Utente)
+	 * @see controller.interfaces.GestoreUtenzaInterface#getCarta(model.components.Utente)
 	 */
 	@Override
 	public Carta getCarta(Utente u) {

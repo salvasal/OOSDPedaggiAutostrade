@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.components;
+package controller.gestori;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,8 +11,11 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import model.components.Amministratore;
+import model.components.Autostrada;
+import model.components.Casello;
 import model.database.Database;
-import model.interfaces.AutostradaInterface;
+import controller.interfaces.AutostradaInterface;
 
 /**
  * @author Salernitano Salvatore Matricola 242016
@@ -22,7 +25,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#getAutostradebyUsername(model.components.Amministratore)
+	 * @see controller.interfaces.AutostradaInterface#getAutostradebyUsername(model.components.Amministratore)
 	 */
 	@Override
 	public DefaultListModel getAutostradebyUsername(Amministratore a) {
@@ -44,7 +47,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#getCasellibyIDautostrada(java.lang.String)
+	 * @see controller.interfaces.AutostradaInterface#getCasellibyIDautostrada(java.lang.String)
 	 */
 	@Override
 	public DefaultListModel getCasellibyIDautostrada(String ID) {
@@ -69,7 +72,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#setAutostrada(model.components.Autostrada, java.lang.Integer)
+	 * @see controller.interfaces.AutostradaInterface#setAutostrada(model.components.Autostrada, java.lang.Integer)
 	 */
 	@Override
 	public void setAutostrada(Autostrada a, Integer lunghezza) {
@@ -99,7 +102,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#getkmbyID(java.lang.String)
+	 * @see controller.interfaces.AutostradaInterface#getkmbyID(java.lang.String)
 	 */
 	@Override
 	public ArrayList<Integer> getkmbyID(String ID) {
@@ -126,7 +129,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	}
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#setCasello(model.components.Casello)
+	 * @see controller.interfaces.AutostradaInterface#setCasello(model.components.Casello)
 	 */
 	@Override
 	public void setCasello(Casello c) {
@@ -143,7 +146,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#getIdautostradaByusername(model.components.Amministratore)
+	 * @see controller.interfaces.AutostradaInterface#getIdautostradaByusername(model.components.Amministratore)
 	 */
 	@Override
 	public ArrayList<String> getIdautostradaByusername(Amministratore a) {
@@ -164,7 +167,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#deleteautostrada(java.lang.String)
+	 * @see controller.interfaces.AutostradaInterface#deleteautostrada(java.lang.String)
 	 */
 	@Override
 	public void deleteautostrada(String codiceSelected) {
@@ -183,7 +186,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 
 	
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#getCoordinatecaselliBycodiceAutostrada(model.components.Amministratore, java.lang.String)
+	 * @see controller.interfaces.AutostradaInterface#getCoordinatecaselliBycodiceAutostrada(model.components.Amministratore, java.lang.String)
 	 */
 	@Override
 	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(Amministratore a, String codiceAutostrada) {
@@ -206,7 +209,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	}
 
 	/* (non-Javadoc)
-	 * @see model.interfaces.AutostradaInterface#deletecasello(java.lang.String)
+	 * @see controller.interfaces.AutostradaInterface#deletecasello(java.lang.String)
 	 */
 	@Override
 	public void deletecasello(String coordinateSelected) {

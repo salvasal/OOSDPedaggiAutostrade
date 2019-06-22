@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import controller.gestori.GestoreDatiAutostrada;
 import model.components.Amministratore;
 import model.components.Autostrada;
 import model.components.Casello;
-import model.components.GestoreDatiAutostrada;
 
 /**
  * @author Salernitano Salvatore Matricola 242016

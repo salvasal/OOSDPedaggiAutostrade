@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.interfaces;
+package controller.interfaces;
 
 import javax.swing.DefaultListModel;
 
