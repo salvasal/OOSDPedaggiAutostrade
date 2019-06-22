@@ -91,20 +91,6 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 		for(int i=kmInizio; i<=kmFine; i++) {
 			kmlist.add(i);
 		}
-		//try {
-			//Statement st = con.createStatement();
-			//ResultSet rs = st.executeQuery("select kminizio, kmfine from autostrada where codice='"+ID+"'");
-			//if(rs.next()) {
-			//	kmInizio = (rs.getInt("kminizio"));
-			//	kmFine = (rs.getInt("kmfine"));
-			//	for(int i=kmInizio; i<=kmFine; i++) {
-			//		kmlist.add(i);
-			//	}
-			//}
-		//} catch (SQLException e) {
-			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
 		return kmlist;
 	}
 	
@@ -114,14 +100,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	@Override
 	public void setCasello(Casello c) {
 		// TODO Auto-generated method stub
-		Connection con = new Database().Connect();
-		try {
-			Statement st = con.createStatement();
-			st.executeUpdate("insert into casello values ('"+c.getCoordinate()+"','"+c.getNome()+"','"+c.getKm()+"','"+c.getAutostrada()+"')");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new MySQLAutostradaDAOImpl().setCasello(c);
 	}
 
 	

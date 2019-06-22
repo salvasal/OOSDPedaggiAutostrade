@@ -20,4 +20,5 @@ public interface AutostradaDAO {
 	public Integer getkmfine();
 	public void setautostrada(Autostrada a);
 	public Integer[] getkm(String ID);
+	public void setCasello(Casello c);
 }
