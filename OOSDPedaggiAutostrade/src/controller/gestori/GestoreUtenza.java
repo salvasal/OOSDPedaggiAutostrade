@@ -14,6 +14,7 @@ import model.components.Amministratore;
 import model.components.Carta;
 import model.components.Utente;
 import model.database.Database;
+import model.implementsDAO.MySQLGestoreUtenzaDAOImpl;
 import controller.interfaces.GestoreUtenzaInterface;
 
 /**
@@ -29,22 +30,13 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	 */
 	public Amministratore loginAmministratore(String username, String password) {
 		// TODO Auto-generated method stub
-		Connection con=new Database().Connect();
+		//Connection con=new Database().Connect();
 		Amministratore a = new Amministratore("","","","","","","","");
-		
-		try {
-			Statement st = con.createStatement();
-			/*controlla se l'username e la password appartengono ad un amministratore*/
-			System.out.println(username);
-			System.out.println(password);
-			ResultSet result=st.executeQuery("select * from amministratore where Username='"+username+"'and Password='"+password+"'");
-			if(result.next()) {
-				a = new Amministratore(result.getString("username"),result.getString("password"),result.getString("chiaveRecupero"),result.getString("nome"),result.getString("cognome"),result.getString("luogoN"),result.getString("dataN"),result.getString("telefono"));
-				return a;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		System.out.println(username);
+		System.out.println(password);
+		a = new MySQLGestoreUtenzaDAOImpl().getAmministratore(username, password);
+		if(!(a.getUsername().equals(""))) {
+			return a;
 		}
 		return a;
 	}
