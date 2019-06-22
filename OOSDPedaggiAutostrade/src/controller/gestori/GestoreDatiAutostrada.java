@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 
@@ -15,6 +16,8 @@ import model.components.Amministratore;
 import model.components.Autostrada;
 import model.components.Casello;
 import model.database.Database;
+import model.implementsDAO.MySQLAutostradaDAOImpl;
+import model.interfacesDAO.AutostradaDAO;
 import controller.interfaces.AutostradaInterface;
 
 /**
@@ -31,17 +34,10 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	public DefaultListModel getAutostradebyUsername(Amministratore a) {
 		// TODO Auto-generated method stub
 		DefaultListModel dfm = new DefaultListModel();
-		ResultSet rs;
-		Connection cn = new Database().Connect();
-		try {
-			Statement st = cn.createStatement();
-			rs = st.executeQuery("select codice, nome, tipo, kminizio, kmfine from autostrada where amministratore='"+a.getUsername()+"' ");
-			while (rs.next()) {
-				dfm.addElement("Codice: "+rs.getString("codice")+" Nome: "+rs.getString("nome")+" Tipologia: "+rs.getString("tipo")+" KmInzio: "+rs.getInt("kminizio")+" KmFine: "+rs.getInt("kmfine"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<Autostrada> autostrade = new ArrayList<Autostrada>();
+		autostrade.addAll(new MySQLAutostradaDAOImpl().getAutostradabyUsername(a));
+		for (Autostrada ad : autostrade) {
+			dfm.addElement("Codice: "+ad.getCodice()+" Nome: "+ad.getNome()+" Tipologia: "+ad.getTipo()+" KmInzio: "+ad.getKminizio()+" KmFine: "+ad.getKmfine());
 		}
 		return dfm;
 	}
