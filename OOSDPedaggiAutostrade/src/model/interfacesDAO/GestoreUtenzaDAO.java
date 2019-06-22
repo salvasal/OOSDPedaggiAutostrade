@@ -4,6 +4,7 @@
 package model.interfacesDAO;
 
 import model.components.Amministratore;
+import model.components.Utente;
 
 /**
  * @author Salernitano Salvatore Matricola 242016
@@ -11,4 +12,5 @@ import model.components.Amministratore;
  */
 public interface GestoreUtenzaDAO {
 	public Amministratore getAmministratore(String username, String password);
+	public Utente getUtente(String username, String password);
 }

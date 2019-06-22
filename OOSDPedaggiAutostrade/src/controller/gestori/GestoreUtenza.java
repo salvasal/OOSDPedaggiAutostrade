@@ -30,7 +30,6 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	 */
 	public Amministratore loginAmministratore(String username, String password) {
 		// TODO Auto-generated method stub
-		//Connection con=new Database().Connect();
 		Amministratore a = new Amministratore("","","","","","","","");
 		System.out.println(username);
 		System.out.println(password);
@@ -47,22 +46,12 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	@Override
 	public Utente loginUtente(String username, String password) {
 		// TODO Auto-generated method stub
-		Connection con=new Database().Connect();
 		Utente u = new Utente("","","","","","","","","");
-		
-		try {
-			Statement st = con.createStatement();
-			/*controlla se l'username e la password appartengono ad un utente*/
-			System.out.println(username);
-			System.out.println(password);
-			ResultSet result=st.executeQuery("select * from utente where Username='"+username+"'and Password='"+password+"'");
-			if(result.next()) {
-				u = new Utente(result.getString("username"),result.getString("password"),result.getString("chiaveRecupero"),result.getString("nome"),result.getString("cognome"),result.getString("luogoN"),result.getString("dataN"),result.getString("telefono"),result.getString("carta"));
-				return u;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		System.out.println(username);
+		System.out.println(password);
+		u = new MySQLGestoreUtenzaDAOImpl().getUtente(username, password);
+		if(!(u.getUsername().equals(""))) {
+			return u;
 		}
 		return u;
 	}
