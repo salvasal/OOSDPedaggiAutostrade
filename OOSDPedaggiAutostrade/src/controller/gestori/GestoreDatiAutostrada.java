@@ -49,17 +49,10 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	public DefaultListModel getCasellibyIDautostrada(String ID) {
 		// TODO Auto-generated method stub
 		DefaultListModel dfm = new DefaultListModel();
-		ResultSet rs;
-		Connection cn = new Database().Connect();
-		try {
-			Statement st = cn.createStatement();
-			rs = st.executeQuery("select nome, km from casello where autostrada = '"+ID+"'");
-			while(rs.next()) {
-				dfm.addElement("Casello: "+rs.getString("nome")+" "+rs.getInt("km"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<Casello> caselli = new ArrayList<Casello>();
+		caselli.addAll(new MySQLAutostradaDAOImpl().getCasellibyIDautostrada(ID));
+		for (Casello c : caselli) {
+			dfm.addElement(" Nome: "+c.getNome()+" Km: "+c.getKm());
 		}
 		return dfm;
 	}
