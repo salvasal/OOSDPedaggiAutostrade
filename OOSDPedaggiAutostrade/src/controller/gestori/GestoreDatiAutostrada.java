@@ -3,21 +3,14 @@
  */
 package controller.gestori;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 
 import model.components.Amministratore;
 import model.components.Autostrada;
 import model.components.Casello;
-import model.database.Database;
 import model.implementsDAO.MySQLAutostradaDAOImpl;
-import model.interfacesDAO.AutostradaDAO;
 import controller.interfaces.AutostradaInterface;
 
 /**
@@ -143,14 +136,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	@Override
 	public void deletecasello(String coordinateSelected) {
 		// TODO Auto-generated method stub
-		Connection con = new Database().Connect();
-		try {
-			Statement st = con.createStatement();
-			st.executeUpdate("delete from casello where coordinate = '"+coordinateSelected+"'");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new MySQLAutostradaDAOImpl().deletecasello(coordinateSelected);
 	}
 	
 }

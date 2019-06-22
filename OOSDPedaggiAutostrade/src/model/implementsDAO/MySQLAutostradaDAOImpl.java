@@ -29,7 +29,9 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 	private static final String READ_QUERY_KM = "select kminizio, kmfine from autostrada where codice = ?";
 	private static final String CREATE_QUERY_CASELLO = "insert into casello values (?,?,?,?)";
 	private static final String DELETE_QUERY_CASELLI = "delete from casello where Autostrada = ?";
+	private static final String DELETE_QUERY_CASELLO = "delete from casello where coordinate = ?";
 	private static final String DELETE_QUERY = "delete from autostrada where codice = ?";
+	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.AutostradaDAO#getAutostradabyUsername(model.components.Amministratore)
 	 */
@@ -247,6 +249,22 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 			e.printStackTrace();
 		}
 		return coordinateCaselli;
+	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.AutostradaDAO#deletecasello(java.lang.String)
+	 */
+	@Override
+	public void deletecasello(String coordinateSelected) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(DELETE_QUERY_CASELLO);
+			preparedStatement.setString(1, coordinateSelected);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
