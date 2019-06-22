@@ -133,19 +133,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(Amministratore a, String codiceAutostrada) {
 		// TODO Auto-generated method stub
 		ArrayList<String> coordinateCaselli = new ArrayList<String>();
-		Connection con = new Database().Connect();
-		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select coordinate from casello inner join autostrada "
-					+ "on casello.autostrada = autostrada.codice inner join amministratore on "
-					+ "autostrada.amministratore = amministratore.username where casello.autostrada = '"+codiceAutostrada+"' ");
-			while (rs.next()) {
-				coordinateCaselli.add(rs.getString("coordinate"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		coordinateCaselli.addAll(new MySQLAutostradaDAOImpl().getCoordinatecaselliBycodiceAutostrada(codiceAutostrada));
 		return coordinateCaselli;
 	}
 

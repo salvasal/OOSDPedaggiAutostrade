@@ -225,6 +225,29 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 			e.printStackTrace();
 		}
 	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.AutostradaDAO#getCoordinatecaselliBycodiceAutostrada(java.lang.String)
+	 */
+	@Override
+	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(String codiceAutostrada) {
+		// TODO Auto-generated method stub
+		ArrayList<String> coordinateCaselli = new ArrayList<String>();
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_QUERY_CASELLI);
+			preparedStatement.setString(1, codiceAutostrada);
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			while (rs.next()) {
+				coordinateCaselli.add(rs.getString("coordinate"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return coordinateCaselli;
+	}
 	
 	
 	
