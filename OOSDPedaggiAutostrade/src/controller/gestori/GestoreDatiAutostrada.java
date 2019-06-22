@@ -81,24 +81,30 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	@Override
 	public ArrayList<Integer> getkmbyID(String ID) {
 		// TODO Auto-generated method stub
-		Connection con = new Database().Connect();
+		//Connection con = new Database().Connect();
 		ArrayList<Integer> kmlist = new ArrayList<Integer>();
-		Integer kmInizio;
-		Integer kmFine;
-		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select kminizio, kmfine from autostrada where codice='"+ID+"'");
-			if(rs.next()) {
-				kmInizio = (rs.getInt("kminizio"));
-				kmFine = (rs.getInt("kmfine"));
-				for(int i=kmInizio; i<=kmFine; i++) {
-					kmlist.add(i);
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Integer kmInizio, kmFine;
+		Integer[] km = new Integer[2];
+		km = new MySQLAutostradaDAOImpl().getkm(ID);
+		kmInizio = km[0];
+		kmFine = km[1];
+		for(int i=kmInizio; i<=kmFine; i++) {
+			kmlist.add(i);
 		}
+		//try {
+			//Statement st = con.createStatement();
+			//ResultSet rs = st.executeQuery("select kminizio, kmfine from autostrada where codice='"+ID+"'");
+			//if(rs.next()) {
+			//	kmInizio = (rs.getInt("kminizio"));
+			//	kmFine = (rs.getInt("kmfine"));
+			//	for(int i=kmInizio; i<=kmFine; i++) {
+			//		kmlist.add(i);
+			//	}
+			//}
+		//} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		//	e.printStackTrace();
+		//}
 		return kmlist;
 	}
 	

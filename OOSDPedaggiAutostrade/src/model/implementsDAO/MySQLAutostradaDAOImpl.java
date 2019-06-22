@@ -26,6 +26,7 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 	private static final String READ_QUERY_CASELLI = "select * from casello where autostrada = ?";
 	private static final String READ_QUERY_KMFINE = "select kmfine from autostrada order by kmfine DESC";
 	private static final String CREATE_QUERY_AUTOSTRADA = "insert into autostrada values(?,?,?,?,?,?)";
+	private static final String READ_QUERY_KM = "select kminizio, kmfine from autostrada where codice = ?";
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.AutostradaDAO#getAutostradabyUsername(model.components.Amministratore)
 	 */
@@ -119,6 +120,31 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.AutostradaDAO#getkm(java.lang.String)
+	 */
+	@Override
+	public Integer[] getkm(String ID) {
+		// TODO Auto-generated method stub
+		Integer[] km = new Integer[2];
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_QUERY_KM);
+			preparedStatement.setString(1, ID);
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			if (rs.next()) {
+				km[0] = rs.getInt("kminizio");
+				km[1] = rs.getInt("kmfine");
+				return km;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return km;
 	}
 	
 	

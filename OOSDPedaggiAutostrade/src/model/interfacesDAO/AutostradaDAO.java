@@ -19,4 +19,5 @@ public interface AutostradaDAO {
 	public ArrayList<Casello> getCasellibyIDautostrada(String ID);
 	public Integer getkmfine();
 	public void setautostrada(Autostrada a);
+	public Integer[] getkm(String ID);
 }
