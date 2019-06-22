@@ -166,6 +166,31 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 			e.printStackTrace();
 		}
 	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.AutostradaDAO#getIdautostradaByusername(model.components.Amministratore)
+	 */
+	@Override
+	public ArrayList<String> getIdautostradaByUsername(Amministratore a) {
+		// TODO Auto-generated method stub
+		ArrayList<String> idautostradalist = new ArrayList<String>();
+		String s = null;
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_QUERY);
+			preparedStatement.setString(1, a.getUsername());
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			while (rs.next()) {
+				s = rs.getString("codice");
+				idautostradalist.add(s);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return idautostradalist;
+	}
 	
 	
 	

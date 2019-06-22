@@ -21,4 +21,5 @@ public interface AutostradaDAO {
 	public void setautostrada(Autostrada a);
 	public Integer[] getkm(String ID);
 	public void setCasello(Casello c);
+	public ArrayList<String> getIdautostradaByUsername(Amministratore a);
 }

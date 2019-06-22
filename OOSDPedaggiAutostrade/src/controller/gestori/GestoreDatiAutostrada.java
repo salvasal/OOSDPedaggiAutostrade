@@ -111,17 +111,7 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	public ArrayList<String> getIdautostradaByusername(Amministratore a) {
 		// TODO Auto-generated method stub
 		ArrayList<String> idautostradalist = new ArrayList<String>();
-		Connection con = new Database().Connect();
-		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select codice from autostrada where Amministratore='"+a.getUsername()+"'");
-			while(rs.next()) {
-				idautostradalist.add(rs.getString("codice"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		idautostradalist.addAll(new MySQLAutostradaDAOImpl().getIdautostradaByUsername(a));
 		return idautostradalist;
 	}
 
