@@ -121,16 +121,8 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	@Override
 	public void deleteautostrada(String codiceSelected) {
 		// TODO Auto-generated method stub
-		Connection con = new Database().Connect();
-		try {
-			Statement st = con.createStatement();
-			st.executeUpdate("delete from casello where Autostrada = '"+codiceSelected+"'");
-			Statement st2 = con.createStatement();
-			st.executeUpdate("delete from autostrada where codice ='"+codiceSelected+"'");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new MySQLAutostradaDAOImpl().deletecaselli(codiceSelected);
+		new MySQLAutostradaDAOImpl().deleteautostrada(codiceSelected);
 	}
 
 	

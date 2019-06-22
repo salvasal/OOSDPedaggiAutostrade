@@ -22,4 +22,6 @@ public interface AutostradaDAO {
 	public Integer[] getkm(String ID);
 	public void setCasello(Casello c);
 	public ArrayList<String> getIdautostradaByUsername(Amministratore a);
+	public void deletecaselli(String codiceSelected);
+	public void deleteautostrada(String codiceSelected);
 }
