@@ -24,6 +24,8 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 
 	private static final String READ_QUERY = "select codice, nome, tipo, kminizio, kmfine, amministratore from autostrada where amministratore = ?";
 	private static final String READ_QUERY_CASELLI = "select * from casello where autostrada = ?";
+	private static final String READ_QUERY_KMFINE = "select kmfine from autostrada order by kmfine DESC";
+	private static final String CREATE_QUERY_AUTOSTRADA = "insert into autostrada values(?,?,?,?,?,?)";
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.AutostradaDAO#getAutostradabyUsername(model.components.Amministratore)
 	 */
@@ -73,6 +75,50 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 			e.printStackTrace();
 		}
 		return caselli;
+	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.AutostradaDAO#getkmfine()
+	 */
+	@Override
+	public Integer getkmfine() {
+		// TODO Auto-generated method stub
+		Integer km = null;
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement prepareStatement = cn.prepareStatement(READ_QUERY_KMFINE);
+			prepareStatement.execute();
+			rs = prepareStatement.getResultSet();
+			if(rs.next()) {
+				km = rs.getInt("kmfine");
+				return km;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return km;
+	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.AutostradaDAO#setautostrada(model.components.Autostrada)
+	 */
+	@Override
+	public void setautostrada(Autostrada a) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement prepareStatement = cn.prepareStatement(CREATE_QUERY_AUTOSTRADA);
+			prepareStatement.setString(1, a.getCodice());
+			prepareStatement.setString(2, a.getNome());
+			prepareStatement.setString(3, a.getTipo());
+			prepareStatement.setInt(4, a.getKminizio());
+			prepareStatement.setInt(5, a.getKmfine());
+			prepareStatement.setString(6, a.getAmministratore());
+			prepareStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

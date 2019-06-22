@@ -66,28 +66,13 @@ public class GestoreDatiAutostrada implements AutostradaInterface {
 	@Override
 	public void setAutostrada(Autostrada a, Integer lunghezza) {
 		// TODO Auto-generated method stub
-		Connection cn = new Database().Connect();
-		Integer kmInizio;
-		Integer kmFine;
-		Statement st;
-		Statement st2;
-		
-		try {
-			st = cn.createStatement();
-			ResultSet rs = st.executeQuery("select kmfine from autostrada order by kmfine DESC");
-			if(rs.next()) {
-				kmInizio = (rs.getInt("kmfine"))+1;
-				kmFine = (rs.getInt("kmfine"))+lunghezza;
-				a.setKminizio(kmInizio);
-				a.setKmfine(kmFine);
-				st2 = cn.createStatement();
-				String tot = "insert into autostrada values('"+a.getCodice()+"','"+a.getNome()+"','"+a.getTipo()+"','"+a.getKminizio()+"','"+a.getKmfine()+"','"+a.getAmministratore()+"')";
-				st2.executeUpdate(tot);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Integer kmInizio, KmFine, km;
+		km = new MySQLAutostradaDAOImpl().getkmfine();
+		kmInizio = km + 1;
+		KmFine = km + lunghezza;
+		a.setKminizio(kmInizio);
+		a.setKmfine(KmFine);
+		new MySQLAutostradaDAOImpl().setautostrada(a);
 	}
 
 	/* (non-Javadoc)

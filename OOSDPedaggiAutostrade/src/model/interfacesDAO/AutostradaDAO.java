@@ -17,4 +17,6 @@ import model.components.Casello;
 public interface AutostradaDAO {
 	public ArrayList<Autostrada> getAutostradabyUsername(Amministratore a);
 	public ArrayList<Casello> getCasellibyIDautostrada(String ID);
+	public Integer getkmfine();
+	public void setautostrada(Autostrada a);
 }
