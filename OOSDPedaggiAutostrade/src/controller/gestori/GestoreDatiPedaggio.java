@@ -17,6 +17,7 @@ import model.components.Pedaggio;
 import model.components.Tariffa;
 import model.components.Utente;
 import model.database.Database;
+import model.implementsDAO.MySQLPedaggioDAOImpl;
 import controller.interfaces.PedaggioInterface;
 
 /**
@@ -32,16 +33,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	@Override
 	public void setTariffa(Tariffa t) {
 		// TODO Auto-generated method stub
-		Connection con = new Database().Connect();
-		
-		try {
-			Statement st = con.createStatement();
-			st.executeUpdate("update Tariffa set Valore = '"+t.getValore()+"' where Categoria = '"+t.getCategoria()+"' and Tipo = '"+t.getTipo()+"' ");
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new MySQLPedaggioDAOImpl().setTariffa(t);
 	}
 	
 	
