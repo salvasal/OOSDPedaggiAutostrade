@@ -3,6 +3,7 @@
  */
 package model.interfacesDAO;
 
+import model.components.Oneri;
 import model.components.Tariffa;
 
 /**
@@ -11,4 +12,5 @@ import model.components.Tariffa;
  */
 public interface PedaggioDAO {
 	public void setTariffa(Tariffa t);
+	public void setOneri(Oneri o);
 }

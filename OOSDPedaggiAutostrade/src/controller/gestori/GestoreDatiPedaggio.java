@@ -35,8 +35,6 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 		// TODO Auto-generated method stub
 		new MySQLPedaggioDAOImpl().setTariffa(t);
 	}
-	
-	
 
 	/* (non-Javadoc)
 	 * @see controller.interfaces.PedaggioInterface#setOneri(model.components.Oneri)
@@ -44,15 +42,7 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	@Override
 	public void setOneri(Oneri o) {
 		// TODO Auto-generated method stub
-		Connection con = new Database().Connect();
-		
-		try {
-			Statement so = con.createStatement();
-			so.executeUpdate("update Oneri set Importo = '"+o.getImporto()+"' where Euro = '"+o.getEuro()+"' ");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new MySQLPedaggioDAOImpl().setOneri(o);
 	}
 
 	
