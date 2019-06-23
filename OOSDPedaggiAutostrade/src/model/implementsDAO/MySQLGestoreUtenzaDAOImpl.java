@@ -24,6 +24,8 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 	private static final String READ_QUERY_UTENTE = "select * from utente where Username = ? and Password = ? ";
 	private static final String CREATE_QUERY_CARTA = "insert into carta(IBAN, Saldo) values(?,?)";
 	private static final String CREATE_QUERY_UTENTE = "insert into utente values(?,?,?,?,?,?,?,?,?)";
+	private static final String READ_QUERY_AMMINISTRATORE_BYKEY = "select * from amministratore where ChiaveRecupero = ?";
+	private static final String READ_QUERY_UTENTE_BYKEY = "select * from utente where ChiaveRecupero = ? ";
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.GestoreUtenzaDAO#getAmministratore(java.lang.String, java.lang.String)
@@ -118,6 +120,56 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#getCredentialsbyKeyAmministratore(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Amministratore getCredentialsbyKeyAmministratore(String chiave) {
+		// TODO Auto-generated method stub
+		Amministratore a = new Amministratore("","","","","","","","");
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_QUERY_AMMINISTRATORE_BYKEY);
+			preparedStatement.setString(1, chiave);
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			if (rs.next()) {
+				a = new Amministratore(rs.getString("username"), rs.getString("password"), rs.getString("chiaverecupero"), rs.getString("nome"), rs.getString("cognome"), rs.getString("luogon"), rs.getString("datan"), rs.getString("telefono"));
+				return a;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#getCredentialsbyKeyUtente(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Utente getCredentialsbyKeyUtente(String chiave) {
+		// TODO Auto-generated method stub
+		Utente u = new Utente("","","","","","","","","");
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_QUERY_UTENTE_BYKEY);
+			preparedStatement.setString(1, chiave);
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			if (rs.next()) {
+				u = new Utente(rs.getString("username"), rs.getString("password"), rs.getString("chiaverecupero"), rs.getString("nome"), rs.getString("cognome"), rs.getString("luogon"), rs.getString("datan"), rs.getString("telefono"), rs.getString("carta"));
+				return u;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return u;
 	}
 	
 }

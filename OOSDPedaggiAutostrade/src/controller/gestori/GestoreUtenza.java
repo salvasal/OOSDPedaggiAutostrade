@@ -78,20 +78,10 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	@Override
 	public Amministratore getCredentialsbyKeyAmministratore(String username, String chiave) {
 		// TODO Auto-generated method stub
-		Connection con=new Database().Connect();
 		Amministratore a = new Amministratore("","","","","","","","");
-		
-		try {
-			Statement st = con.createStatement();
-			// controllo credenziali amministratore
-			ResultSet result=st.executeQuery("select * from amministratore where ChiaveRecupero='"+chiave+"' ");
-			if(result.next()) {
-				a = new Amministratore(result.getString("username"),result.getString("password"),result.getString("chiaveRecupero"),result.getString("nome"),result.getString("cognome"),result.getString("luogoN"),result.getString("dataN"),result.getString("telefono"));
-				return a;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		a = new MySQLGestoreUtenzaDAOImpl().getCredentialsbyKeyAmministratore(chiave);
+		if(!(a.getUsername().equals(""))) {
+			return a;
 		}
 		return a;
 	}
@@ -103,20 +93,10 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	@Override
 	public Utente getCredentialsbyKeyUtente(String username, String chiave) {
 		// TODO Auto-generated method stub
-		Connection con=new Database().Connect();
 		Utente u = new Utente("","","","","","","","","");
-		
-		try {
-			Statement st = con.createStatement();
-			// controllo credenziali utente
-			ResultSet result=st.executeQuery("select * from utente where ChiaveRecupero='"+chiave+"' ");
-			if(result.next()) {
-				u = new Utente(result.getString("username"),result.getString("password"),result.getString("chiaveRecupero"),result.getString("nome"),result.getString("cognome"),result.getString("luogoN"),result.getString("dataN"),result.getString("telefono"),result.getString("carta"));
-				return u;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		u = new MySQLGestoreUtenzaDAOImpl().getCredentialsbyKeyUtente(chiave);
+		if(!(u.getUsername().equals(""))) {
+			return u;
 		}
 		return u;
 	}

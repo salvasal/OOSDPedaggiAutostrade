@@ -15,4 +15,6 @@ public interface GestoreUtenzaDAO {
 	public Utente getUtente(String username, String password);
 	public void setCarta(Utente u, float saldo);
 	public void setUtente(Utente u, String chiave);
+	public Amministratore getCredentialsbyKeyAmministratore(String chiave);
+	public Utente getCredentialsbyKeyUtente(String chiave);
 }
