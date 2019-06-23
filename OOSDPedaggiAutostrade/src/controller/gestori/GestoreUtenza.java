@@ -3,17 +3,12 @@
  */
 package controller.gestori;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
 
 import model.components.Amministratore;
 import model.components.Carta;
 import model.components.Utente;
-import model.database.Database;
 import model.implementsDAO.MySQLGestoreUtenzaDAOImpl;
 import controller.interfaces.GestoreUtenzaInterface;
 
@@ -159,20 +154,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	@Override
 	public Carta getCarta(Utente u) {
 		// TODO Auto-generated method stub
-		Connection cn = new Database().Connect();
-		Carta c = new Carta();
-		try {
-			Statement st = cn.createStatement();
-			ResultSet rs = st.executeQuery("select IBAN, saldo from carta inner join utente "
-					+ "on carta.IBAN = utente.carta where utente.username='"+u.getUsername()+"'");
-			if (rs.next()) {
-				c.setIban(rs.getString("IBAN"));
-				c.setSaldo(rs.getFloat("saldo"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Carta c = new MySQLGestoreUtenzaDAOImpl().getCarta(u);
 		return c;
 	}
 

@@ -6,6 +6,7 @@ package model.interfacesDAO;
 import java.util.ArrayList;
 
 import model.components.Amministratore;
+import model.components.Carta;
 import model.components.Utente;
 
 /**
@@ -22,4 +23,5 @@ public interface GestoreUtenzaDAO {
 	public void setAmministratore(Amministratore a, String chiave);
 	public ArrayList<String> getUtente();
 	public Utente getUtente(String username);
+	public Carta getCarta(Utente u);
 }

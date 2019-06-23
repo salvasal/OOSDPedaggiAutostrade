@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.components.Amministratore;
+import model.components.Carta;
 import model.components.Casello;
 import model.components.Utente;
 import model.database.Database;
@@ -23,6 +24,7 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 
 	private static final String READ_QUERY_AMMINISTRATORE = "select * from amministratore where Username = ? and Password = ? ";
 	private static final String READ_QUERY_UTENTE = "select * from utente where Username = ? and Password = ? ";
+	private static final String READ_QUERY_CARTA = "select IBAN, saldo from carta inner join utente on carta.IBAN = utente.carta where utente.username = ? ";
 	private static final String CREATE_QUERY_CARTA = "insert into carta(IBAN, Saldo) values(?,?)";
 	private static final String CREATE_QUERY_UTENTE = "insert into utente values(?,?,?,?,?,?,?,?,?)";
 	private static final String CREATE_QUERY_AMMINISTRATORE = "insert into amministratore values(?,?,?,?,?,?,?,?)";
@@ -246,6 +248,31 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 			e.printStackTrace();
 		}
 		return u;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#getCarta(model.components.Utente)
+	 */
+	@Override
+	public Carta getCarta(Utente u) {
+		// TODO Auto-generated method stub
+		Carta c = null;
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_QUERY_CARTA);
+			preparedStatement.setString(1, u.getUsername());
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			if (rs.next()) {
+				c = new Carta(rs.getString("IBAN"), rs.getFloat("saldo"));
+				return c;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return c;
 	}
 	
 	
