@@ -13,4 +13,6 @@ import model.components.Utente;
 public interface GestoreUtenzaDAO {
 	public Amministratore getAmministratore(String username, String password);
 	public Utente getUtente(String username, String password);
+	public void setCarta(Utente u, float saldo);
+	public void setUtente(Utente u, String chiave);
 }

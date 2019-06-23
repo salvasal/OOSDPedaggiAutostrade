@@ -64,23 +64,10 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	@Override
 	public String setUtente(Utente u) {
 		// TODO Auto-generated method stub
-		Connection con = new Database().Connect();
 		String chiave = randomString(6);
 		float saldo = 0;
-		Statement st;
-		try {
-			st = con.createStatement();
-			Statement st2 = con.createStatement();
-			String tot="insert into carta(IBAN, Saldo) values('"+u.getCarta()+"','"+saldo+"')";
-			st.executeUpdate(tot);
-			String tot2="insert into utente values('"+u.getUsername()+"','"+u.getPassword()+"','"+chiave+"','"+u.getNome()+"','"+u.getCognome()+"','"+u.getLuogon()+"','"+u.getDatan()+"','"+u.getTelefono()+"','"+u.getCarta()+"')";
-			st2.executeUpdate(tot2);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}
+		new MySQLGestoreUtenzaDAOImpl().setCarta(u, saldo);
+		new MySQLGestoreUtenzaDAOImpl().setUtente(u, chiave);
 		return chiave;
 	}
 

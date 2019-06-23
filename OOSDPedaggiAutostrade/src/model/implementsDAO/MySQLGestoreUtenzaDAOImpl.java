@@ -22,6 +22,8 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 
 	private static final String READ_QUERY_AMMINISTRATORE = "select * from amministratore where Username = ? and Password = ? ";
 	private static final String READ_QUERY_UTENTE = "select * from utente where Username = ? and Password = ? ";
+	private static final String CREATE_QUERY_CARTA = "insert into carta(IBAN, Saldo) values(?,?)";
+	private static final String CREATE_QUERY_UTENTE = "insert into utente values(?,?,?,?,?,?,?,?,?)";
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.GestoreUtenzaDAO#getAmministratore(java.lang.String, java.lang.String)
@@ -73,6 +75,49 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 			e.printStackTrace();
 		}
 		return u;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#setCarta(model.components.Utente, float)
+	 */
+	@Override
+	public void setCarta(Utente u, float saldo) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(CREATE_QUERY_CARTA);
+			preparedStatement.setString(1, u.getCarta());
+			preparedStatement.setFloat(2, saldo);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#setUtente(model.components.Utente, java.lang.String)
+	 */
+	@Override
+	public void setUtente(Utente u, String chiave) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(CREATE_QUERY_UTENTE);
+			preparedStatement.setString(1, u.getUsername());
+			preparedStatement.setString(2, u.getPassword());
+			preparedStatement.setString(3, chiave);
+			preparedStatement.setString(4, u.getNome());
+			preparedStatement.setString(5, u.getCognome());
+			preparedStatement.setString(6, u.getLuogon());
+			preparedStatement.setString(7, u.getDatan());
+			preparedStatement.setString(8, u.getTelefono());
+			preparedStatement.setString(9, u.getCarta());
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
