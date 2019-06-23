@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.components.Amministratore;
 import model.components.Casello;
@@ -27,6 +28,7 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 	private static final String CREATE_QUERY_AMMINISTRATORE = "insert into amministratore values(?,?,?,?,?,?,?,?)";
 	private static final String READ_QUERY_AMMINISTRATORE_BYKEY = "select * from amministratore where ChiaveRecupero = ?";
 	private static final String READ_QUERY_UTENTE_BYKEY = "select * from utente where ChiaveRecupero = ? ";
+	private static final String READ_ALLQUERY_UTENTI_USERNAME = "select username from utente";
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.GestoreUtenzaDAO#getAmministratore(java.lang.String, java.lang.String)
@@ -195,6 +197,29 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#getUtente()
+	 */
+	@Override
+	public ArrayList<String> getUtente() {
+		// TODO Auto-generated method stub
+		ArrayList<String> ulist = new ArrayList<String>();
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_ALLQUERY_UTENTI_USERNAME);
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			while(rs.next()) {
+				ulist.add(rs.getString("username"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ulist;
 	}
 	
 }

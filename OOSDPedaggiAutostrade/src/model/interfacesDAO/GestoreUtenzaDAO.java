@@ -3,6 +3,8 @@
  */
 package model.interfacesDAO;
 
+import java.util.ArrayList;
+
 import model.components.Amministratore;
 import model.components.Utente;
 
@@ -18,4 +20,5 @@ public interface GestoreUtenzaDAO {
 	public Amministratore getCredentialsbyKeyAmministratore(String chiave);
 	public Utente getCredentialsbyKeyUtente(String chiave);
 	public void setAmministratore(Amministratore a, String chiave);
+	public ArrayList<String> getUtente();
 }

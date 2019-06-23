@@ -138,18 +138,7 @@ public class GestoreUtenza implements GestoreUtenzaInterface {
 	public ArrayList<String> getUtente() {
 		// TODO Auto-generated method stub
 		ArrayList<String> ulist = new ArrayList<String>();
-		Connection con = new Database().Connect();
-		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select username from utente");
-			while (rs.next()) {
-				ulist.add(rs.getNString("username"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		ulist.addAll(new MySQLGestoreUtenzaDAOImpl().getUtente());
 		return ulist;
 		
 	}
