@@ -21,4 +21,5 @@ public interface GestoreUtenzaDAO {
 	public Utente getCredentialsbyKeyUtente(String chiave);
 	public void setAmministratore(Amministratore a, String chiave);
 	public ArrayList<String> getUtente();
+	public Utente getUtente(String username);
 }

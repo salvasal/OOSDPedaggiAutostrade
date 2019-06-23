@@ -28,6 +28,7 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 	private static final String CREATE_QUERY_AMMINISTRATORE = "insert into amministratore values(?,?,?,?,?,?,?,?)";
 	private static final String READ_QUERY_AMMINISTRATORE_BYKEY = "select * from amministratore where ChiaveRecupero = ?";
 	private static final String READ_QUERY_UTENTE_BYKEY = "select * from utente where ChiaveRecupero = ? ";
+	private static final String READ_QUERY_UTENTE_BYUSERNAME = "select * from utente where Username = ? ";
 	private static final String READ_ALLQUERY_UTENTI_USERNAME = "select username from utente";
 	
 	/* (non-Javadoc)
@@ -221,5 +222,31 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 		}
 		return ulist;
 	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#getUtente(java.lang.String)
+	 */
+	@Override
+	public Utente getUtente(String username) {
+		// TODO Auto-generated method stub
+		Utente u = new Utente("","","","","","","","","");
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_QUERY_UTENTE_BYUSERNAME);
+			preparedStatement.setString(1, username);
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			if (rs.next()) {
+				u = new Utente(rs.getString("username"), rs.getString("password"), rs.getString("chiaverecupero"), rs.getString("nome"), rs.getString("cognome"), rs.getString("luogon"), rs.getString("datan"), rs.getString("telefono"), rs.getString("carta"));
+				return u;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return u;
+	}
+	
 	
 }
