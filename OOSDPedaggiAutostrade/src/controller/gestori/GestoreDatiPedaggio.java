@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.DefaultListModel;
@@ -53,19 +54,10 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	public DefaultListModel getPedagginonPagati(Utente u) {
 		// TODO Auto-generated method stub
 		DefaultListModel  dfm = new DefaultListModel();
-		Connection cn = new Database().Connect();
-		String statopedaggio = "NonPagato";
-		try {
-			Statement st = cn.createStatement();
-			ResultSet result = st.executeQuery("select ID, stato, Importo, Veicolo from pedaggio inner join veicolo "
-					+ "on pedaggio.veicolo = veicolo.targa inner join utente "
-					+ "on veicolo.utente = utente.username where pedaggio.stato ='"+statopedaggio+"' and utente.username ='"+u.getUsername()+"'");
-			while (result.next()) {
-				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + " Importo: " + result.getFloat("Importo") + " � Veicolo: " + result.getString("Veicolo"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<Pedaggio> pedaggiNonPagati = new ArrayList<Pedaggio>();
+		pedaggiNonPagati.addAll(new MySQLPedaggioDAOImpl().getPedagginonPagati(u));
+		for (Pedaggio p : pedaggiNonPagati) {
+			dfm.addElement("ID Pedaggio: "+ p.getId() + " Importo: " + p.getImporto() + " Euro Veicolo: " + p.getVeicolo());
 		}
 		return dfm;
 	}
