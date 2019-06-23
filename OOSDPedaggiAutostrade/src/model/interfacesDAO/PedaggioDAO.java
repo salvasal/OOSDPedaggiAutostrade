@@ -20,4 +20,5 @@ public interface PedaggioDAO {
 	public void setTariffa(Tariffa t);
 	public void setOneri(Oneri o);
 	public ArrayList<Pedaggio> getPedagginonPagati(Utente u);
+	public ArrayList<Pedaggio> getPedaggi(Utente u);
 }

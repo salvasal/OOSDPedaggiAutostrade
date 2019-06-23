@@ -70,18 +70,10 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	public DefaultListModel getPedaggi(Utente u) {
 		// TODO Auto-generated method stub
 		DefaultListModel  dfm = new DefaultListModel();
-		Connection cn = new Database().Connect();
-		try {
-			Statement st = cn.createStatement();
-			ResultSet result = st.executeQuery("select ID, stato, Importo, Veicolo from pedaggio inner join veicolo "
-					+ "on pedaggio.veicolo = veicolo.targa inner join utente "
-					+ "on veicolo.utente = utente.username where utente.username ='"+u.getUsername()+"'");
-			while (result.next()) {
-				dfm.addElement("ID Pedaggio: "+ result.getString("ID") + "Stato: "+ result.getString("stato") + " Importo: " + result.getFloat("Importo") + " � Veicolo: " + result.getString("Veicolo"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<Pedaggio> pedaggi = new ArrayList<Pedaggio>();
+		pedaggi.addAll(new MySQLPedaggioDAOImpl().getPedaggi(u));
+		for (Pedaggio p : pedaggi) {
+			dfm.addElement("ID Pedaggio: "+ p.getId() + " Stato: "+p.getStato() +" Importo: " + p.getImporto() + " Euro Veicolo: " + p.getVeicolo());
 		}
 		return dfm;
 	}
