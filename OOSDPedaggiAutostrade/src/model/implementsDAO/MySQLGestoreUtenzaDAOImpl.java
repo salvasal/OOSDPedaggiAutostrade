@@ -24,6 +24,7 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 	private static final String READ_QUERY_UTENTE = "select * from utente where Username = ? and Password = ? ";
 	private static final String CREATE_QUERY_CARTA = "insert into carta(IBAN, Saldo) values(?,?)";
 	private static final String CREATE_QUERY_UTENTE = "insert into utente values(?,?,?,?,?,?,?,?,?)";
+	private static final String CREATE_QUERY_AMMINISTRATORE = "insert into amministratore values(?,?,?,?,?,?,?,?)";
 	private static final String READ_QUERY_AMMINISTRATORE_BYKEY = "select * from amministratore where ChiaveRecupero = ?";
 	private static final String READ_QUERY_UTENTE_BYKEY = "select * from utente where ChiaveRecupero = ? ";
 	
@@ -170,6 +171,30 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 			e.printStackTrace();
 		}
 		return u;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#setAmministratore(model.components.Amministratore, java.lang.String)
+	 */
+	@Override
+	public void setAmministratore(Amministratore a, String chiave) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(CREATE_QUERY_AMMINISTRATORE);
+			preparedStatement.setString(1, a.getUsername());
+			preparedStatement.setString(2, a.getPassword());
+			preparedStatement.setString(3, chiave);
+			preparedStatement.setString(4, a.getNome());
+			preparedStatement.setString(5, a.getCognome());
+			preparedStatement.setString(6, a.getLuogoN());
+			preparedStatement.setString(7, a.getDataN());
+			preparedStatement.setString(8, a.getTelefono());
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
