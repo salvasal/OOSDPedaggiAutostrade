@@ -120,23 +120,10 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	public void ricarica(Integer importo, String pedaggio, Utente u) {
 		// TODO Auto-generated method stub
 		float nuovosaldo;
-		Connection con = new Database().Connect();
-		Statement st, st2;
-		try {
-			st = con.createStatement();
-			ResultSet rs = st.executeQuery("select IBAN, saldo from carta inner join utente "
-					+ "on carta.IBAN = utente.carta where utente.username ='"+u.getUsername()+"'");
-			if(rs.next()) {
-				Carta c = new Carta (rs.getString("IBAN"), rs.getFloat("saldo"));
-				nuovosaldo = c.getSaldo()+importo;
-				st2 = con.createStatement();
-				st2.executeUpdate("update carta set saldo = '"+nuovosaldo+"' where IBAN = '"+c.getIban()+"'");
-				boolean check = new GestoreDatiPedaggio().pagamentoCarta(pedaggio, u);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Carta c = new MySQLGestoreUtenzaDAOImpl().getCarta(u);
+		nuovosaldo = c.getSaldo()+importo;
+		new MySQLGestoreUtenzaDAOImpl().setCarta(nuovosaldo, c);
+		boolean check = new GestoreDatiPedaggio().pagamentoCarta(pedaggio, u);
 	}
 
 
