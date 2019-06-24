@@ -178,57 +178,24 @@ public class GestoreDatiPedaggio implements PedaggioInterface {
 	@Override
 	public void setPedaggiowithOneri(String targa, String caselloentrata, String casellouscita) {
 		// TODO Auto-generated method stub
-		Connection cn = new Database().Connect();
-		try {
-			Statement st = cn.createStatement();
-			ResultSet rs = st.executeQuery("select km from casello where coordinate = '"+caselloentrata+"'");
-			if(rs.next()) {
-				Integer kmentrata = rs.getInt("km");
-				Statement st2 = cn.createStatement();
-				ResultSet rs2 = st2.executeQuery("select km from casello where coordinate = '"+casellouscita+"'");
-				if(rs2.next()) {
-					Integer kmuscita = rs2.getInt("km");
-					Integer km = Math.abs(kmentrata - kmuscita);
-					Statement st3 = cn.createStatement();
-					ResultSet rs3 = st3.executeQuery("select tipo from autostrada inner join casello "
-							+ "on autostrada.codice = casello.autostrada where casello.coordinate = '"+caselloentrata+"'");
-					if(rs3.next()) {
-						String tipo = rs3.getString("tipo");
-						Statement st4 = cn.createStatement();
-						ResultSet rs4 = st4.executeQuery("select categoria, oneri from veicolo where targa = '"+targa+"'");
-						if(rs4.next()) {
-							String categoria = rs4.getString("categoria");
-							Integer oneri = rs4.getInt("oneri");
-							Statement st5 = cn.createStatement();
-							ResultSet rs5 = st5.executeQuery("select valore from tariffa where categoria = '"+categoria+"' and tipo = '"+tipo+"'");
-							if(rs5.next()) {
-								float tariffa = rs5.getFloat("valore");
-								Statement st6 = cn.createStatement();
-								ResultSet rs6 = st6.executeQuery("select importo from oneri where euro = '"+oneri+"'");
-								if(rs6.next()) {
-									float importooneri = rs6.getFloat("importo");
-									System.out.println(importooneri);
-									double pedaggiosenzaimposta = km * tariffa;
-									double pedaggiocononerisenzaimposta = pedaggiosenzaimposta + importooneri;
-									double imposta = pedaggiocononerisenzaimposta * 0.22;
-									double pedaggio = pedaggiocononerisenzaimposta + imposta;
-									System.out.println(pedaggio);
-									Double importo = arrotonda(pedaggio, 1);
-									System.out.println(importo);
-									String ID = randomString(4);
-									String stato ="NonPagato";
-									Statement st7 = cn.createStatement();
-									st7.executeUpdate("insert into pedaggio values('"+ID+"','"+stato+"','"+importo+"','"+targa+"')");
-								}
-							}
-						}
-					}
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Integer kmentrata = new MySQLAutostradaDAOImpl().getkmcasello(caselloentrata);
+		Integer kmuscita = new MySQLAutostradaDAOImpl().getkmcasello(casellouscita);
+		Integer km = Math.abs(kmentrata - kmuscita);
+		String tipo = new MySQLAutostradaDAOImpl().getTipoAutostrada(caselloentrata);
+		String categoria = new MySQLVeicoloDAOImpl().getCategoriaVeicolo(targa);
+		Integer oneri = new MySQLVeicoloDAOImpl().getOneriVeicolo(targa);
+		float tariffa = new MySQLPedaggioDAOImpl().getvaloretariffa(categoria, tipo);
+		float importooneri = new MySQLPedaggioDAOImpl().getvaloreoneri(oneri);
+		System.out.println(importooneri);
+		double pedaggiosenzaimposta = km * tariffa;
+		double pedaggiocononerisenzaimposta = pedaggiosenzaimposta + importooneri;
+		double imposta = pedaggiocononerisenzaimposta * 0.22;
+		double pedaggio = pedaggiocononerisenzaimposta + imposta;
+		System.out.println(pedaggio);
+		Double importo = arrotonda(pedaggio, 1);
+		System.out.println(importo);
+		String ID = randomString(4);
+		new MySQLPedaggioDAOImpl().setPedaggioNonPagato(ID, importo, targa);
 	}
 	
 }

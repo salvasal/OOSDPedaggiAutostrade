@@ -9,4 +9,5 @@ package model.interfacesDAO;
  */
 public interface VeicoloDAO {
 	public String getCategoriaVeicolo(String targa);
+	public Integer getOneriVeicolo(String targa);
 }

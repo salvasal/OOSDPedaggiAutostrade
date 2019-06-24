@@ -17,7 +17,7 @@ import model.interfacesDAO.VeicoloDAO;
  */
 public class MySQLVeicoloDAOImpl implements VeicoloDAO {
 
-	private static final String READ_QUERY_CATEGORIAVEICOLO = "select categoria from veicolo where targa = ? ";
+	private static final String READ_QUERY_VEICOLO = "select categoria, oneri from veicolo where targa = ? ";
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.VeicoloDAO#getCategoriaVeicolo(java.lang.String)
 	 */
@@ -28,7 +28,7 @@ public class MySQLVeicoloDAOImpl implements VeicoloDAO {
 		Connection cn = new Database().Connect();
 		ResultSet rs = null;
 		try {
-			PreparedStatement prepareStatement = cn.prepareStatement(READ_QUERY_CATEGORIAVEICOLO);
+			PreparedStatement prepareStatement = cn.prepareStatement(READ_QUERY_VEICOLO);
 			prepareStatement.setString(1, targa);
 			prepareStatement.execute();
 			rs = prepareStatement.getResultSet();
@@ -42,5 +42,30 @@ public class MySQLVeicoloDAOImpl implements VeicoloDAO {
 		}
 		return categoria;
 	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.VeicoloDAO#getOneriVeicolo(java.lang.String)
+	 */
+	@Override
+	public Integer getOneriVeicolo(String targa) {
+		// TODO Auto-generated method stub
+		Integer oneri = 0;
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement prepareStatement = cn.prepareStatement(READ_QUERY_VEICOLO);
+			prepareStatement.setString(1, targa);
+			prepareStatement.execute();
+			rs = prepareStatement.getResultSet();
+			if(rs.next()) {
+				oneri = rs.getInt("oneri");
+				return oneri;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return oneri;
+	}
+	
 	
 }
