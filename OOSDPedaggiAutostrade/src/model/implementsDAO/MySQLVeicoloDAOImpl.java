@@ -24,6 +24,7 @@ public class MySQLVeicoloDAOImpl implements VeicoloDAO {
 	private static final String READ_QUERY_VEICOLI = "select * from veicolo where utente = ? ";
 	private static final String READ_QUERY_TARGAVEICOLI = "select targa from veicolo where utente = ? ";
 	private static final String DELETE_QUERY_VEICOLO = "delete from veicolo where targa = ? ";
+	private static final String CREATE_QUERY_VEICOLO = "insert into veicolo values (?,?,?,?,?,?,?,?,?,?,?)";
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.VeicoloDAO#getCategoriaVeicolo(java.lang.String)
@@ -134,6 +135,32 @@ public class MySQLVeicoloDAOImpl implements VeicoloDAO {
 			PreparedStatement preparedStatement = cn.prepareStatement(DELETE_QUERY_VEICOLO);
 			preparedStatement.setString(1, targa);
 			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.VeicoloDAO#setVeicolo(model.components.Veicolo)
+	 */
+	@Override
+	public void setVeicolo(Veicolo v) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement prepareStatement = cn.prepareStatement(CREATE_QUERY_VEICOLO);
+			prepareStatement.setString(1, v.getTarga());
+			prepareStatement.setString(2, v.getMarca());
+			prepareStatement.setString(3, v.getModello());
+			prepareStatement.setInt(4, v.getPeso());
+			prepareStatement.setInt(5, v.getAssi());
+			prepareStatement.setInt(6, v.getAltezza());
+			prepareStatement.setInt(7, v.getAnno());
+			prepareStatement.setString(8, v.getCategoria());
+			prepareStatement.setInt(9, v.getQtaco2());
+			prepareStatement.setInt(10, v.getOneri());
+			prepareStatement.setString(11, v.getUtente());
+			prepareStatement.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

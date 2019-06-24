@@ -26,4 +26,5 @@ public interface PedaggioDAO {
 	public float getvaloretariffa(String categoria, String tipo);
 	public float getvaloreoneri(Integer oneri);
 	public void setPedaggioNonPagato(String ID, Double importo, String targa);
+	public ArrayList<Oneri> getOneri();
 }

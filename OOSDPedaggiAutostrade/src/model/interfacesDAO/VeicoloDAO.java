@@ -18,4 +18,5 @@ public interface VeicoloDAO {
 	public ArrayList<Veicolo> getVeicoli(Utente u);
 	public ArrayList<String> getVeicolibyUsername(String usernameutente);
 	public void deleteveicolo(String targa);
+	public void setVeicolo(Veicolo v);
 }

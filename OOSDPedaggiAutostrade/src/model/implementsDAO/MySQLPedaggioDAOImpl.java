@@ -33,6 +33,7 @@ public class MySQLPedaggioDAOImpl implements PedaggioDAO {
 	private static final String READ_QUERY_TARIFFA = "select valore from tariffa where categoria = ? and tipo = ? ";
 	private static final String READ_QUERY_ONERI = "select importo from oneri where euro = ? ";
 	private static final String CREATE_QUERY_PEDAGGIO = "insert into pedaggio values(?,?,?,?)";
+	private static final String READ_ALL_QUERY_ONERI = "select * from oneri";
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.PedaggioDAO#setTariffa(model.components.Tariffa)
@@ -237,6 +238,31 @@ public class MySQLPedaggioDAOImpl implements PedaggioDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.PedaggioDAO#getOneri()
+	 */
+	@Override
+	public ArrayList<Oneri> getOneri() {
+		// TODO Auto-generated method stub
+		ArrayList<Oneri> list = new ArrayList<Oneri>();
+		Oneri o = null;
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_ALL_QUERY_ONERI);
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			while (rs.next()) {
+				o = new Oneri(rs.getInt("euro"), rs.getString("importo"), rs.getFloat("valoremin"), rs.getFloat("valoremax"));
+				list.add(o);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	
