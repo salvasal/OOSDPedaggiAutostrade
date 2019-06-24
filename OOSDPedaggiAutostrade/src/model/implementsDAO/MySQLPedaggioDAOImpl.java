@@ -28,6 +28,7 @@ public class MySQLPedaggioDAOImpl implements PedaggioDAO {
 	private static final String UPDATE_QUERY_ONERI = "update Oneri set Importo = ? where Euro = ? ";
 	private static final String READ_QUERY_PEDAGGINONPAGATI = "select * from pedaggio inner join veicolo on pedaggio.veicolo = veicolo.targa inner join utente on veicolo.utente = utente.username where pedaggio.stato = ? and utente.username = ? ";
 	private static final String READ_QUERY_PEDAGGI = "select * from pedaggio inner join veicolo on pedaggio.veicolo = veicolo.targa inner join utente on veicolo.utente = utente.username where utente.username = ? ";
+	private static final String READ_QUERY_PEDAGGIO = "select * from Pedaggio where ID = ? ";
 	private static final String UPDATE_QUERY_PEDAGGIO = "update Pedaggio set Stato = ? where ID = ? ";
 	
 	/* (non-Javadoc)
@@ -136,6 +137,31 @@ public class MySQLPedaggioDAOImpl implements PedaggioDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.PedaggioDAO#getPedaggio(java.lang.String)
+	 */
+	@Override
+	public Pedaggio getPedaggio(String pedaggio) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		Pedaggio p = null;
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(READ_QUERY_PEDAGGIO);
+			preparedStatement.setString(1, pedaggio);
+			preparedStatement.execute();
+			rs = preparedStatement.getResultSet();
+			if(rs.next()) {
+				p = new Pedaggio(rs.getString("ID"), rs.getString("Stato"), rs.getFloat("Importo"), rs.getString("Veicolo"));
+				return p;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return p;
 	}
 	
 	

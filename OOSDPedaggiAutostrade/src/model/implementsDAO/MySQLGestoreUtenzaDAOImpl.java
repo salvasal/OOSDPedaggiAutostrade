@@ -32,6 +32,7 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 	private static final String READ_QUERY_UTENTE_BYKEY = "select * from utente where ChiaveRecupero = ? ";
 	private static final String READ_QUERY_UTENTE_BYUSERNAME = "select * from utente where Username = ? ";
 	private static final String READ_ALLQUERY_UTENTI_USERNAME = "select username from utente";
+	private static final String UPDATE_QUERY_CARTA = "update carta set saldo = ? where IBAN = ? "; 
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.GestoreUtenzaDAO#getAmministratore(java.lang.String, java.lang.String)
@@ -273,6 +274,24 @@ public class MySQLGestoreUtenzaDAOImpl implements GestoreUtenzaDAO {
 			e.printStackTrace();
 		}
 		return c;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.GestoreUtenzaDAO#setCarta(float, model.components.Carta)
+	 */
+	@Override
+	public void setCarta(float nuovosaldo, Carta c) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(UPDATE_QUERY_CARTA);
+			preparedStatement.setFloat(1, nuovosaldo);
+			preparedStatement.setString(2, c.getIban());
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

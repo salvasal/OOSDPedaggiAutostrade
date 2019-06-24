@@ -24,4 +24,5 @@ public interface GestoreUtenzaDAO {
 	public ArrayList<String> getUtente();
 	public Utente getUtente(String username);
 	public Carta getCarta(Utente u);
+	public void setCarta(float nuovosaldo, Carta c);
 }
