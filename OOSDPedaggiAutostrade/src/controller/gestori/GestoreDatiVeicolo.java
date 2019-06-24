@@ -48,18 +48,7 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 	public ArrayList<String> getVeicolibyUsername(String usernameutente) {
 		// TODO Auto-generated method stub
 		ArrayList<String> targalist = new ArrayList<String>();
-		Connection con = new Database().Connect();
-		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select targa from veicolo where utente ='"+usernameutente+"'");
-			while(rs.next()) {
-				targalist.add(rs.getString("targa"));
-			} 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		targalist.addAll(new MySQLVeicoloDAOImpl().getVeicolibyUsername(usernameutente));
 		return targalist;
 	}
 
