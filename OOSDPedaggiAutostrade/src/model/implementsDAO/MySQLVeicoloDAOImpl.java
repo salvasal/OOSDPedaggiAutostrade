@@ -23,6 +23,7 @@ public class MySQLVeicoloDAOImpl implements VeicoloDAO {
 	private static final String READ_QUERY_VEICOLO = "select categoria, oneri from veicolo where targa = ? ";
 	private static final String READ_QUERY_VEICOLI = "select * from veicolo where utente = ? ";
 	private static final String READ_QUERY_TARGAVEICOLI = "select targa from veicolo where utente = ? ";
+	private static final String DELETE_QUERY_VEICOLO = "delete from veicolo where targa = ? ";
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.VeicoloDAO#getCategoriaVeicolo(java.lang.String)
@@ -121,6 +122,22 @@ public class MySQLVeicoloDAOImpl implements VeicoloDAO {
 			e.printStackTrace();
 		}
 		return targalist;
+	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.VeicoloDAO#deleteveicolo(java.lang.String)
+	 */
+	@Override
+	public void deleteveicolo(String targa) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(DELETE_QUERY_VEICOLO);
+			preparedStatement.setString(1, targa);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
