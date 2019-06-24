@@ -3,10 +3,6 @@
  */
 package controller.gestori;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,7 +13,6 @@ import model.components.Oneri;
 import model.components.Pedaggio;
 import model.components.Tariffa;
 import model.components.Utente;
-import model.database.Database;
 import model.implementsDAO.MySQLAutostradaDAOImpl;
 import model.implementsDAO.MySQLGestoreUtenzaDAOImpl;
 import model.implementsDAO.MySQLPedaggioDAOImpl;

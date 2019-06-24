@@ -15,6 +15,7 @@ import model.components.Oneri;
 import model.components.Utente;
 import model.components.Veicolo;
 import model.database.Database;
+import model.implementsDAO.MySQLVeicoloDAOImpl;
 import controller.interfaces.VeicoloInterface;
 
 /**
@@ -32,18 +33,10 @@ public class GestoreDatiVeicolo implements VeicoloInterface {
 	public DefaultListModel getVeicoli(Utente u) {
 		// TODO Auto-generated method stub
 		DefaultListModel dfm = new DefaultListModel();
-		ResultSet result;
-		Connection con = Database.Connect();
-		Statement st;
-		try {
-			st = con.createStatement();
-			result = st.executeQuery("select targa, marca, modello, peso, assi, altezza, anno, categoria, qtaco2, oneri from veicolo where utente='"+u.getUsername()+"'");
-			while (result.next()) {
-				dfm.addElement("Targa: "+result.getString("targa")+" Marca: "+result.getString("marca")+" Modello: "+result.getString("modello")+" Assi: "+result.getInt("assi")+" Categoria: "+result.getString("categoria")+" Quantita di co2 emessa: "+result.getFloat("qtaco2")+" Oneri: "+result.getInt("oneri"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<Veicolo> list = new ArrayList<Veicolo>();
+		list.addAll(new MySQLVeicoloDAOImpl().getVeicoli(u));
+		for(Veicolo v: list) {
+			dfm.addElement("Targa: "+v.getTarga()+" Marca: "+v.getMarca()+" Modello: "+v.getModello()+" Assi: "+v.getAssi()+" Categoria: "+v.getCategoria()+" Quantita di co2 emessa: "+v.getQtaco2()+" Oneri: "+v.getOneri());
 		}
 		return dfm;
 	}
