@@ -28,6 +28,7 @@ public class MySQLPedaggioDAOImpl implements PedaggioDAO {
 	private static final String UPDATE_QUERY_ONERI = "update Oneri set Importo = ? where Euro = ? ";
 	private static final String READ_QUERY_PEDAGGINONPAGATI = "select * from pedaggio inner join veicolo on pedaggio.veicolo = veicolo.targa inner join utente on veicolo.utente = utente.username where pedaggio.stato = ? and utente.username = ? ";
 	private static final String READ_QUERY_PEDAGGI = "select * from pedaggio inner join veicolo on pedaggio.veicolo = veicolo.targa inner join utente on veicolo.utente = utente.username where utente.username = ? ";
+	private static final String UPDATE_QUERY_PEDAGGIO = "update Pedaggio set Stato = ? where ID = ? ";
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.PedaggioDAO#setTariffa(model.components.Tariffa)
@@ -117,6 +118,24 @@ public class MySQLPedaggioDAOImpl implements PedaggioDAO {
 			e.printStackTrace();
 		}
 		return pedaggi;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.PedaggioDAO#setPedaggioPagato(java.lang.String)
+	 */
+	@Override
+	public void setPedaggioPagato(String pedaggio) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(UPDATE_QUERY_PEDAGGIO);
+			preparedStatement.setString(1, "Pagato");
+			preparedStatement.setString(2, pedaggio);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

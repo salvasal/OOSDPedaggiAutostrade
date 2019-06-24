@@ -21,4 +21,5 @@ public interface PedaggioDAO {
 	public void setOneri(Oneri o);
 	public ArrayList<Pedaggio> getPedagginonPagati(Utente u);
 	public ArrayList<Pedaggio> getPedaggi(Utente u);
+	public void setPedaggioPagato(String pedaggio);
 }
