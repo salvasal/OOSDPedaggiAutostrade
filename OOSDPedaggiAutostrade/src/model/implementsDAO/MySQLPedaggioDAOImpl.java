@@ -30,6 +30,8 @@ public class MySQLPedaggioDAOImpl implements PedaggioDAO {
 	private static final String READ_QUERY_PEDAGGI = "select * from pedaggio inner join veicolo on pedaggio.veicolo = veicolo.targa inner join utente on veicolo.utente = utente.username where utente.username = ? ";
 	private static final String READ_QUERY_PEDAGGIO = "select * from Pedaggio where ID = ? ";
 	private static final String UPDATE_QUERY_PEDAGGIO = "update Pedaggio set Stato = ? where ID = ? ";
+	private static final String READ_QUERY_TARIFFA = "select valore from tariffa where categoria = ? and tipo = ? ";
+	private static final String CREATE_QUERY_PEDAGGIO = "insert into pedaggio values(?,?,?,?)";
 	
 	/* (non-Javadoc)
 	 * @see model.interfacesDAO.PedaggioDAO#setTariffa(model.components.Tariffa)
@@ -162,6 +164,52 @@ public class MySQLPedaggioDAOImpl implements PedaggioDAO {
 			e.printStackTrace();
 		}
 		return p;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.PedaggioDAO#getvaloretariffa(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public float getvaloretariffa(String categoria, String tipo) {
+		// TODO Auto-generated method stub
+		float tariffa = 0;
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement prepareStatement = cn.prepareStatement(READ_QUERY_TARIFFA);
+			prepareStatement.setString(1, categoria);
+			prepareStatement.setString(2, tipo);
+			prepareStatement.execute();
+			rs = prepareStatement.getResultSet();
+			if(rs.next()) {
+				tariffa = rs.getFloat("valore");
+				return tariffa;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tariffa;
+	}
+
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.PedaggioDAO#setPedaggioNonPagato(java.lang.String, java.lang.Double, java.lang.String)
+	 */
+	@Override
+	public void setPedaggioNonPagato(String ID, Double importo, String targa) {
+		// TODO Auto-generated method stub
+		Connection cn = new Database().Connect();
+		try {
+			PreparedStatement preparedStatement = cn.prepareStatement(CREATE_QUERY_PEDAGGIO);
+			preparedStatement.setString(1, ID);
+			preparedStatement.setString(2, "NonPagato");
+			preparedStatement.setDouble(3, importo);
+			preparedStatement.setString(4, targa);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

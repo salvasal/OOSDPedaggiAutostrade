@@ -25,8 +25,10 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 	private static final String READ_QUERY = "select codice, nome, tipo, kminizio, kmfine, amministratore from autostrada where amministratore = ?";
 	private static final String READ_QUERY_CASELLI = "select * from casello where autostrada = ?";
 	private static final String READ_QUERY_KMFINE = "select kmfine from autostrada order by kmfine DESC";
+	private static final String READ_QUERY_KMCASELLO = "select km from casello where coordinate = ? ";
 	private static final String CREATE_QUERY_AUTOSTRADA = "insert into autostrada values(?,?,?,?,?,?)";
 	private static final String READ_QUERY_KM = "select kminizio, kmfine from autostrada where codice = ?";
+	private static final String READ_QUERY_TIPOAUTOSTRADA = "select tipo from autostrada inner join casello on autostrada.codice = casello.autostrada where casello.coordinate = ? ";
 	private static final String CREATE_QUERY_CASELLO = "insert into casello values (?,?,?,?)";
 	private static final String DELETE_QUERY_CASELLI = "delete from casello where Autostrada = ?";
 	private static final String DELETE_QUERY_CASELLO = "delete from casello where coordinate = ?";
@@ -266,7 +268,54 @@ public class MySQLAutostradaDAOImpl implements AutostradaDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.AutostradaDAO#getkminizio(java.lang.String)
+	 */
+	@Override
+	public Integer getkmcasello(String casellocoordinate) {
+		// TODO Auto-generated method stub
+		Integer km = null;
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement prepareStatement = cn.prepareStatement(READ_QUERY_KMCASELLO);
+			prepareStatement.setString(1, casellocoordinate);
+			prepareStatement.execute();
+			rs = prepareStatement.getResultSet();
+			if(rs.next()) {
+				km = rs.getInt("km");
+				return km;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return km;
+	}
+	/* (non-Javadoc)
+	 * @see model.interfacesDAO.AutostradaDAO#getTipoAutostrada(java.lang.String)
+	 */
+	@Override
+	public String getTipoAutostrada(String casellocoordinate) {
+		// TODO Auto-generated method stub
+		String tipo = null;
+		Connection cn = new Database().Connect();
+		ResultSet rs = null;
+		try {
+			PreparedStatement prepareStatement = cn.prepareStatement(READ_QUERY_TIPOAUTOSTRADA);
+			prepareStatement.setString(1, casellocoordinate);
+			prepareStatement.execute();
+			rs = prepareStatement.getResultSet();
+			if(rs.next()) {
+				tipo = rs.getString("tipo");
+				return tipo;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tipo;
+	}
 	
 	
 }

@@ -23,4 +23,6 @@ public interface PedaggioDAO {
 	public ArrayList<Pedaggio> getPedaggi(Utente u);
 	public void setPedaggioPagato(String pedaggio);
 	public Pedaggio getPedaggio(String pedaggio);
+	public float getvaloretariffa(String categoria, String tipo);
+	public void setPedaggioNonPagato(String ID, Double importo, String targa);
 }

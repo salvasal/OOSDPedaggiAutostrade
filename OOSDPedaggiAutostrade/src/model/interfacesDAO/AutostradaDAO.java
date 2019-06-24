@@ -26,4 +26,6 @@ public interface AutostradaDAO {
 	public void deleteautostrada(String codiceSelected);
 	public ArrayList<String> getCoordinatecaselliBycodiceAutostrada(String codiceAutostrada);
 	public void deletecasello(String coordinateSelected);
+	public Integer getkmcasello(String casellocoordinate);
+	public String getTipoAutostrada(String casellocoordinate);
 }
